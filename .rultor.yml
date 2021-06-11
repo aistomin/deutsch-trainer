@@ -1,0 +1,9 @@
+env:
+  MAVEN_OPTS: "-XX:MaxPermSize=256m -Xmx1g"
+  JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
+
+merge:
+  commanders:
+    - aistomin
+  script: |-
+    mvn clean install package
