@@ -16,18 +16,54 @@
 package com.github.aistomin.trainer.deutsch.vocabulary;
 
 import com.github.aistomin.testist.Question;
+import com.github.aistomin.testist.simple.SimpleAnswer;
+import com.github.aistomin.testist.simple.SimpleQuestion;
+import com.github.aistomin.testist.simple.SimpleText;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
  * A sentence in the language.
  *
  * @since 1.0
- * @todo Issue-4. Let's implement the class and remove this todo.
  */
 public final class Sentence implements LexicalUnit {
 
+    /**
+     * The sentence in original language.
+     */
+    private final String original;
+
+    /**
+     * The sentence in the student's language.
+     */
+    private final String translation;
+
+    /**
+     * Ctor.
+     * @param their The sentence in original language.
+     * @param mine The sentence in the student's language.
+     */
+    public Sentence(final String their, final String mine) {
+        this.original = their;
+        this.translation = mine;
+    }
+
     @Override
     public List<Question> questions() {
-        return null;
+        final ArrayList<Question> questions = new ArrayList<>(2);
+        questions.add(
+            new SimpleQuestion(
+                new SimpleText(this.original),
+                new SimpleAnswer(this.translation)
+            )
+        );
+        questions.add(
+            new SimpleQuestion(
+                new SimpleText(this.translation),
+                new SimpleAnswer(this.original)
+            )
+        );
+        return questions;
     }
 }
