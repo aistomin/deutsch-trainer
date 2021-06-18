@@ -21,7 +21,6 @@ import com.github.aistomin.testist.Question;
  * Just an abstract word.
  *
  * @since 1.0
- * @todo Issue-5. Let's implement the class and remove this todo.
  */
 public abstract class Word implements LexicalUnit {
 
