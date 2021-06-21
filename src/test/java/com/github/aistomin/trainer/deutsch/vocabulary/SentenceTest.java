@@ -28,6 +28,10 @@ import org.junit.jupiter.api.Test;
  */
 final class SentenceTest {
 
+    /**
+     * Check that we correctly return a list of questions related to the
+     * sentence.
+     */
     @Test
     void testQuestions() {
         final String original = "Wie heißt du?";
