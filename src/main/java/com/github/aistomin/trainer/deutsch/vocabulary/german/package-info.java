@@ -13,22 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.trainer.deutsch.vocabulary;
-
-import com.github.aistomin.testist.Question;
-
 /**
- * Just an abstract word.
- *
- * @since 1.0
+ * Package that contains all the German vocabulary specific classes/interfaces.
  */
-public abstract class Word implements LexicalUnit {
-
-    /**
-     * The primary question. Normally it's the initial form of the word
-     * (e.g. infinitive form for verb) and it's translation to the student's
-     * language.
-     * @return Primary question.
-     */
-    public abstract Question primaryQuestion();
-}
+package com.github.aistomin.trainer.deutsch.vocabulary.german;

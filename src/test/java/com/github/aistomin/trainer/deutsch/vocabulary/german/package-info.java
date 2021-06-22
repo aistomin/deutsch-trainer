@@ -13,26 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.trainer.deutsch.vocabulary;
-
-import com.github.aistomin.testist.Question;
-import java.util.List;
-
 /**
- * Class that represents a verb in a language.
- *
- * @since 1.0
- * @todo Issue-6. Let's implement the class and remove this todo.
+ * Package that contains all the German vocabulary related tests.
  */
-public final class Verb extends Word {
-
-    @Override
-    public List<Question> questions() {
-        return null;
-    }
-
-    @Override
-    Question primaryQuestion() {
-        return null;
-    }
-}
+package com.github.aistomin.trainer.deutsch.vocabulary.german;

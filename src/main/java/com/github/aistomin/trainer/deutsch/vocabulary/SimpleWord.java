@@ -82,7 +82,7 @@ public final class SimpleWord extends Word {
     }
 
     @Override
-    Question primaryQuestion() {
+    public Question primaryQuestion() {
         return this.questions().stream().findFirst().get();
     }
 }
