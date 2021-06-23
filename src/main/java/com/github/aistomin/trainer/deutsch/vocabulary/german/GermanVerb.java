@@ -16,7 +16,6 @@
 package com.github.aistomin.trainer.deutsch.vocabulary.german;
 
 import com.github.aistomin.testist.Question;
-import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,17 +30,17 @@ public final class GermanVerb extends Word {
     /**
      * Infinitive form of the verb.
      */
-    private final SimpleWord infinitive;
+    private final Word infinitive;
 
     /**
      * Preterite form of the verb.
      */
-    private final SimpleWord preterite;
+    private final Word preterite;
 
     /**
      * Perfect form of the verb.
      */
-    private final SimpleWord perfect;
+    private final Word perfect;
 
     /**
      * Ctor.
@@ -51,9 +50,9 @@ public final class GermanVerb extends Word {
      * @param perfect Perfect form of the verb.
      */
     public GermanVerb(
-        final SimpleWord infinitive,
-        final SimpleWord preterite,
-        final SimpleWord perfect
+        final Word infinitive,
+        final Word preterite,
+        final Word perfect
     ) {
         this.infinitive = infinitive;
         this.preterite = preterite;
