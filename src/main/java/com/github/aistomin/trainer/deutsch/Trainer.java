@@ -15,11 +15,8 @@
  */
 package com.github.aistomin.trainer.deutsch;
 
-import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.demo.SimpleTestConsole;
 import com.github.aistomin.testist.simple.SimpleTest;
-import java.util.ArrayList;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -37,6 +34,11 @@ public final class Trainer {
         LoggerFactory.getLogger(Trainer.class);
 
     /**
+     * Default amount of questions.
+     */
+    private static final int AMOUNT = 10;
+
+    /**
      * Ctor.
      */
     private Trainer() {
@@ -49,18 +51,8 @@ public final class Trainer {
      */
     public static void main(final String... args) {
         new SimpleTestConsole(
-            new SimpleTest(Trainer::questions),
+            new SimpleTest(new Questions(Trainer.AMOUNT)),
             Trainer.LOG::info
         ).runTest();
-    }
-
-    /**
-     * Load the questions.
-     *
-     * @todo: Issue-17. Let's implement the method and remove the todo.
-     * @return The list of questions
-     */
-    private static List<Question> questions() {
-        return new ArrayList<>(0);
     }
 }
