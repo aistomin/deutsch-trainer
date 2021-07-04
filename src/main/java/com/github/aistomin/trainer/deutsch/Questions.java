@@ -23,7 +23,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.stream.IntStream;
+import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * The application entry point.
@@ -59,14 +59,17 @@ public final class Questions implements QuestionsProvider {
                 )
             );
             final Random rand = new Random();
-            IntStream.rangeClosed(1, this.amount).forEach(
-                value -> {
-                    final List<LexicalUnit> words = dict.words();
-                    final List<Question> questions =
-                        words.get(rand.nextInt(words.size())).questions();
-                    result.add(questions.get(rand.nextInt(questions.size())));
+            final AtomicInteger index = new AtomicInteger();
+            while (index.get() < this.amount) {
+                final List<LexicalUnit> words = dict.words();
+                final List<Question> questions =
+                    words.get(rand.nextInt(words.size())).questions();
+                final Question question = questions.get(rand.nextInt(questions.size()));
+                if (!result.contains(question)) {
+                    result.add(question);
+                    index.set(index.get() + 1);
                 }
-            );
+            }
             return result;
         } catch (final URISyntaxException exception) {
             throw new IllegalStateException("File not found", exception);
