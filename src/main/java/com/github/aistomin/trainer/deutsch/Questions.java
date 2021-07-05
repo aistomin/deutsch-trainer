@@ -38,12 +38,28 @@ public final class Questions implements QuestionsProvider {
     private final Integer amount;
 
     /**
+     * Word's filter.
+     */
+    private final WordsFilter filter;
+
+    /**
      * Ctor.
      *
      * @param count Amount of questions.
      */
     public Questions(final Integer count) {
+        this(count, WordsFilter.ALL);
+    }
+
+    /**
+     * Ctor.
+     *
+     * @param count Amount of questions.
+     * @param advanced Question's filter.
+     */
+    public Questions(final Integer count, final WordsFilter advanced) {
         this.amount = count;
+        this.filter = advanced;
     }
 
     @Override
@@ -61,7 +77,7 @@ public final class Questions implements QuestionsProvider {
             final Random rand = new Random();
             final AtomicInteger index = new AtomicInteger();
             while (index.get() < this.amount) {
-                final List<LexicalUnit> words = dict.words();
+                final List<LexicalUnit> words = dict.words(this.filter);
                 final List<Question> questions =
                     words.get(rand.nextInt(words.size())).questions();
                 final Question question = questions.get(rand.nextInt(questions.size()));

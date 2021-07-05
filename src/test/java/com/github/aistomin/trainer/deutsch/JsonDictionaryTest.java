@@ -48,8 +48,20 @@ final class JsonDictionaryTest {
     @Test
     void testVocabulary() throws URISyntaxException {
         Assertions.assertEquals(
-            2, JsonDictionaryTest.dictionary().words().size()
+            2, JsonDictionaryTest.dictionary().words(WordsFilter.ALL).size()
         );
+    }
+
+    /**
+     * Check that we correctly filter the records if necessary.
+     *
+     * @throws URISyntaxException If something goes wrong.
+     */
+    @Test
+    void testFiltering() throws URISyntaxException {
+        final Dictionary dict = JsonDictionaryTest.dictionary();
+        Assertions.assertEquals(2, dict.words(WordsFilter.ALL).size());
+        Assertions.assertEquals(1, dict.words(WordsFilter.ONLY_NEW).size());
     }
 
     /**

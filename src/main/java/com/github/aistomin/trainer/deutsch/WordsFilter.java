@@ -15,28 +15,20 @@
  */
 package com.github.aistomin.trainer.deutsch;
 
-import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
-import java.util.List;
-
 /**
- * General dictionary interface.
+ * Some pre-defined constants of how we filter the words in the dictionary.
  *
  * @since 1.0
  */
-public interface Dictionary {
+public enum WordsFilter {
 
     /**
-     * The version of the dictionary.
-     *
-     * @return String version.
+     * Select only new words.
      */
-    String version();
+    ONLY_NEW,
 
     /**
-     * Load all the words from the dictionary.
-     *
-     * @param filter Word's filter.
-     * @return List of the words contained in the dictionary.
+     * Select all words.
      */
-    List<LexicalUnit> words(WordsFilter filter);
+    ALL
 }

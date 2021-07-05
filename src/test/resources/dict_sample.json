@@ -3,6 +3,7 @@
   "vocabulary": [
     {
       "ps": "v",
+      "is_new": false,
       "infinitive": {
         "o": "vorbereiten",
         "t": "to prepare",
@@ -31,6 +32,7 @@
     },
     {
       "ps": "v",
+      "is_new": true,
       "infinitive": {
         "o": "erinnern",
         "t": "to remember",

@@ -29,6 +29,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Dictionary that uses JSON file as a data provider.
@@ -57,24 +59,43 @@ public final class JsonDictionary implements Dictionary {
     }
 
     @Override
-    public List<LexicalUnit> words() {
+    public List<LexicalUnit> words(final WordsFilter filter) {
         final JsonArray vocabulary = this.json().get("vocabulary").asArray();
-        final List<LexicalUnit> result = new ArrayList<>(vocabulary.size());
-        for (final JsonValue item : vocabulary) {
-            final JsonObject obj = item.asObject();
-            switch (obj.get("ps").asString()) {
-                case "v":
-                    result.add(JsonDictionary.createVerb(obj));
-                    break;
-                case "n":
-                    throw new IllegalStateException(
-                        "We do not support nouns for now."
-                    );
-                default:
-                    throw new IllegalStateException("Wrong file format");
+        return StreamSupport.stream(
+            vocabulary.spliterator(), false
+        ).filter(
+            value -> {
+                final boolean res;
+                switch (filter) {
+                    case ONLY_NEW:
+                        res = value.asObject().getBoolean("is_new", false);
+                        break;
+                    case ALL:
+                        res = true;
+                        break;
+                    default:
+                        throw new IllegalStateException("Unknown filter.");
+                }
+                return res;
             }
-        }
-        return result;
+        ).map(
+            value -> {
+                final JsonObject obj = value.asObject();
+                final LexicalUnit res;
+                switch (obj.get("ps").asString()) {
+                    case "v":
+                        res = JsonDictionary.createVerb(obj);
+                        break;
+                    case "n":
+                        throw new IllegalStateException(
+                            "We do not support nouns for now."
+                        );
+                    default:
+                        throw new IllegalStateException("Wrong file format.");
+                }
+                return res;
+            }
+        ).collect(Collectors.toList());
     }
 
     /**
