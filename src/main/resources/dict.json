@@ -1,8 +1,9 @@
 {
-  "version": "v1.0-test",
+  "version": "v1.0",
   "vocabulary": [
     {
       "ps": "v",
+      "is_new": true,
       "infinitive": {
         "o": "vorbereiten",
         "t": "to prepare",
@@ -16,7 +17,12 @@
       "preterite": {
         "o": "bereitete vor",
         "t": "prepared",
-        "ex": []
+        "ex": [
+          {
+            "o": "Ich bereite mich schon seit Tagen auf diesen Moment vor.",
+            "t": "I have been preparing for this moment for days."
+          }
+        ]
       },
       "perfect": {
         "o": "vorbereitet",
@@ -31,14 +37,11 @@
     },
     {
       "ps": "v",
+      "is_new": true,
       "infinitive": {
         "o": "erinnern",
         "t": "to remember",
         "ex": [
-          {
-            "o": "Ich erinnere mich an nichts mehr.",
-            "t": "I don't remember anything anymore."
-          },
           {
             "o": "Ich konnte mich nicht mehr an die Antworten erinnern.",
             "t": "I couldn't remember the answers."
@@ -48,12 +51,124 @@
       "preterite": {
         "o": "erinnerte",
         "t": "remembered",
-        "ex": []
+        "ex": [
+          {
+            "o": "Ich erinnerte mich an eine Gruppe von jungen Frauen.",
+            "t": "I remembered the group of young women."
+          }
+        ]
       },
       "perfect": {
         "o": "erinnert",
         "t": "remembered",
-        "ex": []
+        "ex": [
+          {
+            "o": "Ich habe mich gerade an meine Jugend erinnert.",
+            "t": "I was just thinking of my youth."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": true,
+      "infinitive": {
+        "o": "sich ärgern",
+        "t": "to be annoyed",
+        "ex": [
+          {
+            "o": "Ich ärgere mich über mich selbst.",
+            "t": "I am angry with myself."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "ärgerte",
+        "t": "annoyed",
+        "ex": [
+          {
+            "o": "Doch nun ärgerte sie sich über den Film und über ihre Reaktion.",
+            "t": "But now she was angry with the film and her reaction."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "geärgert",
+        "t": "annoyed",
+        "ex": [
+          {
+            "o": "Jeder hat sich schon einmal über eine unproduktive Besprechung geärgert.",
+            "t": "Everyone has been annoyed by unproductive meetings."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": true,
+      "infinitive": {
+        "o": "sich aufregen",
+        "t": "to be upset",
+        "ex": [
+          {
+            "o": "Ich rege mich über die Prüfung auf.",
+            "t": "I'm upset about the exam."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "regte auf",
+        "t": "was upset",
+        "ex": [
+          {
+            "o": "Eine ältere Dame regte sich über den Standort auf.",
+            "t": "An old lady was angry about the location."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "aufgeregt",
+        "t": "have been upset",
+        "ex": [
+          {
+            "o": "Ich habe mich über meine Prüfung aufgeregt.",
+            "t": "I was upset about my exam."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": true,
+      "infinitive": {
+        "o": "bewerben",
+        "t": "to apply",
+        "ex": [
+          {
+            "o": "Ich bewerbe mich um die Stelle als Ärztin.",
+            "t": "I am applying for the position as a doctor."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "bewarb",
+        "t": "applied",
+        "ex": [
+          {
+            "o": "Die Klägerin bewarb sich um eine Stelle als Sozialarbeiterin.",
+            "t": "The claimant applied for a job as a social worker."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "beworben",
+        "t": "applied",
+        "ex": [
+          {
+            "o": "Ich habe mich um den Job als Arzt beworben.",
+            "t": "I applied for the job as a doctor."
+          }
+        ]
       }
     }
   ]

@@ -71,7 +71,7 @@ public final class Questions implements QuestionsProvider {
                     Thread
                         .currentThread()
                         .getContextClassLoader()
-                        .getResource("dict_sample.json").toURI()
+                        .getResource("dict.json").toURI()
                 )
             );
             final Random rand = new Random();
