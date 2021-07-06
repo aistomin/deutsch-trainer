@@ -50,8 +50,14 @@ public final class Trainer {
      * @param args Arguments.
      */
     public static void main(final String... args) {
+        final WordsFilter filter;
+        if (args.length > 0) {
+            filter = WordsFilter.valueOf(args[0]);
+        } else {
+            filter = WordsFilter.ALL;
+        }
         new SimpleTestConsole(
-            new SimpleTest(new Questions(Trainer.AMOUNT)),
+            new SimpleTest(new Questions(Trainer.AMOUNT, filter)),
             Trainer.LOG::info
         ).runTest();
     }
