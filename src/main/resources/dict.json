@@ -170,6 +170,176 @@
           }
         ]
       }
+    },
+    {
+      "ps": "v",
+      "is_new": true,
+      "infinitive": {
+        "o": "sprechen",
+        "t": "to speak",
+        "ex": [
+          {
+            "o": "Wir sprechen über den Urlaub.",
+            "t": "We're talking about vacation."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "sprach",
+        "t": "spoke",
+        "ex": [
+          {
+            "o": "Der Kandidat sprach über den undenkbaren Augenblick.",
+            "t": "The candidate spoke of an unimaginable moment."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "gesprochen",
+        "t": "spoken",
+        "ex": [
+          {
+            "o": "Wir haben über den Urlaub gesprochen.",
+            "t": "We talked about the vacation."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": true,
+      "infinitive": {
+        "o": "warten",
+        "t": "to wait",
+        "ex": [
+          {
+            "o": "Ich warte ungeduldig auf meinen Urlaub.",
+            "t": "I'm waiting impatiently for my vacation."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "wartete",
+        "t": "waited",
+        "ex": [
+          {
+            "o": "Er legte sich in ihr Bett und wartete auf Rotkäppchen.",
+            "t": "Then he jumped into her bed and waited for Little Red Riding Hood."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "gewartet",
+        "t": "waited",
+        "ex": [
+          {
+            "o": "Ich habe schon ganz ungeduldig auf meinen Urlaub gewartet.",
+            "t": "I've been waiting impatiently for my vacation."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": true,
+      "infinitive": {
+        "o": "entscheiden",
+        "t": "to decide",
+        "ex": [
+          {
+            "o": "Ich entscheide mich für einen Urlaub zu Hause.",
+            "t": "I choose to take a vacation at home."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "entschied",
+        "t": "decided",
+        "ex": [
+          {
+            "o": "Er entschied sich für ein abgesenktes modernes Gebäude.",
+            "t": "He decided on a low, modern building."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "entschieden",
+        "t": "decided",
+        "ex": [
+          {
+            "o": "Wir haben uns für einen Urlaub in Hamburg entschieden.",
+            "t": "We decided to go on vacation in Hamburg."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": true,
+      "infinitive": {
+        "o": "einigen",
+        "t": "to agree",
+        "ex": [
+          {
+            "o": "Wir einigen uns auf einem Urlaub in Hamburg.",
+            "t": "We agree on a vacation in Hamburg."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "einigte",
+        "t": "agreed",
+        "ex": [
+          {
+            "o": "Die Arbeitsgruppe einigte sich auf das folgende Verfahren.",
+            "t": "The working group agreed to use the following procedure."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "geeinigt",
+        "t": "agreed",
+        "ex": [
+          {
+            "o": "Wir haben uns auf einen Urlaub in Hamburg geeinigt.",
+            "t": "We have agreed on a vacation in Hamburg."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": true,
+      "infinitive": {
+        "o": "nachdenken",
+        "t": "to think",
+        "ex": [
+          {
+            "o": "Ich denke über unseren Urlaub nach.",
+            "t": "I am thinking about our vacation."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "dachte nach",
+        "t": "thought",
+        "ex": [
+          {
+            "o": "Ich dachte über die Idee nach.",
+            "t": "I thought of the idea."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "nachgedacht",
+        "t": "thought",
+        "ex": [
+          {
+            "o": "Ich habe über unseren Urlaub nachgedacht.",
+            "t": "I've been thinking about our vacation."
+          }
+        ]
+      }
     }
   ]
 }
