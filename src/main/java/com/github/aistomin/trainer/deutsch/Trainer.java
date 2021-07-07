@@ -51,13 +51,20 @@ public final class Trainer {
      */
     public static void main(final String... args) {
         final WordsFilter filter;
+        final int amount;
         if (args.length > 0) {
             filter = WordsFilter.valueOf(args[0]);
+            if (args.length > 1) {
+                amount = Integer.parseInt(args[1]);
+            } else {
+                amount = Trainer.AMOUNT;
+            }
         } else {
             filter = WordsFilter.ALL;
+            amount = Trainer.AMOUNT;
         }
         new SimpleTestConsole(
-            new SimpleTest(new Questions(Trainer.AMOUNT, filter)),
+            new SimpleTest(new Questions(amount, filter)),
             Trainer.LOG::info
         ).runTest();
     }
