@@ -340,6 +340,176 @@
           }
         ]
       }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "berichten",
+        "t": "to report",
+        "ex": [
+          {
+            "o": "Ich berichte dir alles über unseren Urlaub.",
+            "t": "I'll tell you everything about our vacation."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "berichtete",
+        "t": "reported",
+        "ex": [
+          {
+            "o": "Er berichtete über die wesentlichen Ergebnisse seiner Prüfung.",
+            "t": "He reported about the major audit findings."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "berichtet",
+        "t": "reported",
+        "ex": [
+          {
+            "o": "Ich habe dir alles über unseren Urlaub berichtet.",
+            "t": "I told you everything about our vacation."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "informieren",
+        "t": "to inform",
+        "ex": [
+          {
+            "o": "Ich informiere mich über die neuesten Meldungen.",
+            "t": "I inform myself about the latest news."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "informierte",
+        "t": "informed",
+        "ex": [
+          {
+            "o": "Der Vorsitz informierte über ein Vorhaben.",
+            "t": "The Presidency informed about a project."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "informiert",
+        "t": "informed",
+        "ex": [
+          {
+            "o": "Wie wir bereits informiert haben.",
+            "t": "As already announced."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "denken",
+        "t": "to think",
+        "ex": [
+          {
+            "o": "Ich denke an eine Woche in Wulfshagenerhütten.",
+            "t": "I think of a week at Wulfshagenerhütten."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "dachte",
+        "t": "thought",
+        "ex": [
+          {
+            "o": "Ich dachte an meinen Vater und seine Pferde.",
+            "t": "I thought of my father and his horses."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "gedacht",
+        "t": "thought",
+        "ex": [
+          {
+            "o": "Habt ihr je an eine Spaltlinie gedacht.",
+            "t": "Have you ever thought of a splitting line."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "glauben",
+        "t": "to believe",
+        "ex": [
+          {
+            "o": "Ich glaube an Gott, den Vater.",
+            "t": "I believe in God the Father."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "glaubte",
+        "t": "believed",
+        "ex": [
+          {
+            "o": "Ein Verbrecher glaubte an Jesus und ging ins Paradies.",
+            "t": "One criminal believed on Jesus and went to Paradise."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "geglaubt",
+        "t": "believed",
+        "ex": [
+          {
+            "o": "Weil ich nie an diese Produkte geglaubt habe.",
+            "t": "Because I've never believed in these products."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "gewöhnen",
+        "t": "to accustom",
+        "ex": [
+          {
+            "o": "Gewöhne dich an nichts und alles wird ungewöhnlich bleiben.",
+            "t": "Don't get used to anything and everything will remain unusually."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "gewöhnte",
+        "t": "accustomed",
+        "ex": [
+          {
+            "o": "Ich gewöhnte mich an das Alleinsein und entwickelte andere Fähigkeiten.",
+            "t": "I got used to this loneliness and developed alternative skills."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "gewöhnt",
+        "t": "accustomed",
+        "ex": [
+          {
+            "o": "Jedes Mal hat es einige Zeit gedauert, bis ich mich wieder an Bremen gewöhnt habe.",
+            "t": "Each time, it took me a while to get accustomed to Bremen again."
+          }
+        ]
+      }
     }
   ]
 }
