@@ -1,6 +1,7 @@
+docker:
+  image: maven:3.6.0-jdk-11
 env:
   MAVEN_OPTS: "-XX:MaxPermSize=256m -Xmx1g"
-  JAVA_HOME: "/usr/lib/jvm/java-11-openjdk-amd64"
 
 merge:
   commanders:
