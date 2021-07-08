@@ -13,6 +13,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junitVersion>5.8.0-M1</junitVersion>
         <slf4j.version>2.0.0-alpha2</slf4j.version>
+        <javafx.version>11.0.2</javafx.version>
     </properties>
     <dependencies>
         <dependency>
@@ -29,6 +30,11 @@
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
             <version>${slf4j.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-controls</artifactId>
+            <version>${javafx.version}</version>
         </dependency>
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -94,6 +100,11 @@
                 <version>0.18.19</version>
                 <configuration>
                     <license>file:${basedir}/LICENSE</license>
+                    <excludes>
+                        <exclude>dependencies:org.openjfx:javafx-controls</exclude>
+                        <exclude>dependencies:org.openjfx:javafx-graphics</exclude>
+                        <exclude>duplicatefinder:.*</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
