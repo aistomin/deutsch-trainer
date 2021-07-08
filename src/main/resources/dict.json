@@ -510,6 +510,176 @@
           }
         ]
       }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "leiden",
+        "t": "to suffer",
+        "ex": [
+          {
+            "o": "Er glaubt, ich leide an klinischer Depression.",
+            "t": "He thinks I'm suffering from clinical depression."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "litt",
+        "t": "suffered",
+        "ex": [
+          {
+            "o": "Er litt an einer schlimmen Erkältung.",
+            "t": "He suffered from a bad cold."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "gelitten",
+        "t": "suffered",
+        "ex": [
+          {
+            "o": "Haben Sie zu irgendeiner Zeit an Hepatitis gelitten?",
+            "t": "Have you suffered from hepatitis diseases at any time?"
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "teilnehmen",
+        "t": "to participate",
+        "ex": [
+          {
+            "o": "Die Schweiz nimmt teil an diesen weltweiten entwicklungen.",
+            "t": "Switzerland is involved in these global developments."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "nahm teil",
+        "t": "participated",
+        "ex": [
+          {
+            "o": "Kyrgyzpatent nahm teil an dem Seminar.",
+            "t": "Kyrgyzpatent took part in the seminar."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "teilgenommen",
+        "t": "participated",
+        "ex": [
+          {
+            "o": "Ich habe an Sitzungen des DIAC teilgenommen.",
+            "t": "I have participated in meetings of the DIAC."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "zweifeln",
+        "t": "to doubt",
+        "ex": [
+          {
+            "o": "Ich muss zugeben, dass ich noch daran zweifle.",
+            "t": "I have to admit that I still had some doubts about this."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "zweifelte",
+        "t": "doubted",
+        "ex": [
+          {
+            "o": "Er zweifelte nicht an der Verheißung Gottes.",
+            "t": "He did not doubt the promise of God."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "gezweifelt",
+        "t": "doubted",
+        "ex": [
+          {
+            "o": "In den vorangegangenen Tagen hatte sie an ihrer Berufung gezweifelt.",
+            "t": "During the preceding days, she had been tempted against her vocation."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "ausgeben",
+        "t": "to spend",
+        "ex": [
+          {
+            "o": "Die Konsumenten geben für den klassischen Einzelhandel sogar immer weniger aus.",
+            "t": "Consumers are spending less and less in classic retail shops."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "gab aus",
+        "t": "spent",
+        "ex": [
+          {
+            "o": "Er gab sein ganzes Geld für Comics aus.",
+            "t": "He spent all his money on comics."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "ausgegeben",
+        "t": "spent",
+        "ex": [
+          {
+            "o": "Er hat sein ganzes Geld für Comics ausgegeben.",
+            "t": "He has spent all his money on comics."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "beten",
+        "t": "to pray",
+        "ex": [
+          {
+            "o": "Wir hoffen und beten für ein Europa als einem Ort des Friedens.",
+            "t": "We hope and pray for a Europe that is a place of peace."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "betete",
+        "t": "prayed",
+        "ex": [
+          {
+            "o": "Ich betete für meine Freunde und meine Familie.",
+            "t": "I prayed for my friends and family."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "gebetet",
+        "t": "prayed",
+        "ex": [
+          {
+            "o": "Von diesem Moment an, haben sie und ihr Mann Günther für uns gebetet.",
+            "t": "From this moment on, she and her husband Günther prayed for us."
+          }
+        ]
+      }
     }
   ]
 }
