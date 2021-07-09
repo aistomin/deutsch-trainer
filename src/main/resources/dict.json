@@ -680,6 +680,176 @@
           }
         ]
       }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "sorgen",
+        "t": "to take care",
+        "ex": [
+          {
+            "o": "Ich sorge für die Produktion.",
+            "t": "I take care of the production."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "sorgte",
+        "t": "cared",
+        "ex": [
+          {
+            "o": "Er sorgte für die Verbreitung seiner Lehren.",
+            "t": "He provided for the spread of his wisdom."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "gesorgt",
+        "t": "cared",
+        "ex": [
+          {
+            "o": "Er hat in letzter Zeit für zahlreiche Probleme gesorg.",
+            "t": "He has caused a lot of problems recently."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "achten",
+        "t": "to watch out",
+        "ex": [
+          {
+            "o": "Achte auf die Liebe und Intelligenz in seinen Augen.",
+            "t": "Pay attention to the love and intelligence in his eyes."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "achtete",
+        "t": "watched out",
+        "ex": [
+          {
+            "o": "Ein Polizist achtete auf ihn.",
+            "t": "The police officer took charge of him."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "geachtet",
+        "t": "watched out",
+        "ex": [
+          {
+            "o": "Er hat darauf geachtet.",
+            "t": "He paid attention to that."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "antworten",
+        "t": "to reply",
+        "ex": [
+          {
+            "o": "Ich antworte auf die vielen Fragen, so gut ich kann.",
+            "t": "I am answering the many questions as well as I am able to."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "antwortete",
+        "t": "replied",
+        "ex": [
+          {
+            "o": "Deutschland antwortete auf die Bemerkungen.",
+            "t": "Germany responded to these observations."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "geantwortet",
+        "t": "replied",
+        "ex": [
+          {
+            "o": "Fedasil hat auf die offizielle Empfehlung des föderalen Ombudsmanns geantwortet.",
+            "t": "Fedasil replied to the Federal Ombudsman's official recommendation."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "aufpassen",
+        "t": "to mind",
+        "ex": [
+          {
+            "o": "Passe auf die Minen und die feindlichen Hubschrauber auf.",
+            "t": "Mind the mines and enemy helicopters."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "passte auf",
+        "t": "minded",
+        "ex": [
+          {
+            "o": "Sie passte auf ihre Enkel auf.",
+            "t": "She minded her grandchildren."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "aufgepasst",
+        "t": "minded",
+        "ex": [
+          {
+            "o": "Sie hatte wundervoll auf uns aufgepasst.",
+            "t": "She had looked after us wonderfully."
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "bestehen",
+        "t": "to insist",
+        "ex": [
+          {
+            "o": "Nestlé besteht auf Ehrlichkeit.",
+            "t": "Nestlé insists on honesty."
+          }
+        ]
+      },
+      "preterite": {
+        "o": "bestand",
+        "t": "insisted",
+        "ex": [
+          {
+            "o": "Ich bestand auf der Tatsache.",
+            "t": "I insisted on the fact."
+          }
+        ]
+      },
+      "perfect": {
+        "o": "bestanden",
+        "t": "insisted",
+        "ex": [
+          {
+            "o": "Der Besteller hat auf der Einhaltung bestanden.",
+            "t": "The customer insisted on the observance."
+          }
+        ]
+      }
     }
   ]
 }
