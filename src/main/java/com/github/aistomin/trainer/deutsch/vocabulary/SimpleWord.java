@@ -20,7 +20,9 @@ import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.testist.simple.SimpleQuestion;
 import com.github.aistomin.testist.simple.SimpleText;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Class that represents a verb in a language.
@@ -35,9 +37,9 @@ public final class SimpleWord extends Word {
     private final String original;
 
     /**
-     * The word in the student's language.
+     * The correct translations in the student's language.
      */
-    private final String translation;
+    private final List<String> translations;
 
     /**
      * Examples of the word usages.
@@ -55,26 +57,46 @@ public final class SimpleWord extends Word {
         final String mine,
         final List<Sentence> examples
     ) {
+        this(their, Collections.singletonList(mine), examples);
+    }
+
+    /**
+     * Ctor.
+     * @param their The word in original language.
+     * @param mine The correct translations in the student's language.
+     * @param examples Examples of the word usages.
+     */
+    public SimpleWord(
+        final String their,
+        final List<String> mine,
+        final List<Sentence> examples
+    ) {
         this.original = their;
-        this.translation = mine;
+        this.translations = mine;
         this.usages = examples;
     }
 
     @Override
     public List<Question> questions() {
-        final ArrayList<Question> questions = new ArrayList<>(2);
+        final ArrayList<Question> questions =
+            new ArrayList<>(1 + this.translations.size());
         questions.add(
             new SimpleQuestion(
                 new SimpleText(this.original),
-                new SimpleAnswer(this.translation)
+                this.translations
+                    .stream()
+                    .map(SimpleAnswer::new)
+                    .collect(Collectors.toList())
             )
         );
-        questions.add(
-            new SimpleQuestion(
-                new SimpleText(this.translation),
-                new SimpleAnswer(this.original)
-            )
-        );
+        for (final String str : this.translations) {
+            questions.add(
+                new SimpleQuestion(
+                    new SimpleText(str),
+                    new SimpleAnswer(this.original)
+                )
+            );
+        }
         for (final Sentence sent : this.usages) {
             questions.addAll(sent.questions());
         }
