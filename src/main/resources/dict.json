@@ -6,31 +6,43 @@
       "is_new": true,
       "infinitive": {
         "o": "vorbereiten",
-        "t": "to prepare",
+        "t": [
+          "to prepare"
+        ],
         "ex": [
           {
             "o": "Ich bereite mich auf meine Prüfung vor.",
-            "t": "I am preparing for my exam."
+            "t": [
+              "I am preparing for my exam."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "bereitete vor",
-        "t": "prepared",
+        "t": [
+          "prepared"
+        ],
         "ex": [
           {
             "o": "Ich bereite mich schon seit Tagen auf diesen Moment vor.",
-            "t": "I have been preparing for this moment for days."
+            "t": [
+              "I have been preparing for this moment for days."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "vorbereitet",
-        "t": "prepared",
+        "t": [
+          "prepared"
+        ],
         "ex": [
           {
             "o": "I habe mich gut auf die Prüfung vorbereitet.",
-            "t": "I have prepared well for the exam."
+            "t": [
+              "I have prepared well for the exam."
+            ]
           }
         ]
       }
@@ -40,31 +52,43 @@
       "is_new": true,
       "infinitive": {
         "o": "erinnern",
-        "t": "to remember",
+        "t": [
+          "to remember"
+        ],
         "ex": [
           {
             "o": "Ich konnte mich nicht mehr an die Antworten erinnern.",
-            "t": "I couldn't remember the answers."
+            "t": [
+              "I couldn't remember the answers."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "erinnerte",
-        "t": "remembered",
+        "t": [
+          "remembered"
+        ],
         "ex": [
           {
             "o": "Ich erinnerte mich an eine Gruppe von jungen Frauen.",
-            "t": "I remembered the group of young women."
+            "t": [
+              "I remembered the group of young women."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "erinnert",
-        "t": "remembered",
+        "t": [
+          "remembered"
+        ],
         "ex": [
           {
             "o": "Ich habe mich gerade an meine Jugend erinnert.",
-            "t": "I was just thinking of my youth."
+            "t": [
+              "I was just thinking of my youth."
+            ]
           }
         ]
       }
@@ -74,31 +98,43 @@
       "is_new": true,
       "infinitive": {
         "o": "sich ärgern",
-        "t": "to be annoyed",
+        "t": [
+          "to be annoyed"
+        ],
         "ex": [
           {
             "o": "Ich ärgere mich über mich selbst.",
-            "t": "I am angry with myself."
+            "t": [
+              "I am angry with myself."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "ärgerte",
-        "t": "annoyed",
+        "t": [
+          "annoyed"
+        ],
         "ex": [
           {
             "o": "Doch nun ärgerte sie sich über den Film und über ihre Reaktion.",
-            "t": "But now she was angry with the film and her reaction."
+            "t": [
+              "But now she was angry with the film and her reaction."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "geärgert",
-        "t": "annoyed",
+        "t": [
+          "annoyed"
+        ],
         "ex": [
           {
             "o": "Jeder hat sich schon einmal über eine unproduktive Besprechung geärgert.",
-            "t": "Everyone has been annoyed by unproductive meetings."
+            "t": [
+              "Everyone has been annoyed by unproductive meetings."
+            ]
           }
         ]
       }
@@ -108,31 +144,43 @@
       "is_new": true,
       "infinitive": {
         "o": "sich aufregen",
-        "t": "to be upset",
+        "t": [
+          "to be upset"
+        ],
         "ex": [
           {
             "o": "Ich rege mich über die Prüfung auf.",
-            "t": "I'm upset about the exam."
+            "t": [
+              "I'm upset about the exam."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "regte auf",
-        "t": "was upset",
+        "t": [
+          "was upset"
+        ],
         "ex": [
           {
             "o": "Eine ältere Dame regte sich über den Standort auf.",
-            "t": "An old lady was angry about the location."
+            "t": [
+              "An old lady was angry about the location."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "aufgeregt",
-        "t": "have been upset",
+        "t": [
+          "have been upset"
+        ],
         "ex": [
           {
             "o": "Ich habe mich über meine Prüfung aufgeregt.",
-            "t": "I was upset about my exam."
+            "t": [
+              "I was upset about my exam."
+            ]
           }
         ]
       }
@@ -142,31 +190,43 @@
       "is_new": true,
       "infinitive": {
         "o": "bewerben",
-        "t": "to apply",
+        "t": [
+          "to apply"
+        ],
         "ex": [
           {
             "o": "Ich bewerbe mich um die Stelle als Ärztin.",
-            "t": "I am applying for the position as a doctor."
+            "t": [
+              "I am applying for the position as a doctor."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "bewarb",
-        "t": "applied",
+        "t": [
+          "applied"
+        ],
         "ex": [
           {
             "o": "Die Klägerin bewarb sich um eine Stelle als Sozialarbeiterin.",
-            "t": "The claimant applied for a job as a social worker."
+            "t": [
+              "The claimant applied for a job as a social worker."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "beworben",
-        "t": "applied",
+        "t": [
+          "applied"
+        ],
         "ex": [
           {
             "o": "Ich habe mich um den Job als Arzt beworben.",
-            "t": "I applied for the job as a doctor."
+            "t": [
+              "I applied for the job as a doctor."
+            ]
           }
         ]
       }
@@ -176,31 +236,43 @@
       "is_new": true,
       "infinitive": {
         "o": "sprechen",
-        "t": "to speak",
+        "t": [
+          "to speak"
+        ],
         "ex": [
           {
             "o": "Wir sprechen über den Urlaub.",
-            "t": "We're talking about vacation."
+            "t": [
+              "We're talking about vacation."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "sprach",
-        "t": "spoke",
+        "t": [
+          "spoke"
+        ],
         "ex": [
           {
             "o": "Der Kandidat sprach über den undenkbaren Augenblick.",
-            "t": "The candidate spoke of an unimaginable moment."
+            "t": [
+              "The candidate spoke of an unimaginable moment."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "gesprochen",
-        "t": "spoken",
+        "t": [
+          "spoken"
+        ],
         "ex": [
           {
             "o": "Wir haben über den Urlaub gesprochen.",
-            "t": "We talked about the vacation."
+            "t": [
+              "We talked about the vacation."
+            ]
           }
         ]
       }
@@ -210,31 +282,43 @@
       "is_new": true,
       "infinitive": {
         "o": "warten",
-        "t": "to wait",
+        "t": [
+          "to wait"
+        ],
         "ex": [
           {
             "o": "Ich warte ungeduldig auf meinen Urlaub.",
-            "t": "I'm waiting impatiently for my vacation."
+            "t": [
+              "I'm waiting impatiently for my vacation."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "wartete",
-        "t": "waited",
+        "t": [
+          "waited"
+        ],
         "ex": [
           {
             "o": "Er legte sich in ihr Bett und wartete auf Rotkäppchen.",
-            "t": "Then he jumped into her bed and waited for Little Red Riding Hood."
+            "t": [
+              "Then he jumped into her bed and waited for Little Red Riding Hood."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "gewartet",
-        "t": "waited",
+        "t": [
+          "waited"
+        ],
         "ex": [
           {
             "o": "Ich habe schon ganz ungeduldig auf meinen Urlaub gewartet.",
-            "t": "I've been waiting impatiently for my vacation."
+            "t": [
+              "I've been waiting impatiently for my vacation."
+            ]
           }
         ]
       }
@@ -244,31 +328,43 @@
       "is_new": true,
       "infinitive": {
         "o": "entscheiden",
-        "t": "to decide",
+        "t": [
+          "to decide"
+        ],
         "ex": [
           {
             "o": "Ich entscheide mich für einen Urlaub zu Hause.",
-            "t": "I choose to take a vacation at home."
+            "t": [
+              "I choose to take a vacation at home."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "entschied",
-        "t": "decided",
+        "t": [
+          "decided"
+        ],
         "ex": [
           {
             "o": "Er entschied sich für ein abgesenktes modernes Gebäude.",
-            "t": "He decided on a low, modern building."
+            "t": [
+              "He decided on a low, modern building."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "entschieden",
-        "t": "decided",
+        "t": [
+          "decided"
+        ],
         "ex": [
           {
             "o": "Wir haben uns für einen Urlaub in Hamburg entschieden.",
-            "t": "We decided to go on vacation in Hamburg."
+            "t": [
+              "We decided to go on vacation in Hamburg."
+            ]
           }
         ]
       }
@@ -278,31 +374,43 @@
       "is_new": true,
       "infinitive": {
         "o": "einigen",
-        "t": "to agree",
+        "t": [
+          "to agree"
+        ],
         "ex": [
           {
             "o": "Wir einigen uns auf einem Urlaub in Hamburg.",
-            "t": "We agree on a vacation in Hamburg."
+            "t": [
+              "We agree on a vacation in Hamburg."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "einigte",
-        "t": "agreed",
+        "t": [
+          "agreed"
+        ],
         "ex": [
           {
             "o": "Die Arbeitsgruppe einigte sich auf das folgende Verfahren.",
-            "t": "The working group agreed to use the following procedure."
+            "t": [
+              "The working group agreed to use the following procedure."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "geeinigt",
-        "t": "agreed",
+        "t": [
+          "agreed"
+        ],
         "ex": [
           {
             "o": "Wir haben uns auf einen Urlaub in Hamburg geeinigt.",
-            "t": "We have agreed on a vacation in Hamburg."
+            "t": [
+              "We have agreed on a vacation in Hamburg."
+            ]
           }
         ]
       }
@@ -312,31 +420,43 @@
       "is_new": true,
       "infinitive": {
         "o": "nachdenken",
-        "t": "to think",
+        "t": [
+          "to think"
+        ],
         "ex": [
           {
             "o": "Ich denke über unseren Urlaub nach.",
-            "t": "I am thinking about our vacation."
+            "t": [
+              "I am thinking about our vacation."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "dachte nach",
-        "t": "thought",
+        "t": [
+          "thought"
+        ],
         "ex": [
           {
             "o": "Ich dachte über die Idee nach.",
-            "t": "I thought of the idea."
+            "t": [
+              "I thought of the idea."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "nachgedacht",
-        "t": "thought",
+        "t": [
+          "thought"
+        ],
         "ex": [
           {
             "o": "Ich habe über unseren Urlaub nachgedacht.",
-            "t": "I've been thinking about our vacation."
+            "t": [
+              "I've been thinking about our vacation."
+            ]
           }
         ]
       }
@@ -346,31 +466,43 @@
       "is_new": false,
       "infinitive": {
         "o": "berichten",
-        "t": "to report",
+        "t": [
+          "to report"
+        ],
         "ex": [
           {
             "o": "Ich berichte dir alles über unseren Urlaub.",
-            "t": "I'll tell you everything about our vacation."
+            "t": [
+              "I'll tell you everything about our vacation."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "berichtete",
-        "t": "reported",
+        "t": [
+          "reported"
+        ],
         "ex": [
           {
             "o": "Er berichtete über die wesentlichen Ergebnisse seiner Prüfung.",
-            "t": "He reported about the major audit findings."
+            "t": [
+              "He reported about the major audit findings."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "berichtet",
-        "t": "reported",
+        "t": [
+          "reported"
+        ],
         "ex": [
           {
             "o": "Ich habe dir alles über unseren Urlaub berichtet.",
-            "t": "I told you everything about our vacation."
+            "t": [
+              "I told you everything about our vacation."
+            ]
           }
         ]
       }
@@ -380,31 +512,43 @@
       "is_new": false,
       "infinitive": {
         "o": "informieren",
-        "t": "to inform",
+        "t": [
+          "to inform"
+        ],
         "ex": [
           {
             "o": "Ich informiere mich über die neuesten Meldungen.",
-            "t": "I inform myself about the latest news."
+            "t": [
+              "I inform myself about the latest news."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "informierte",
-        "t": "informed",
+        "t": [
+          "informed"
+        ],
         "ex": [
           {
             "o": "Der Vorsitz informierte über ein Vorhaben.",
-            "t": "The Presidency informed about a project."
+            "t": [
+              "The Presidency informed about a project."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "informiert",
-        "t": "informed",
+        "t": [
+          "informed"
+        ],
         "ex": [
           {
             "o": "Wie wir bereits informiert haben.",
-            "t": "As already announced."
+            "t": [
+              "As already announced."
+            ]
           }
         ]
       }
@@ -414,31 +558,43 @@
       "is_new": false,
       "infinitive": {
         "o": "denken",
-        "t": "to think",
+        "t": [
+          "to think"
+        ],
         "ex": [
           {
             "o": "Ich denke an eine Woche in Wulfshagenerhütten.",
-            "t": "I think of a week at Wulfshagenerhütten."
+            "t": [
+              "I think of a week at Wulfshagenerhütten."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "dachte",
-        "t": "thought",
+        "t": [
+          "thought"
+        ],
         "ex": [
           {
             "o": "Ich dachte an meinen Vater und seine Pferde.",
-            "t": "I thought of my father and his horses."
+            "t": [
+              "I thought of my father and his horses."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "gedacht",
-        "t": "thought",
+        "t": [
+          "thought"
+        ],
         "ex": [
           {
             "o": "Habt ihr je an eine Spaltlinie gedacht.",
-            "t": "Have you ever thought of a splitting line."
+            "t": [
+              "Have you ever thought of a splitting line."
+            ]
           }
         ]
       }
@@ -448,31 +604,43 @@
       "is_new": false,
       "infinitive": {
         "o": "glauben",
-        "t": "to believe",
+        "t": [
+          "to believe"
+        ],
         "ex": [
           {
             "o": "Ich glaube an Gott, den Vater.",
-            "t": "I believe in God the Father."
+            "t": [
+              "I believe in God the Father."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "glaubte",
-        "t": "believed",
+        "t": [
+          "believed"
+        ],
         "ex": [
           {
             "o": "Ein Verbrecher glaubte an Jesus und ging ins Paradies.",
-            "t": "One criminal believed on Jesus and went to Paradise."
+            "t": [
+              "One criminal believed on Jesus and went to Paradise."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "geglaubt",
-        "t": "believed",
+        "t": [
+          "believed"
+        ],
         "ex": [
           {
             "o": "Weil ich nie an diese Produkte geglaubt habe.",
-            "t": "Because I've never believed in these products."
+            "t": [
+              "Because I've never believed in these products."
+            ]
           }
         ]
       }
@@ -482,31 +650,43 @@
       "is_new": false,
       "infinitive": {
         "o": "gewöhnen",
-        "t": "to accustom",
+        "t": [
+          "to accustom"
+        ],
         "ex": [
           {
             "o": "Gewöhne dich an nichts und alles wird ungewöhnlich bleiben.",
-            "t": "Don't get used to anything and everything will remain unusually."
+            "t": [
+              "Don't get used to anything and everything will remain unusually."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "gewöhnte",
-        "t": "accustomed",
+        "t": [
+          "accustomed"
+        ],
         "ex": [
           {
             "o": "Ich gewöhnte mich an das Alleinsein und entwickelte andere Fähigkeiten.",
-            "t": "I got used to this loneliness and developed alternative skills."
+            "t": [
+              "I got used to this loneliness and developed alternative skills."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "gewöhnt",
-        "t": "accustomed",
+        "t": [
+          "accustomed"
+        ],
         "ex": [
           {
             "o": "Jedes Mal hat es einige Zeit gedauert, bis ich mich wieder an Bremen gewöhnt habe.",
-            "t": "Each time, it took me a while to get accustomed to Bremen again."
+            "t": [
+              "Each time, it took me a while to get accustomed to Bremen again."
+            ]
           }
         ]
       }
@@ -516,31 +696,43 @@
       "is_new": false,
       "infinitive": {
         "o": "leiden",
-        "t": "to suffer",
+        "t": [
+          "to suffer"
+        ],
         "ex": [
           {
             "o": "Er glaubt, ich leide an klinischer Depression.",
-            "t": "He thinks I'm suffering from clinical depression."
+            "t": [
+              "He thinks I'm suffering from clinical depression."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "litt",
-        "t": "suffered",
+        "t": [
+          "suffered"
+        ],
         "ex": [
           {
             "o": "Er litt an einer schlimmen Erkältung.",
-            "t": "He suffered from a bad cold."
+            "t": [
+              "He suffered from a bad cold."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "gelitten",
-        "t": "suffered",
+        "t": [
+          "suffered"
+        ],
         "ex": [
           {
             "o": "Haben Sie zu irgendeiner Zeit an Hepatitis gelitten?",
-            "t": "Have you suffered from hepatitis diseases at any time?"
+            "t": [
+              "Have you suffered from hepatitis diseases at any time?"
+            ]
           }
         ]
       }
@@ -550,31 +742,43 @@
       "is_new": false,
       "infinitive": {
         "o": "teilnehmen",
-        "t": "to participate",
+        "t": [
+          "to participate"
+        ],
         "ex": [
           {
             "o": "Die Schweiz nimmt teil an diesen weltweiten entwicklungen.",
-            "t": "Switzerland is involved in these global developments."
+            "t": [
+              "Switzerland is involved in these global developments."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "nahm teil",
-        "t": "participated",
+        "t": [
+          "participated"
+        ],
         "ex": [
           {
             "o": "Kyrgyzpatent nahm teil an dem Seminar.",
-            "t": "Kyrgyzpatent took part in the seminar."
+            "t": [
+              "Kyrgyzpatent took part in the seminar."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "teilgenommen",
-        "t": "participated",
+        "t": [
+          "participated"
+        ],
         "ex": [
           {
             "o": "Ich habe an Sitzungen des DIAC teilgenommen.",
-            "t": "I have participated in meetings of the DIAC."
+            "t": [
+              "I have participated in meetings of the DIAC."
+            ]
           }
         ]
       }
@@ -584,31 +788,43 @@
       "is_new": false,
       "infinitive": {
         "o": "zweifeln",
-        "t": "to doubt",
+        "t": [
+          "to doubt"
+        ],
         "ex": [
           {
             "o": "Ich muss zugeben, dass ich noch daran zweifle.",
-            "t": "I have to admit that I still had some doubts about this."
+            "t": [
+              "I have to admit that I still had some doubts about this."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "zweifelte",
-        "t": "doubted",
+        "t": [
+          "doubted"
+        ],
         "ex": [
           {
             "o": "Er zweifelte nicht an der Verheißung Gottes.",
-            "t": "He did not doubt the promise of God."
+            "t": [
+              "He did not doubt the promise of God."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "gezweifelt",
-        "t": "doubted",
+        "t": [
+          "doubted"
+        ],
         "ex": [
           {
             "o": "In den vorangegangenen Tagen hatte sie an ihrer Berufung gezweifelt.",
-            "t": "During the preceding days, she had been tempted against her vocation."
+            "t": [
+              "During the preceding days, she had been tempted against her vocation."
+            ]
           }
         ]
       }
@@ -618,31 +834,43 @@
       "is_new": false,
       "infinitive": {
         "o": "ausgeben",
-        "t": "to spend",
+        "t": [
+          "to spend"
+        ],
         "ex": [
           {
             "o": "Die Konsumenten geben für den klassischen Einzelhandel sogar immer weniger aus.",
-            "t": "Consumers are spending less and less in classic retail shops."
+            "t": [
+              "Consumers are spending less and less in classic retail shops."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "gab aus",
-        "t": "spent",
+        "t": [
+          "spent"
+        ],
         "ex": [
           {
             "o": "Er gab sein ganzes Geld für Comics aus.",
-            "t": "He spent all his money on comics."
+            "t": [
+              "He spent all his money on comics."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "ausgegeben",
-        "t": "spent",
+        "t": [
+          "spent"
+        ],
         "ex": [
           {
             "o": "Er hat sein ganzes Geld für Comics ausgegeben.",
-            "t": "He has spent all his money on comics."
+            "t": [
+              "He has spent all his money on comics."
+            ]
           }
         ]
       }
@@ -652,31 +880,43 @@
       "is_new": false,
       "infinitive": {
         "o": "beten",
-        "t": "to pray",
+        "t": [
+          "to pray"
+        ],
         "ex": [
           {
             "o": "Wir hoffen und beten für ein Europa als einem Ort des Friedens.",
-            "t": "We hope and pray for a Europe that is a place of peace."
+            "t": [
+              "We hope and pray for a Europe that is a place of peace."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "betete",
-        "t": "prayed",
+        "t": [
+          "prayed"
+        ],
         "ex": [
           {
             "o": "Ich betete für meine Freunde und meine Familie.",
-            "t": "I prayed for my friends and family."
+            "t": [
+              "I prayed for my friends and family."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "gebetet",
-        "t": "prayed",
+        "t": [
+          "prayed"
+        ],
         "ex": [
           {
             "o": "Von diesem Moment an, haben sie und ihr Mann Günther für uns gebetet.",
-            "t": "From this moment on, she and her husband Günther prayed for us."
+            "t": [
+              "From this moment on, she and her husband Günther prayed for us."
+            ]
           }
         ]
       }
@@ -686,31 +926,43 @@
       "is_new": false,
       "infinitive": {
         "o": "sorgen",
-        "t": "to take care",
+        "t": [
+          "to take care"
+        ],
         "ex": [
           {
             "o": "Ich sorge für die Produktion.",
-            "t": "I take care of the production."
+            "t": [
+              "I take care of the production."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "sorgte",
-        "t": "cared",
+        "t": [
+          "cared"
+        ],
         "ex": [
           {
             "o": "Er sorgte für die Verbreitung seiner Lehren.",
-            "t": "He provided for the spread of his wisdom."
+            "t": [
+              "He provided for the spread of his wisdom."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "gesorgt",
-        "t": "cared",
+        "t": [
+          "cared"
+        ],
         "ex": [
           {
             "o": "Er hat in letzter Zeit für zahlreiche Probleme gesorg.",
-            "t": "He has caused a lot of problems recently."
+            "t": [
+              "He has caused a lot of problems recently."
+            ]
           }
         ]
       }
@@ -720,31 +972,43 @@
       "is_new": false,
       "infinitive": {
         "o": "achten",
-        "t": "to watch out",
+        "t": [
+          "to watch out"
+        ],
         "ex": [
           {
             "o": "Achte auf die Liebe und Intelligenz in seinen Augen.",
-            "t": "Pay attention to the love and intelligence in his eyes."
+            "t": [
+              "Pay attention to the love and intelligence in his eyes."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "achtete",
-        "t": "watched out",
+        "t": [
+          "watched out"
+        ],
         "ex": [
           {
             "o": "Ein Polizist achtete auf ihn.",
-            "t": "The police officer took charge of him."
+            "t": [
+              "The police officer took charge of him."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "geachtet",
-        "t": "watched out",
+        "t": [
+          "watched out"
+        ],
         "ex": [
           {
             "o": "Er hat darauf geachtet.",
-            "t": "He paid attention to that."
+            "t": [
+              "He paid attention to that."
+            ]
           }
         ]
       }
@@ -754,31 +1018,43 @@
       "is_new": false,
       "infinitive": {
         "o": "antworten",
-        "t": "to reply",
+        "t": [
+          "to reply"
+        ],
         "ex": [
           {
             "o": "Ich antworte auf die vielen Fragen, so gut ich kann.",
-            "t": "I am answering the many questions as well as I am able to."
+            "t": [
+              "I am answering the many questions as well as I am able to."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "antwortete",
-        "t": "replied",
+        "t": [
+          "replied"
+        ],
         "ex": [
           {
             "o": "Deutschland antwortete auf die Bemerkungen.",
-            "t": "Germany responded to these observations."
+            "t": [
+              "Germany responded to these observations."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "geantwortet",
-        "t": "replied",
+        "t": [
+          "replied"
+        ],
         "ex": [
           {
             "o": "Fedasil hat auf die offizielle Empfehlung des föderalen Ombudsmanns geantwortet.",
-            "t": "Fedasil replied to the Federal Ombudsman's official recommendation."
+            "t": [
+              "Fedasil replied to the Federal Ombudsman's official recommendation."
+            ]
           }
         ]
       }
@@ -788,31 +1064,43 @@
       "is_new": false,
       "infinitive": {
         "o": "aufpassen",
-        "t": "to mind",
+        "t": [
+          "to mind"
+        ],
         "ex": [
           {
             "o": "Passe auf die Minen und die feindlichen Hubschrauber auf.",
-            "t": "Mind the mines and enemy helicopters."
+            "t": [
+              "Mind the mines and enemy helicopters."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "passte auf",
-        "t": "minded",
+        "t": [
+          "minded"
+        ],
         "ex": [
           {
             "o": "Sie passte auf ihre Enkel auf.",
-            "t": "She minded her grandchildren."
+            "t": [
+              "She minded her grandchildren."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "aufgepasst",
-        "t": "minded",
+        "t": [
+          "minded"
+        ],
         "ex": [
           {
             "o": "Sie hatte wundervoll auf uns aufgepasst.",
-            "t": "She had looked after us wonderfully."
+            "t": [
+              "She had looked after us wonderfully."
+            ]
           }
         ]
       }
@@ -822,31 +1110,43 @@
       "is_new": false,
       "infinitive": {
         "o": "bestehen",
-        "t": "to insist",
+        "t": [
+          "to insist"
+        ],
         "ex": [
           {
             "o": "Nestlé besteht auf Ehrlichkeit.",
-            "t": "Nestlé insists on honesty."
+            "t": [
+              "Nestlé insists on honesty."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "bestand",
-        "t": "insisted",
+        "t": [
+          "insisted"
+        ],
         "ex": [
           {
             "o": "Ich bestand auf der Tatsache.",
-            "t": "I insisted on the fact."
+            "t": [
+              "I insisted on the fact."
+            ]
           }
         ]
       },
       "perfect": {
         "o": "bestanden",
-        "t": "insisted",
+        "t": [
+          "insisted"
+        ],
         "ex": [
           {
             "o": "Der Besteller hat auf der Einhaltung bestanden.",
-            "t": "The customer insisted on the observance."
+            "t": [
+              "The customer insisted on the observance."
+            ]
           }
         ]
       }

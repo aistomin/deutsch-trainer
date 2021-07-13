@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.vocabulary;
 
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -46,5 +47,25 @@ final class SentenceTest {
         Assertions.assertTrue(reversed.toDisplayableString().contains(translation));
         reversed.answer(new SimpleAnswer(original));
         Assertions.assertTrue(reversed.isCorrect());
+    }
+
+    /**
+     * Check that we properly treat questions with the several correct answers.
+     */
+    @Test
+    void testQuestionWithSeveralCorrectAnswers() {
+        final List<String> correct =
+            Arrays.asList("I'm Andrej.", "My name is Andrej.");
+        final Sentence sentence = new Sentence(
+            "Ich bin Andrej.", correct
+        );
+        final Question question = sentence.questions().get(0);
+        question.answer(new SimpleAnswer("My name is John."));
+        Assertions.assertFalse(question.isCorrect());
+        for (final String ans : correct) {
+            final Question quest = sentence.questions().get(0);
+            quest.answer(new SimpleAnswer(ans));
+            Assertions.assertTrue(quest.isCorrect());
+        }
     }
 }

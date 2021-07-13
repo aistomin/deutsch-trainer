@@ -6,26 +6,36 @@
       "is_new": false,
       "infinitive": {
         "o": "vorbereiten",
-        "t": "to prepare",
+        "t": [
+          "to prepare"
+        ],
         "ex": [
           {
             "o": "Ich bereite mich auf meine Prüfung vor.",
-            "t": "I am preparing for my exam."
+            "t": [
+              "I am preparing for my exam."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "bereitete vor",
-        "t": "prepared",
+        "t": [
+          "prepared"
+        ],
         "ex": []
       },
       "perfect": {
         "o": "vorbereitet",
-        "t": "prepared",
+        "t": [
+          "prepared"
+        ],
         "ex": [
           {
             "o": "I habe mich gut auf die Prüfung vorbereitet.",
-            "t": "I have prepared well for the exam."
+            "t": [
+              "I have prepared well for the exam."
+            ]
           }
         ]
       }
@@ -35,26 +45,36 @@
       "is_new": true,
       "infinitive": {
         "o": "erinnern",
-        "t": "to remember",
+        "t": [
+          "to remember"
+        ],
         "ex": [
           {
             "o": "Ich erinnere mich an nichts mehr.",
-            "t": "I don't remember anything anymore."
+            "t": [
+              "I don't remember anything anymore."
+            ]
           },
           {
             "o": "Ich konnte mich nicht mehr an die Antworten erinnern.",
-            "t": "I couldn't remember the answers."
+            "t": [
+              "I couldn't remember the answers."
+            ]
           }
         ]
       },
       "preterite": {
         "o": "erinnerte",
-        "t": "remembered",
+        "t": [
+          "remembered"
+        ],
         "ex": []
       },
       "perfect": {
         "o": "erinnert",
-        "t": "remembered",
+        "t": [
+          "remembered"
+        ],
         "ex": []
       }
     }

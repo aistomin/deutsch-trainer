@@ -20,7 +20,9 @@ import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.testist.simple.SimpleQuestion;
 import com.github.aistomin.testist.simple.SimpleText;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * A sentence in the language.
@@ -35,9 +37,9 @@ public final class Sentence implements LexicalUnit {
     private final String original;
 
     /**
-     * The sentence in the student's language.
+     * The correct translations in the student's language.
      */
-    private final String translation;
+    private final List<String> translations;
 
     /**
      * Ctor.
@@ -45,25 +47,40 @@ public final class Sentence implements LexicalUnit {
      * @param mine The sentence in the student's language.
      */
     public Sentence(final String their, final String mine) {
+        this(their, Collections.singletonList(mine));
+    }
+
+    /**
+     * Ctor.
+     * @param their The sentence in original language.
+     * @param mine The correct translations in the student's language.
+     */
+    public Sentence(final String their, final List<String> mine) {
         this.original = their;
-        this.translation = mine;
+        this.translations = mine;
     }
 
     @Override
     public List<Question> questions() {
-        final ArrayList<Question> questions = new ArrayList<>(2);
+        final ArrayList<Question> questions =
+            new ArrayList<>(1 + this.translations.size());
         questions.add(
             new SimpleQuestion(
                 new SimpleText(this.original),
-                new SimpleAnswer(this.translation)
+                this.translations
+                    .stream()
+                    .map(SimpleAnswer::new)
+                    .collect(Collectors.toList())
             )
         );
-        questions.add(
-            new SimpleQuestion(
-                new SimpleText(this.translation),
-                new SimpleAnswer(this.original)
-            )
-        );
+        for (final String trans : this.translations) {
+            questions.add(
+                new SimpleQuestion(
+                    new SimpleText(trans),
+                    new SimpleAnswer(this.original)
+                )
+            );
+        }
         return questions;
     }
 }

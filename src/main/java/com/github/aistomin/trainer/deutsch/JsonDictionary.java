@@ -141,7 +141,8 @@ public final class JsonDictionary implements Dictionary {
         }
         return new SimpleWord(
             obj.get("o").asString(),
-            obj.get("t").asString(),
+            StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
+                .map(JsonValue::toString).collect(Collectors.toList()),
             usages
         );
     }
@@ -155,7 +156,8 @@ public final class JsonDictionary implements Dictionary {
     private static Sentence createSentence(final JsonObject obj) {
         return new Sentence(
             obj.get("o").asString(),
-            obj.get("t").asString()
+            StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
+                .map(JsonValue::toString).collect(Collectors.toList())
         );
     }
 }

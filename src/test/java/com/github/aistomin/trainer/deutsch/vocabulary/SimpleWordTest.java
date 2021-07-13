@@ -18,6 +18,7 @@ package com.github.aistomin.trainer.deutsch.vocabulary;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -55,6 +56,25 @@ final class SimpleWordTest {
         final Question question = word.primaryQuestion();
         question.answer(new SimpleAnswer("I"));
         Assertions.assertTrue(question.isCorrect());
+    }
+
+    /**
+     * Check that we properly treat questions with the several correct answers.
+     */
+    @Test
+    void testQuestionWithSeveralCorrectAnswers() {
+        final List<String> correct = Arrays.asList("smooth", "slippery");
+        final Word word = new SimpleWord(
+            "glatt", correct, new ArrayList<>(0)
+        );
+        final Question question = word.primaryQuestion();
+        question.answer(new SimpleAnswer("white"));
+        Assertions.assertFalse(question.isCorrect());
+        for (final String ans : correct) {
+            final Question quest = word.primaryQuestion();
+            quest.answer(new SimpleAnswer(ans));
+            Assertions.assertTrue(quest.isCorrect());
+        }
     }
 
     /**
