@@ -1150,6 +1150,98 @@
           }
         ]
       }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "böse sein",
+        "t": [
+          "to be angry"
+        ],
+        "ex": [
+          {
+            "o": "Alle lachen über Franz und sind böse auf Coppelius.",
+            "t": [
+              "Everyone laughs at Franz and is angry with Coppelius."
+            ]
+          }
+        ]
+      },
+      "preterite": {
+        "o": "war böse",
+        "t": [
+          "was angry"
+        ],
+        "ex": [
+          {
+            "o": "Die Götter waren sehr böse auf den ewig unzufriedenen Baobab.",
+            "t": [
+              "The gods got very angry with the discontented baobab."
+            ]
+          }
+        ]
+      },
+      "perfect": {
+        "o": "ist böse gewesen",
+        "t": [
+          "have been angry"
+        ],
+        "ex": [
+          {
+            "o": "Sie sagten, ich wäre böse auf Herrn Blokland gewesen.",
+            "t": [
+              "You said that I was angry with Mr Blokland."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "o": "sich freuen auf",
+        "t": [
+          "to look forward to"
+        ],
+        "ex": [
+          {
+            "o": "Ich freue mich auf eine weitere gute Zusammenarbeit.",
+            "t": [
+              "I am looking forward to our continued cooperation."
+            ]
+          }
+        ]
+      },
+      "preterite": {
+        "o": "freute sich auf",
+        "t": [
+          "looked forward to"
+        ],
+        "ex": [
+          {
+            "o": "Jeder freute sich auf einen schönen Abend.",
+            "t": [
+              "Everyone looked forward to a wonderful evening."
+            ]
+          }
+        ]
+      },
+      "perfect": {
+        "o": "sich gefreut auf",
+        "t": [
+          "looked forward to"
+        ],
+        "ex": [
+          {
+            "o": "Monatelang hat er sich auf den Skiurlaub gefreut.",
+            "t": [
+              "For months he had been looking forward to the skiing holidays."
+            ]
+          }
+        ]
+      }
     }
   ]
 }
