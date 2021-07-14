@@ -66,22 +66,28 @@ final class GermanVerbTest {
      */
     private static Word createTestVerb() {
         return new GermanVerb(
+            "0",
             new SimpleWord(
+                "1",
                 "gehen", "go",
                 Collections.singletonList(
-                    new Sentence("Ich gehe.", "I go.")
+                    new Sentence("2", "Ich gehe.", "I go.")
                 )
-            ), new SimpleWord(
-            "ging", "went",
-            Collections.singletonList(
-                new Sentence("Ich ging.", "I went.")
+            ),
+            new SimpleWord(
+                "3",
+                "ging", "went",
+                Collections.singletonList(
+                    new Sentence("4", "Ich ging.", "I went.")
+                )
+            ),
+            new SimpleWord(
+                "5",
+                "gegangen", "gone",
+                Collections.singletonList(
+                    new Sentence("6", "Ich bin gegangen.", "I have gone.")
+                )
             )
-        ), new SimpleWord(
-            "gegangen", "gone",
-            Collections.singletonList(
-                new Sentence("Ich bin gegangen.", "I have gone.")
-            )
-        )
         );
     }
 }

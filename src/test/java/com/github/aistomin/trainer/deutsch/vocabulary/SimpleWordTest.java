@@ -20,6 +20,7 @@ import com.github.aistomin.testist.simple.SimpleAnswer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -65,7 +66,7 @@ final class SimpleWordTest {
     void testQuestionWithSeveralCorrectAnswers() {
         final List<String> correct = Arrays.asList("smooth", "slippery");
         final Word word = new SimpleWord(
-            "glatt", correct, new ArrayList<>(0)
+            "1", "glatt", correct, new ArrayList<>(0)
         );
         final Question question = word.primaryQuestion();
         question.answer(new SimpleAnswer("white"));
@@ -89,8 +90,10 @@ final class SimpleWordTest {
         final String etranslation = "My name is Andrej.";
         final ArrayList<Sentence> examples = new ArrayList<>(1);
         examples.add(
-            new Sentence(eoriginal, etranslation)
+            new Sentence(UUID.randomUUID().toString(), eoriginal, etranslation)
         );
-        return new SimpleWord(woriginal, wtranslation, examples);
+        return new SimpleWord(
+            UUID.randomUUID().toString(), woriginal, wtranslation, examples
+        );
     }
 }

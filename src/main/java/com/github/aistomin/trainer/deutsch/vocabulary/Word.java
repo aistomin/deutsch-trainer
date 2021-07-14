@@ -22,7 +22,16 @@ import com.github.aistomin.testist.Question;
  *
  * @since 1.0
  */
-public abstract class Word implements LexicalUnit {
+public abstract class Word extends LexicalUnit {
+
+    /**
+     * Ctor.
+     *
+     * @param id Unique unit's identifier.
+     */
+    public Word(final String id) {
+        super(id);
+    }
 
     /**
      * The primary question. Normally it's the initial form of the word

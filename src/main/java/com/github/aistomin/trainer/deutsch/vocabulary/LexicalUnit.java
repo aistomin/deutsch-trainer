@@ -23,12 +23,35 @@ import java.util.List;
  *
  * @since 1.0
  */
-public interface LexicalUnit {
+public abstract class LexicalUnit {
+
+    /**
+     * Unique unit's identifier.
+     */
+    private final String code;
+
+    /**
+     * Ctor.
+     *
+     * @param id Unique unit's identifier.
+     */
+    protected LexicalUnit(final String id) {
+        this.code = id;
+    }
 
     /**
      * All the possible questions related to this lexical unit.
      *
      * @return List of questions.
      */
-    List<Question> questions();
+    public abstract List<Question> questions();
+
+    /**
+     * Unique lexical unit's identifier.
+     *
+     * @return Identifier.
+     */
+    public String identifier() {
+        return this.code;
+    }
 }
