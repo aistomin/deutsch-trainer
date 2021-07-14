@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
  *
  * @since 1.0
  */
-public final class Sentence implements LexicalUnit {
+public final class Sentence extends LexicalUnit {
 
     /**
      * The sentence in original language.
@@ -43,19 +43,26 @@ public final class Sentence implements LexicalUnit {
 
     /**
      * Ctor.
+     *
+     * @param id Unique unit's identifier.
      * @param their The sentence in original language.
      * @param mine The sentence in the student's language.
      */
-    public Sentence(final String their, final String mine) {
-        this(their, Collections.singletonList(mine));
+    public Sentence(final String id, final String their, final String mine) {
+        this(id, their, Collections.singletonList(mine));
     }
 
     /**
      * Ctor.
+     *
+     * @param id Unique unit's identifier.
      * @param their The sentence in original language.
      * @param mine The correct translations in the student's language.
      */
-    public Sentence(final String their, final List<String> mine) {
+    public Sentence(
+        final String id, final String their, final List<String> mine
+    ) {
+        super(id);
         this.original = their;
         this.translations = mine;
     }

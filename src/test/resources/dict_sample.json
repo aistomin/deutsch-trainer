@@ -2,15 +2,18 @@
   "version": "v1.0-test",
   "vocabulary": [
     {
+      "id": "1",
       "ps": "v",
       "is_new": false,
       "infinitive": {
+        "id": "1_1",
         "o": "vorbereiten",
         "t": [
           "to prepare"
         ],
         "ex": [
           {
+            "id": "1_1_1",
             "o": "Ich bereite mich auf meine Prüfung vor.",
             "t": [
               "I am preparing for my exam."
@@ -19,6 +22,7 @@
         ]
       },
       "preterite": {
+        "id": "1_2",
         "o": "bereitete vor",
         "t": [
           "prepared"
@@ -26,12 +30,14 @@
         "ex": []
       },
       "perfect": {
+        "id": "1_3",
         "o": "vorbereitet",
         "t": [
           "prepared"
         ],
         "ex": [
           {
+            "id": "1_3_1",
             "o": "I habe mich gut auf die Prüfung vorbereitet.",
             "t": [
               "I have prepared well for the exam."
@@ -41,21 +47,25 @@
       }
     },
     {
+      "id": "2",
       "ps": "v",
       "is_new": true,
       "infinitive": {
+        "id": "2_1",
         "o": "erinnern",
         "t": [
           "to remember"
         ],
         "ex": [
           {
+            "id": "2_1_1",
             "o": "Ich erinnere mich an nichts mehr.",
             "t": [
               "I don't remember anything anymore."
             ]
           },
           {
+            "id": "2_1_2",
             "o": "Ich konnte mich nicht mehr an die Antworten erinnern.",
             "t": [
               "I couldn't remember the answers."
@@ -64,6 +74,7 @@
         ]
       },
       "preterite": {
+        "id": "2_2",
         "o": "erinnerte",
         "t": [
           "remembered"
@@ -71,6 +82,7 @@
         "ex": []
       },
       "perfect": {
+        "id": "2_2",
         "o": "erinnert",
         "t": [
           "remembered"

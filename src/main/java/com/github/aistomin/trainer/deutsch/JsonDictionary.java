@@ -121,6 +121,7 @@ public final class JsonDictionary implements Dictionary {
      */
     private static GermanVerb createVerb(final JsonObject obj) {
         return new GermanVerb(
+            obj.get("id").asString(),
             JsonDictionary.createWord(obj.get("infinitive").asObject()),
             JsonDictionary.createWord(obj.get("preterite").asObject()),
             JsonDictionary.createWord(obj.get("perfect").asObject())
@@ -140,6 +141,7 @@ public final class JsonDictionary implements Dictionary {
             usages.add(JsonDictionary.createSentence(item.asObject()));
         }
         return new SimpleWord(
+            obj.get("id").asString(),
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
                 .map(JsonValue::toString).collect(Collectors.toList()),
@@ -155,6 +157,7 @@ public final class JsonDictionary implements Dictionary {
      */
     private static Sentence createSentence(final JsonObject obj) {
         return new Sentence(
+            obj.get("id").asString(),
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
                 .map(JsonValue::toString).collect(Collectors.toList())
