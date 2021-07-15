@@ -65,6 +65,25 @@ final class JsonDictionaryTest {
     }
 
     /**
+     * Check that we correctly validate the dictionary consistency.
+     *
+     * @throws URISyntaxException If something goes wrong.
+     * @throws InvalidDictionaryException If something goes wrong.
+     */
+    @Test
+    void testValidation() throws URISyntaxException, InvalidDictionaryException {
+        JsonDictionaryTest.dictionary().validate();
+        new JsonDictionary(
+            new File(
+                Thread
+                    .currentThread()
+                    .getContextClassLoader()
+                    .getResource("dict.json").toURI()
+            )
+        ).validate();
+    }
+
+    /**
      * Load the test dictionary.
      *
      * @return Test dictionary.

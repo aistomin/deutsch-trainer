@@ -28,7 +28,10 @@ import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -96,6 +99,35 @@ public final class JsonDictionary implements Dictionary {
                 return res;
             }
         ).collect(Collectors.toList());
+    }
+
+    @Override
+    public void validate() throws InvalidDictionaryException {
+        final List<Long> ids = new ArrayList<>(0);
+        final List<LexicalUnit> words = this.words(WordsFilter.ALL);
+        for (final LexicalUnit unit : words) {
+            ids.add(Long.valueOf(unit.identifier()));
+            ids.addAll(
+                unit.relatedLexicalUnits()
+                    .stream()
+                    .map(lu -> Long.valueOf(lu.identifier()))
+                    .collect(Collectors.toList())
+            );
+        }
+        final Set<Long> unique = new HashSet<>(ids);
+        if (ids.size() != unique.size()) {
+            final List<Long> duplicates = unique.stream()
+                .filter(id -> Collections.frequency(ids, id) > 1)
+                .collect(Collectors.toList());
+            throw new InvalidDictionaryException(
+                String.format(
+                    "The dictionary contains non-unique ID(s): %s",
+                    duplicates.stream()
+                        .map(Object::toString)
+                        .collect(Collectors.joining(", "))
+                )
+            );
+        }
     }
 
     /**

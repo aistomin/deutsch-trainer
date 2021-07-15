@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.vocabulary;
 
 import com.github.aistomin.testist.Question;
 import java.util.List;
+import java.util.Set;
 
 /**
  * A lexical unit interface. Possible implementations: word, sentence etc.
@@ -45,6 +46,13 @@ public abstract class LexicalUnit {
      * @return List of questions.
      */
     public abstract List<Question> questions();
+
+    /**
+     * Get all the related lexical units.
+     *
+     * @return Related units.
+     */
+    public abstract Set<LexicalUnit> relatedLexicalUnits();
 
     /**
      * Unique lexical unit's identifier.
