@@ -6,14 +6,14 @@
       "ps": "v",
       "is_new": true,
       "infinitive": {
-        "id": "11",
+        "id": "110",
         "o": "vorbereiten",
         "t": [
           "to prepare"
         ],
         "ex": [
           {
-            "id": "111",
+            "id": "1101",
             "o": "Ich bereite mich auf meine Prüfung vor.",
             "t": [
               "I am preparing for my exam."
@@ -22,14 +22,14 @@
         ]
       },
       "preterite": {
-        "id": "12",
+        "id": "120",
         "o": "bereitete vor",
         "t": [
           "prepared"
         ],
         "ex": [
           {
-            "id": "121",
+            "id": "1201",
             "o": "Ich bereite mich schon seit Tagen auf diesen Moment vor.",
             "t": [
               "I have been preparing for this moment for days."
@@ -38,14 +38,14 @@
         ]
       },
       "perfect": {
-        "id": "13",
+        "id": "130",
         "o": "vorbereitet",
         "t": [
           "prepared"
         ],
         "ex": [
           {
-            "id": "131",
+            "id": "1301",
             "o": "I habe mich gut auf die Prüfung vorbereitet.",
             "t": [
               "I have prepared well for the exam."
@@ -59,14 +59,14 @@
       "ps": "v",
       "is_new": true,
       "infinitive": {
-        "id": "21",
+        "id": "210",
         "o": "erinnern",
         "t": [
           "to remember"
         ],
         "ex": [
           {
-            "id": "211",
+            "id": "2101",
             "o": "Ich konnte mich nicht mehr an die Antworten erinnern.",
             "t": [
               "I couldn't remember the answers."
@@ -75,14 +75,14 @@
         ]
       },
       "preterite": {
-        "id": "22",
+        "id": "220",
         "o": "erinnerte",
         "t": [
           "remembered"
         ],
         "ex": [
           {
-            "id": "221",
+            "id": "2201",
             "o": "Ich erinnerte mich an eine Gruppe von jungen Frauen.",
             "t": [
               "I remembered the group of young women."
@@ -91,14 +91,14 @@
         ]
       },
       "perfect": {
-        "id": "23",
+        "id": "230",
         "o": "erinnert",
         "t": [
           "remembered"
         ],
         "ex": [
           {
-            "id": "231",
+            "id": "2301",
             "o": "Ich habe mich gerade an meine Jugend erinnert.",
             "t": [
               "I was just thinking of my youth."

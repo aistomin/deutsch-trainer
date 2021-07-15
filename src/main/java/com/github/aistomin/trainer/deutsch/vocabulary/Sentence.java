@@ -21,7 +21,9 @@ import com.github.aistomin.testist.simple.SimpleQuestion;
 import com.github.aistomin.testist.simple.SimpleText;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -89,5 +91,10 @@ public final class Sentence extends LexicalUnit {
             );
         }
         return questions;
+    }
+
+    @Override
+    public Set<LexicalUnit> relatedLexicalUnits() {
+        return new HashSet<>(0);
     }
 }

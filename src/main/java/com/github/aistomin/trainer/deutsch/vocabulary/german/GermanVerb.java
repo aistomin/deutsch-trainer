@@ -16,9 +16,12 @@
 package com.github.aistomin.trainer.deutsch.vocabulary.german;
 
 import com.github.aistomin.testist.Question;
+import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Class that represents a verb in a language.
@@ -72,6 +75,18 @@ public final class GermanVerb extends Word {
         result.addAll(inf);
         result.addAll(pret);
         result.addAll(perf);
+        return result;
+    }
+
+    @Override
+    public Set<LexicalUnit> relatedLexicalUnits() {
+        final Set<LexicalUnit> result = new HashSet<>(0);
+        result.add(this.infinitive);
+        result.addAll(this.infinitive.relatedLexicalUnits());
+        result.add(this.preterite);
+        result.addAll(this.preterite.relatedLexicalUnits());
+        result.add(this.perfect);
+        result.addAll(this.perfect.relatedLexicalUnits());
         return result;
     }
 

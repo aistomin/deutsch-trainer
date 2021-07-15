@@ -15,35 +15,19 @@
  */
 package com.github.aistomin.trainer.deutsch;
 
-import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
-import java.util.List;
-
 /**
- * General dictionary interface.
+ * Exception that is thrown when dictionary is not valid.
  *
  * @since 1.0
  */
-public interface Dictionary {
+public class InvalidDictionaryException extends Exception {
 
     /**
-     * The version of the dictionary.
+     * Ctor.
      *
-     * @return String version.
+     * @param msg Exception message.
      */
-    String version();
-
-    /**
-     * Load all the words from the dictionary.
-     *
-     * @param filter Word's filter.
-     * @return List of the words contained in the dictionary.
-     */
-    List<LexicalUnit> words(WordsFilter filter);
-
-    /**
-     * Validate the consistency of the dictionary.
-     *
-     * @throws InvalidDictionaryException If dictionary is not consistent.
-     */
-    void validate() throws InvalidDictionaryException;
+    public InvalidDictionaryException(final String msg) {
+        super(msg);
+    }
 }
