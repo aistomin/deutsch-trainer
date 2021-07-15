@@ -57,7 +57,7 @@ public final class SimpleWord extends Word {
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SimpleWord(
-        final String id,
+        final Long id,
         final String their,
         final String mine,
         final List<Sentence> examples
@@ -75,7 +75,7 @@ public final class SimpleWord extends Word {
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SimpleWord(
-        final String id,
+        final Long id,
         final String their,
         final List<String> mine,
         final List<Sentence> examples

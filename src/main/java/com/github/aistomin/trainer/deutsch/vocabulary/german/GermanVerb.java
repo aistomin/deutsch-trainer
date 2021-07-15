@@ -54,7 +54,7 @@ public final class GermanVerb extends Word {
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public GermanVerb(
-        final String id,
+        final Long id,
         final Word infinitive,
         final Word preterite,
         final Word perfect

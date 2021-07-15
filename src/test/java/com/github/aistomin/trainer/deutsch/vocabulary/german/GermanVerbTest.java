@@ -32,6 +32,31 @@ import org.junit.jupiter.api.Test;
 final class GermanVerbTest {
 
     /**
+     * Constant 2.
+     */
+    public static final long TWO = 2L;
+
+    /**
+     * Constant 3.
+     */
+    public static final long THREE = 3L;
+
+    /**
+     * Constant 4.
+     */
+    public static final long FOUR = 4L;
+
+    /**
+     * Constant 5.
+     */
+    public static final long FIVE = 5L;
+
+    /**
+     * Constant 6.
+     */
+    public static final long SIX = 6L;
+
+    /**
      * Constant 12.
      */
     public static final int TWELVE = 12;
@@ -66,26 +91,28 @@ final class GermanVerbTest {
      */
     private static Word createTestVerb() {
         return new GermanVerb(
-            "0",
+            0L,
             new SimpleWord(
-                "1",
+                1L,
                 "gehen", "go",
                 Collections.singletonList(
-                    new Sentence("2", "Ich gehe.", "I go.")
+                    new Sentence(GermanVerbTest.TWO, "Ich gehe.", "I go.")
                 )
             ),
             new SimpleWord(
-                "3",
+                GermanVerbTest.THREE,
                 "ging", "went",
                 Collections.singletonList(
-                    new Sentence("4", "Ich ging.", "I went.")
+                    new Sentence(GermanVerbTest.FOUR, "Ich ging.", "I went.")
                 )
             ),
             new SimpleWord(
-                "5",
+                GermanVerbTest.FIVE,
                 "gegangen", "gone",
                 Collections.singletonList(
-                    new Sentence("6", "Ich bin gegangen.", "I have gone.")
+                    new Sentence(
+                        GermanVerbTest.SIX, "Ich bin gegangen.", "I have gone."
+                    )
                 )
             )
         );

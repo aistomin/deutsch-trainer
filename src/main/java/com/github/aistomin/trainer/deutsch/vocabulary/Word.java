@@ -29,7 +29,7 @@ public abstract class Word extends LexicalUnit {
      *
      * @param id Unique unit's identifier.
      */
-    public Word(final String id) {
+    public Word(final Long id) {
         super(id);
     }
 
