@@ -50,7 +50,7 @@ public final class Sentence extends LexicalUnit {
      * @param their The sentence in original language.
      * @param mine The sentence in the student's language.
      */
-    public Sentence(final String id, final String their, final String mine) {
+    public Sentence(final Long id, final String their, final String mine) {
         this(id, their, Collections.singletonList(mine));
     }
 
@@ -62,7 +62,7 @@ public final class Sentence extends LexicalUnit {
      * @param mine The correct translations in the student's language.
      */
     public Sentence(
-        final String id, final String their, final List<String> mine
+        final Long id, final String their, final List<String> mine
     ) {
         super(id);
         this.original = their;

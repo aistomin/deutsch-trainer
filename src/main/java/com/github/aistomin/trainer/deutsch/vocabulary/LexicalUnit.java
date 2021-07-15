@@ -29,14 +29,14 @@ public abstract class LexicalUnit {
     /**
      * Unique unit's identifier.
      */
-    private final String code;
+    private final Long code;
 
     /**
      * Ctor.
      *
      * @param id Unique unit's identifier.
      */
-    protected LexicalUnit(final String id) {
+    protected LexicalUnit(final Long id) {
         this.code = id;
     }
 
@@ -59,7 +59,7 @@ public abstract class LexicalUnit {
      *
      * @return Identifier.
      */
-    public String identifier() {
+    public Long identifier() {
         return this.code;
     }
 }

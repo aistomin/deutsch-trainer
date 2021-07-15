@@ -106,11 +106,11 @@ public final class JsonDictionary implements Dictionary {
         final List<Long> ids = new ArrayList<>(0);
         final List<LexicalUnit> words = this.words(WordsFilter.ALL);
         for (final LexicalUnit unit : words) {
-            ids.add(Long.valueOf(unit.identifier()));
+            ids.add(unit.identifier());
             ids.addAll(
                 unit.relatedLexicalUnits()
                     .stream()
-                    .map(lu -> Long.valueOf(lu.identifier()))
+                    .map(LexicalUnit::identifier)
                     .collect(Collectors.toList())
             );
         }
@@ -153,7 +153,7 @@ public final class JsonDictionary implements Dictionary {
      */
     private static GermanVerb createVerb(final JsonObject obj) {
         return new GermanVerb(
-            obj.get("id").asString(),
+            obj.get("id").asLong(),
             JsonDictionary.createWord(obj.get("infinitive").asObject()),
             JsonDictionary.createWord(obj.get("preterite").asObject()),
             JsonDictionary.createWord(obj.get("perfect").asObject())
@@ -173,7 +173,7 @@ public final class JsonDictionary implements Dictionary {
             usages.add(JsonDictionary.createSentence(item.asObject()));
         }
         return new SimpleWord(
-            obj.get("id").asString(),
+            obj.get("id").asLong(),
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
                 .map(JsonValue::toString).collect(Collectors.toList()),
@@ -189,7 +189,7 @@ public final class JsonDictionary implements Dictionary {
      */
     private static Sentence createSentence(final JsonObject obj) {
         return new Sentence(
-            obj.get("id").asString(),
+            obj.get("id").asLong(),
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
                 .map(JsonValue::toString).collect(Collectors.toList())
