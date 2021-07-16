@@ -4,6 +4,7 @@
     {
       "id": 1,
       "ps": "v",
+      "info": "Some info.",
       "is_new": false,
       "infinitive": {
         "id": 11,
@@ -49,6 +50,7 @@
     {
       "id": 2,
       "ps": "v",
+      "info": "Here must be some description.",
       "is_new": true,
       "infinitive": {
         "id": 21,

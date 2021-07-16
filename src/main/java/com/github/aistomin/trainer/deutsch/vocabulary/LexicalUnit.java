@@ -32,12 +32,19 @@ public abstract class LexicalUnit {
     private final Long code;
 
     /**
+     * Some additional free-text information.
+     */
+    private final String description;
+
+    /**
      * Ctor.
      *
      * @param id Unique unit's identifier.
+     * @param info Some additional free-text information.
      */
-    protected LexicalUnit(final Long id) {
+    protected LexicalUnit(final Long id, final String info) {
         this.code = id;
+        this.description = info;
     }
 
     /**
@@ -61,5 +68,14 @@ public abstract class LexicalUnit {
      */
     public Long identifier() {
         return this.code;
+    }
+
+    /**
+     * Get some additional free-text information.
+     *
+     * @return Some additional free-text information.
+     */
+    public String info() {
+        return this.description;
     }
 }

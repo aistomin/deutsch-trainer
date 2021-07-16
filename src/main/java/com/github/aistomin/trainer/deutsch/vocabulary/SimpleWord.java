@@ -54,15 +54,17 @@ public final class SimpleWord extends Word {
      * @param their The word in original language.
      * @param mine The word in the student's language.
      * @param examples Examples of the word usages.
+     * @param info Some additional free-text information.
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SimpleWord(
         final Long id,
         final String their,
         final String mine,
-        final List<Sentence> examples
+        final List<Sentence> examples,
+        final String info
     ) {
-        this(id, their, Collections.singletonList(mine), examples);
+        this(id, their, Collections.singletonList(mine), examples, info);
     }
 
     /**
@@ -72,15 +74,17 @@ public final class SimpleWord extends Word {
      * @param their The word in original language.
      * @param mine The correct translations in the student's language.
      * @param examples Examples of the word usages.
+     * @param info Some additional free-text information.
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SimpleWord(
         final Long id,
         final String their,
         final List<String> mine,
-        final List<Sentence> examples
+        final List<Sentence> examples,
+        final String info
     ) {
-        super(id);
+        super(id, info);
         this.original = their;
         this.translations = mine;
         this.usages = examples;

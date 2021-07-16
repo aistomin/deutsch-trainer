@@ -28,9 +28,10 @@ public abstract class Word extends LexicalUnit {
      * Ctor.
      *
      * @param id Unique unit's identifier.
+     * @param info Some additional free-text information.
      */
-    public Word(final Long id) {
-        super(id);
+    public Word(final Long id, final String info) {
+        super(id, info);
     }
 
     /**

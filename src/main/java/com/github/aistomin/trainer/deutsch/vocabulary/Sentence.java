@@ -49,9 +49,13 @@ public final class Sentence extends LexicalUnit {
      * @param id Unique unit's identifier.
      * @param their The sentence in original language.
      * @param mine The sentence in the student's language.
+     * @param info Some additional free-text information.
+     * @checkstyle ParameterNumberCheck (10 lines)
      */
-    public Sentence(final Long id, final String their, final String mine) {
-        this(id, their, Collections.singletonList(mine));
+    public Sentence(
+        final Long id, final String their, final String mine, final String info
+    ) {
+        this(id, their, Collections.singletonList(mine), info);
     }
 
     /**
@@ -60,11 +64,14 @@ public final class Sentence extends LexicalUnit {
      * @param id Unique unit's identifier.
      * @param their The sentence in original language.
      * @param mine The correct translations in the student's language.
+     * @param info Some additional free-text information.
+     * @checkstyle ParameterNumberCheck (10 lines)
      */
     public Sentence(
-        final Long id, final String their, final List<String> mine
+        final Long id, final String their, final List<String> mine,
+        final String info
     ) {
-        super(id);
+        super(id, info);
         this.original = their;
         this.translations = mine;
     }

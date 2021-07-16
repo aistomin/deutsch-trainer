@@ -66,7 +66,7 @@ final class SimpleWordTest {
     void testQuestionWithSeveralCorrectAnswers() {
         final List<String> correct = Arrays.asList("smooth", "slippery");
         final Word word = new SimpleWord(
-            1L, "glatt", correct, new ArrayList<>(0)
+            1L, "glatt", correct, new ArrayList<>(0), "information"
         );
         final Question question = word.primaryQuestion();
         question.answer(new SimpleAnswer("white"));
@@ -91,10 +91,10 @@ final class SimpleWordTest {
         final ArrayList<Sentence> examples = new ArrayList<>(1);
         final Random rnd = new Random();
         examples.add(
-            new Sentence(rnd.nextLong(), eoriginal, etranslation)
+            new Sentence(rnd.nextLong(), eoriginal, etranslation, "")
         );
         return new SimpleWord(
-            rnd.nextLong(), woriginal, wtranslation, examples
+            rnd.nextLong(), woriginal, wtranslation, examples, "hello"
         );
     }
 }

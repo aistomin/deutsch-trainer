@@ -37,7 +37,7 @@ final class SentenceTest {
     void testQuestions() {
         final String original = "Wie heißt du?";
         final String translation = "What is your name?";
-        final LexicalUnit sentence = new Sentence(1L, original, translation);
+        final LexicalUnit sentence = new Sentence(1L, original, translation, "test");
         final List<Question> questions = sentence.questions();
         final Question direct = questions.get(0);
         Assertions.assertTrue(direct.toDisplayableString().contains(original));
@@ -57,7 +57,7 @@ final class SentenceTest {
         final List<String> correct =
             Arrays.asList("I'm Andrej.", "My name is Andrej.");
         final Sentence sentence = new Sentence(
-            1L, "Ich bin Andrej.", correct
+            1L, "Ich bin Andrej.", correct, "info"
         );
         final Question question = sentence.questions().get(0);
         question.answer(new SimpleAnswer("My name is John."));

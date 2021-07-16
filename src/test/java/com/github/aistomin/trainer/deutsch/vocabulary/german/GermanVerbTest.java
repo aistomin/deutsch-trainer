@@ -96,25 +96,25 @@ final class GermanVerbTest {
                 1L,
                 "gehen", "go",
                 Collections.singletonList(
-                    new Sentence(GermanVerbTest.TWO, "Ich gehe.", "I go.")
-                )
+                    new Sentence(GermanVerbTest.TWO, "Ich gehe.", "I go.", "test1")
+                ), "test"
             ),
             new SimpleWord(
                 GermanVerbTest.THREE,
                 "ging", "went",
                 Collections.singletonList(
-                    new Sentence(GermanVerbTest.FOUR, "Ich ging.", "I went.")
-                )
+                    new Sentence(GermanVerbTest.FOUR, "Ich ging.", "I went.", "test2")
+                ), "test3"
             ),
             new SimpleWord(
                 GermanVerbTest.FIVE,
                 "gegangen", "gone",
                 Collections.singletonList(
                     new Sentence(
-                        GermanVerbTest.SIX, "Ich bin gegangen.", "I have gone."
+                        GermanVerbTest.SIX, "Ich bin gegangen.", "I have gone.", "test4"
                     )
-                )
-            )
+                ), "test5"
+            ), "information"
         );
     }
 }
