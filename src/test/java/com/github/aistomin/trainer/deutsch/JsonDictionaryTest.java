@@ -28,6 +28,11 @@ import org.junit.jupiter.api.Test;
 final class JsonDictionaryTest {
 
     /**
+     * Constant 3.
+     */
+    public static final int THREE = 3;
+
+    /**
      * Check that we correctly read the dictionary version.
      *
      * @throws URISyntaxException If something goes wrong.
@@ -48,7 +53,8 @@ final class JsonDictionaryTest {
     @Test
     void testVocabulary() throws URISyntaxException {
         Assertions.assertEquals(
-            2, JsonDictionaryTest.dictionary().words(WordsFilter.ALL).size()
+            JsonDictionaryTest.THREE,
+            JsonDictionaryTest.dictionary().words(WordsFilter.ALL).size()
         );
     }
 
@@ -60,7 +66,9 @@ final class JsonDictionaryTest {
     @Test
     void testFiltering() throws URISyntaxException {
         final Dictionary dict = JsonDictionaryTest.dictionary();
-        Assertions.assertEquals(2, dict.words(WordsFilter.ALL).size());
+        Assertions.assertEquals(
+            JsonDictionaryTest.THREE, dict.words(WordsFilter.ALL).size()
+        );
         Assertions.assertEquals(1, dict.words(WordsFilter.ONLY_NEW).size());
     }
 
