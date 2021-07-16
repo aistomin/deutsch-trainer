@@ -51,15 +51,17 @@ public final class GermanVerb extends Word {
      * @param infinitive Infinitive form of the verb.
      * @param preterite Preterite form of the verb.
      * @param perfect Perfect form of the verb.
+     * @param info Some additional free-text information.
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public GermanVerb(
         final Long id,
         final Word infinitive,
         final Word preterite,
-        final Word perfect
+        final Word perfect,
+        final String info
     ) {
-        super(id);
+        super(id, info);
         this.infinitive = infinitive;
         this.preterite = preterite;
         this.perfect = perfect;

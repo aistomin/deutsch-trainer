@@ -156,7 +156,8 @@ public final class JsonDictionary implements Dictionary {
             obj.get("id").asLong(),
             JsonDictionary.createWord(obj.get("infinitive").asObject()),
             JsonDictionary.createWord(obj.get("preterite").asObject()),
-            JsonDictionary.createWord(obj.get("perfect").asObject())
+            JsonDictionary.createWord(obj.get("perfect").asObject()),
+            JsonDictionary.getInfo(obj)
         );
     }
 
@@ -177,7 +178,7 @@ public final class JsonDictionary implements Dictionary {
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
                 .map(JsonValue::toString).collect(Collectors.toList()),
-            usages
+            usages, JsonDictionary.getInfo(obj)
         );
     }
 
@@ -192,7 +193,25 @@ public final class JsonDictionary implements Dictionary {
             obj.get("id").asLong(),
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
-                .map(JsonValue::toString).collect(Collectors.toList())
+                .map(JsonValue::toString).collect(Collectors.toList()),
+            JsonDictionary.getInfo(obj)
         );
+    }
+
+    /**
+     * Get lexical unit info if it is present.
+     *
+     * @param obj JSON object.
+     * @return Value.
+     */
+    private static String getInfo(final JsonObject obj) {
+        final JsonValue val = obj.get("info");
+        final String res;
+        if (val == null) {
+            res = null;
+        } else {
+            res = val.asString();
+        }
+        return res;
     }
 }
