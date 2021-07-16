@@ -91,6 +91,17 @@
         ],
         "ex": []
       }
+    },
+    {
+      "id": 3,
+      "ps": "i",
+      "info": "Famous German idiom.",
+      "is_new": false,
+      "o": "Übung macht den Meister.",
+      "t": [
+        "Practice makes perfect.",
+        "Skill comes with practice."
+      ]
     }
   ]
 }

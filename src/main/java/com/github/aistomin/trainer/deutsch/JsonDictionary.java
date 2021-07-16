@@ -89,6 +89,9 @@ public final class JsonDictionary implements Dictionary {
                     case "v":
                         res = JsonDictionary.createVerb(obj);
                         break;
+                    case "i":
+                        res = JsonDictionary.createSentence(obj);
+                        break;
                     case "n":
                         throw new IllegalStateException(
                             "We do not support nouns for now."
