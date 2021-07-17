@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.vocabulary.german;
 
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
+import com.github.aistomin.trainer.deutsch.Constant;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
@@ -30,36 +31,6 @@ import org.junit.jupiter.api.Test;
  * @since 1.0
  */
 final class GermanVerbTest {
-
-    /**
-     * Constant 2.
-     */
-    public static final long TWO = 2L;
-
-    /**
-     * Constant 3.
-     */
-    public static final long THREE = 3L;
-
-    /**
-     * Constant 4.
-     */
-    public static final long FOUR = 4L;
-
-    /**
-     * Constant 5.
-     */
-    public static final long FIVE = 5L;
-
-    /**
-     * Constant 6.
-     */
-    public static final long SIX = 6L;
-
-    /**
-     * Constant 12.
-     */
-    public static final int TWELVE = 12;
 
     /**
      * Check that we correctly get the primary question for the verb.
@@ -79,7 +50,7 @@ final class GermanVerbTest {
     @Test
     void testQuestions() {
         Assertions.assertEquals(
-            GermanVerbTest.TWELVE,
+            Constant.TWELVE,
             GermanVerbTest.createTestVerb().questions().size()
         );
     }
@@ -96,22 +67,22 @@ final class GermanVerbTest {
                 1L,
                 "gehen", "go",
                 Collections.singletonList(
-                    new Sentence(GermanVerbTest.TWO, "Ich gehe.", "I go.", "test1")
+                    new Sentence(Constant.TWO, "Ich gehe.", "I go.", "test1")
                 ), "test"
             ),
             new SimpleWord(
-                GermanVerbTest.THREE,
+                Constant.THREE,
                 "ging", "went",
                 Collections.singletonList(
-                    new Sentence(GermanVerbTest.FOUR, "Ich ging.", "I went.", "test2")
+                    new Sentence(Constant.FOUR, "Ich ging.", "I went.", "test2")
                 ), "test3"
             ),
             new SimpleWord(
-                GermanVerbTest.FIVE,
+                Constant.FIVE,
                 "gegangen", "gone",
                 Collections.singletonList(
                     new Sentence(
-                        GermanVerbTest.SIX, "Ich bin gegangen.", "I have gone.", "test4"
+                        Constant.SIX, "Ich bin gegangen.", "I have gone.", "test4"
                     )
                 ), "test5"
             ), "information"
