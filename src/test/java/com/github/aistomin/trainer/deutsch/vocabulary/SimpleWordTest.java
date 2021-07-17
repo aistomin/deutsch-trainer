@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.vocabulary;
 
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
+import com.github.aistomin.trainer.deutsch.Constant;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -32,11 +33,6 @@ import org.junit.jupiter.api.Test;
 final class SimpleWordTest {
 
     /**
-     * Constant 4.
-     */
-    public static final int FOUR = 4;
-
-    /**
      * Check that we correctly return the list of questions related to the
      * simple word.
      */
@@ -45,7 +41,7 @@ final class SimpleWordTest {
         final List<Question> questions = SimpleWordTest
             .createTestWord()
             .questions();
-        Assertions.assertEquals(SimpleWordTest.FOUR, questions.size());
+        Assertions.assertEquals(Constant.FOUR, questions.size());
     }
 
     /**
