@@ -1431,6 +1431,165 @@
           }
         ]
       }
+    },
+    {
+      "id": 28,
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "id": 281,
+        "o": "hoffen",
+        "t": [
+          "to hope"
+        ],
+        "ex": [
+          {
+            "id": 2811,
+            "o": "Ich hoffe auf eine stärkere Integration.",
+            "t": [
+              "I hope to see greater integration."
+            ]
+          }
+        ]
+      },
+      "preterite": {
+        "id": 282,
+        "o": "hoffte",
+        "t": [
+          "hoped"
+        ],
+        "ex": [
+          {
+            "id": 2821,
+            "o": "Man hoffte auf einen göttlichen Erlöser.",
+            "t": [
+              "People were hoping for a divine saviour."
+            ]
+          }
+        ]
+      },
+      "perfect": {
+        "id": 283,
+        "o": "gehofft",
+        "t": [
+          "hoped"
+        ],
+        "ex": [
+          {
+            "id": 2831,
+            "o": "Wir hatten auf ein noch stärkeres Jahresendergebnis gehofft.",
+            "t": [
+              "We hoped for a strong result at the end of the year."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 29,
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "id": 291,
+        "o": "hören",
+        "t": [
+          "to hear"
+        ],
+        "ex": [
+          {
+            "id": 2911,
+            "o": "Höre auf Schuld, Schande, Furcht vor Schicksal und Tod.",
+            "t": [
+              "Listen for guilt, shame, fear of fate and death."
+            ]
+          }
+        ]
+      },
+      "preterite": {
+        "id": 292,
+        "o": "hörte",
+        "t": [
+          "heard"
+        ],
+        "ex": [
+          {
+            "id": 2921,
+            "o": "Ich hörte auf die Kommentare der Mitarbeitenden.",
+            "t": [
+              "I listened to the comments of our employees."
+            ]
+          }
+        ]
+      },
+      "perfect": {
+        "id": 293,
+        "o": "gehört",
+        "t": [
+          "heard"
+        ],
+        "ex": [
+          {
+            "id": 2931,
+            "o": "Wer auf ihren Ruf hört, hat auf die Stimme Gottes gehört.",
+            "t": [
+              "Whoso hearkeneth to their call, hath hearkened to the Voice of God."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 30,
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "id": 301,
+        "o": "konzentrieren",
+        "t": [
+          "a concentrate"
+        ],
+        "ex": [
+          {
+            "id": 3011,
+            "o": "Er konzentrierte sich auf das Rechnungswesen.",
+            "t": [
+              "He focused on accounting."
+            ]
+          }
+        ]
+      },
+      "preterite": {
+        "id": 302,
+        "o": "konzentrierte",
+        "t": [
+          "concentrated"
+        ],
+        "ex": [
+          {
+            "id": 3021,
+            "o": "Die Auswertung konzentrierte sich auf das brüderliche Leben in seinen verschiedenen Dimensionen.",
+            "t": [
+              "The evaluation was centred on fraternal life in its various dimensions."
+            ]
+          }
+        ]
+      },
+      "perfect": {
+        "id": 303,
+        "o": "konzentriert",
+        "t": [
+          "concentrated"
+        ],
+        "ex": [
+          {
+            "id": 3031,
+            "o": "Die Forschung, die diese Behauptung stützt, hat sich auf drei wichtige Faktoren konzentriert.",
+            "t": [
+              "The research supporting this claim has centered on three important factors."
+            ]
+          }
+        ]
+      }
     }
   ]
 }
