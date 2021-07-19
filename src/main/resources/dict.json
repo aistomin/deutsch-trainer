@@ -1590,6 +1590,114 @@
           }
         ]
       }
+    },
+    {
+      "id": 31,
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "id": 311,
+        "o": "sich verlassen auf",
+        "t": [
+          "to count on"
+        ],
+        "ex": [
+          {
+            "id": 3111,
+            "o": "Ich verlasse mich auf meine Ideen.",
+            "t": [
+              "I trust my ideas."
+            ]
+          }
+        ]
+      },
+      "preterite": {
+        "id": 312,
+        "o": "sich verließ auf",
+        "t": [
+          "counted on"
+        ],
+        "ex": [
+          {
+            "id": 3121,
+            "o": "Die Kommission verlässt sich auf die wesentlichen Beiträge anderer Akteure.",
+            "t": [
+              "The Commission counts on the essential contribution of other actors."
+            ]
+          }
+        ]
+      },
+      "perfect": {
+        "id": 313,
+        "o": "hat sich auf etwas verlassen",
+        "t": [
+          "has counted on something"
+        ],
+        "ex": [
+          {
+            "id": 3131,
+            "o": "Ich habe mich immer darauf verlassen können.",
+            "t": [
+              "I have always been able to rely on that."
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": 32,
+      "ps": "v",
+      "is_new": false,
+      "infinitive": {
+        "id": 321,
+        "o": "weisen",
+        "t": [
+          "to indicate",
+          "to show",
+          "to point out"
+        ],
+        "ex": [
+          {
+            "id": 3211,
+            "o": "Sie weisen ihm vorausschauend die Richtung.",
+            "t": [
+              "They show him in advance the direction."
+            ]
+          }
+        ]
+      },
+      "preterite": {
+        "id": 322,
+        "o": "wies",
+        "t": [
+          "showed"
+        ],
+        "ex": [
+          {
+            "id": 3221,
+            "o": "Dies wies mir die Richtung.",
+            "t": [
+              "It showed me the direction to go."
+            ]
+          }
+        ]
+      },
+      "perfect": {
+        "id": 323,
+        "o": "gewiesen",
+        "t": [
+          "shown"
+        ],
+        "ex": [
+          {
+            "id": 3131,
+            "o": "Kompass, der uns über Jahrhunderte den Weg gewiesen hat.",
+            "t": [
+              "Compass that has guided us for centuries."
+            ]
+          }
+        ]
+      }
     }
   ]
 }
