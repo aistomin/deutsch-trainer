@@ -15,18 +15,16 @@
  */
 package com.github.aistomin.trainer.deutsch;
 
-import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
+import com.github.aistomin.trainer.deutsch.utils.JsonFile;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
 import com.github.aistomin.trainer.deutsch.vocabulary.german.GermanVerb;
 import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -139,13 +137,7 @@ public final class JsonDictionary implements Dictionary {
      * @return JSON Object.
      */
     private JsonObject json() {
-        try {
-            return Json.parse(
-                Files.newBufferedReader(this.source.toPath())
-            ).asObject();
-        } catch (final IOException exception) {
-            throw new IllegalStateException(exception);
-        }
+        return new JsonFile(this.source).json();
     }
 
     /**
