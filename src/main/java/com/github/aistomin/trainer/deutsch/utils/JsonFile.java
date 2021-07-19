@@ -13,18 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.trainer.examinations;
+package com.github.aistomin.trainer.deutsch.utils;
 
+import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
-import com.github.aistomin.trainer.deutsch.utils.JsonFile;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 /**
- * User implementation that takes data from JSON file.
+ * JSON file representation.
  *
  * @since 1.0
  */
-public final class JsonUser implements User {
+public final class JsonFile {
 
     /**
      * JSON file.
@@ -36,26 +38,22 @@ public final class JsonUser implements User {
      *
      * @param file JSON file.
      */
-    public JsonUser(final File file) {
+    public JsonFile(final File file) {
         this.source = file;
     }
 
-    @Override
-    public Long identifier() {
-        return this.json().getLong("id", 0L);
-    }
-
-    @Override
-    public String username() {
-        return this.json().getString("username", "");
-    }
-
     /**
-     * Parse JSON content of the file.
+     * Load JSON object from file.
      *
-     * @return JSON Object.
+     * @return JSON object.
      */
-    private JsonObject json() {
-        return new JsonFile(this.source).json();
+    public JsonObject json() {
+        try {
+            return Json.parse(
+                Files.newBufferedReader(this.source.toPath())
+            ).asObject();
+        } catch (final IOException exception) {
+            throw new IllegalStateException(exception);
+        }
     }
 }
