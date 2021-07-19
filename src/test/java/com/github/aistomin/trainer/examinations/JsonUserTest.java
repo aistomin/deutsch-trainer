@@ -13,24 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.trainer.deutsch;
+package com.github.aistomin.trainer.examinations;
 
+import java.io.File;
+import java.net.URISyntaxException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Test for {@link Questions}.
+ * Test for {@link JsonUser}.
  *
  * @since 1.0
  */
-final class QuestionsTest {
+final class JsonUserTest {
 
     /**
-     * Check that we correctly get questions for the test.
+     * Check that we correctly load the data from JSON file.
+     *
+     * @throws URISyntaxException If something goes wrong.
      */
     @Test
-    void testQuestions() {
-        final int two = 2;
-        Assertions.assertEquals(two, new Questions(two).questions().size());
+    void testReadFromJson() throws URISyntaxException {
+        final User usr = new JsonUser(
+            new File(
+                Thread
+                    .currentThread()
+                    .getContextClassLoader()
+                    .getResource("user.json").toURI()
+            )
+        );
+        Assertions.assertEquals(1L, usr.identifier());
+        Assertions.assertEquals("andrej", usr.username());
     }
 }
