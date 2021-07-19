@@ -13,24 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.trainer.deutsch;
-
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
-
 /**
- * Test for {@link Questions}.
- *
- * @since 1.0
+ * Package where have all the tests related to the examinations of the users.
  */
-final class QuestionsTest {
-
-    /**
-     * Check that we correctly get questions for the test.
-     */
-    @Test
-    void testQuestions() {
-        final int two = 2;
-        Assertions.assertEquals(two, new Questions(two).questions().size());
-    }
-}
+package com.github.aistomin.trainer.examinations;
