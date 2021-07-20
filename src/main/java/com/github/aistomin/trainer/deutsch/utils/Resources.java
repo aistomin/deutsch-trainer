@@ -13,29 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.github.aistomin.trainer.examinations;
+package com.github.aistomin.trainer.deutsch.utils;
 
-import com.github.aistomin.trainer.deutsch.utils.Resources;
+import java.io.File;
 import java.net.URISyntaxException;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
 
 /**
- * Test for {@link JsonUser}.
+ * Reources representation.
  *
  * @since 1.0
  */
-final class JsonUserTest {
+@SuppressWarnings("PMD.ProhibitPublicStaticMethods")
+public final class Resources {
 
     /**
-     * Check that we correctly load the data from JSON file.
+     * Ctor.
+     */
+    private Resources() {
+    }
+
+    /**
+     * Search for the file in resources.
      *
+     * @param filename Filename.
+     * @return Found file.
      * @throws URISyntaxException If something goes wrong.
      */
-    @Test
-    void testReadFromJson() throws URISyntaxException {
-        final User usr = new JsonUser(Resources.find("user.json"));
-        Assertions.assertEquals(1L, usr.identifier());
-        Assertions.assertEquals("andrej", usr.username());
+    public static File find(final String filename) throws URISyntaxException {
+        return new File(
+            Thread
+                .currentThread()
+                .getContextClassLoader()
+                .getResource(filename).toURI()
+        );
     }
 }

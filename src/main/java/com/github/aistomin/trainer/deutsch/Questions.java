@@ -17,8 +17,8 @@ package com.github.aistomin.trainer.deutsch;
 
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.QuestionsProvider;
+import com.github.aistomin.trainer.deutsch.utils.Resources;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
-import java.io.File;
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
@@ -66,14 +66,8 @@ public final class Questions implements QuestionsProvider {
     public List<Question> questions() {
         final List<Question> result = new ArrayList<>(this.amount);
         try {
-            final Dictionary dict = new JsonDictionary(
-                new File(
-                    Thread
-                        .currentThread()
-                        .getContextClassLoader()
-                        .getResource("dict.json").toURI()
-                )
-            );
+            final Dictionary dict =
+                new JsonDictionary(Resources.find("dict.json"));
             final Random rand = new Random();
             final AtomicInteger index = new AtomicInteger();
             while (index.get() < this.amount) {
