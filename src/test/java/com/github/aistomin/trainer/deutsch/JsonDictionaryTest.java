@@ -15,7 +15,7 @@
  */
 package com.github.aistomin.trainer.deutsch;
 
-import java.io.File;
+import com.github.aistomin.trainer.deutsch.utils.Resources;
 import java.net.URISyntaxException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -76,14 +76,7 @@ final class JsonDictionaryTest {
     @Test
     void testValidation() throws URISyntaxException, InvalidDictionaryException {
         JsonDictionaryTest.dictionary().validate();
-        new JsonDictionary(
-            new File(
-                Thread
-                    .currentThread()
-                    .getContextClassLoader()
-                    .getResource("dict.json").toURI()
-            )
-        ).validate();
+        new JsonDictionary(Resources.find("dict.json")).validate();
     }
 
     /**
@@ -93,13 +86,6 @@ final class JsonDictionaryTest {
      * @throws URISyntaxException If something goes wrong.
      */
     private static Dictionary dictionary() throws URISyntaxException {
-        return new JsonDictionary(
-            new File(
-                Thread
-                    .currentThread()
-                    .getContextClassLoader()
-                    .getResource("dict_sample.json").toURI()
-            )
-        );
+        return new JsonDictionary(Resources.find("dict_sample.json"));
     }
 }

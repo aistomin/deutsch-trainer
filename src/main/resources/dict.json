@@ -112,14 +112,14 @@
       "ps": "v",
       "is_new": true,
       "infinitive": {
-        "id": 31,
+        "id": 9931,
         "o": "sich ärgern",
         "t": [
           "to be annoyed"
         ],
         "ex": [
           {
-            "id": 311,
+            "id": 9311,
             "o": "Ich ärgere mich über mich selbst.",
             "t": [
               "I am angry with myself."
@@ -128,14 +128,14 @@
         ]
       },
       "preterite": {
-        "id": 32,
+        "id": 932,
         "o": "ärgerte",
         "t": [
           "annoyed"
         ],
         "ex": [
           {
-            "id": 321,
+            "id": 9321,
             "o": "Doch nun ärgerte sie sich über den Film und über ihre Reaktion.",
             "t": [
               "But now she was angry with the film and her reaction."
@@ -1635,7 +1635,7 @@
         ],
         "ex": [
           {
-            "id": 3131,
+            "id": 93131,
             "o": "Ich habe mich immer darauf verlassen können.",
             "t": [
               "I have always been able to rely on that."
