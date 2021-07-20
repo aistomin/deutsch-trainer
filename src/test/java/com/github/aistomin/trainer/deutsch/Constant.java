@@ -53,6 +53,12 @@ public final class Constant {
     public static final int TWELVE = 12;
 
     /**
+     * Constant 212.
+     */
+    @SuppressWarnings("PMD.LongVariable")
+    public static final int TWO_HUNDRED_TWELVE = 212;
+
+    /**
      * Ctor.
      */
     private Constant() {

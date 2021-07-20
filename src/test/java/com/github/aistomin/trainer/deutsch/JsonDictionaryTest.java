@@ -80,6 +80,19 @@ final class JsonDictionaryTest {
     }
 
     /**
+     * Check that we correctly generate new ID.
+     *
+     * @throws URISyntaxException If something goes wrong.
+     */
+    @Test
+    void testGenerateNextId() throws URISyntaxException {
+        Assertions.assertEquals(
+            Constant.TWO_HUNDRED_TWELVE,
+            JsonDictionaryTest.dictionary().generateNextId()
+        );
+    }
+
+    /**
      * Load the test dictionary.
      *
      * @return Test dictionary.
