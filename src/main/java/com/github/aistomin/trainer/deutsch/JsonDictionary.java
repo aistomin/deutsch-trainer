@@ -131,6 +131,19 @@ public final class JsonDictionary implements Dictionary {
         }
     }
 
+    @Override
+    public Long generateNextId() {
+        final List<LexicalUnit> units = new ArrayList<>(0);
+        for (final LexicalUnit unit : this.words(WordsFilter.ALL)) {
+            units.add(unit);
+            units.addAll(unit.relatedLexicalUnits());
+        }
+        return units.stream()
+            .map(LexicalUnit::identifier)
+            .max(Long::compareTo)
+            .orElse(1L);
+    }
+
     /**
      * Parse JSON content of the file.
      *

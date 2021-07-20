@@ -46,4 +46,11 @@ public interface Dictionary {
      * @throws InvalidDictionaryException If dictionary is not consistent.
      */
     void validate() throws InvalidDictionaryException;
+
+    /**
+     * Generate ID for the next lexical unit in the dictionary.
+     *
+     * @return ID.
+     */
+    Long generateNextId();
 }
