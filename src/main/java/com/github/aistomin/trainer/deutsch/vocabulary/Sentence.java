@@ -15,6 +15,8 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary;
 
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.testist.simple.SimpleQuestion;
@@ -25,6 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * A sentence in the language.
@@ -76,6 +79,21 @@ public final class Sentence extends LexicalUnit {
         this.translations = mine;
     }
 
+    /**
+     * Ctor.
+     *
+     * @param obj JSON object.
+     */
+    public Sentence(final JsonObject obj) {
+        this(
+            obj.get("id").asLong(),
+            obj.get("o").asString(),
+            StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
+                .map(JsonValue::toString).collect(Collectors.toList()),
+            Sentence.getInfo(obj)
+        );
+    }
+
     @Override
     public List<Question> questions() {
         final ArrayList<Question> questions =
@@ -103,5 +121,22 @@ public final class Sentence extends LexicalUnit {
     @Override
     public Set<LexicalUnit> relatedLexicalUnits() {
         return new HashSet<>(0);
+    }
+
+    /**
+     * Get lexical unit info if it is present.
+     *
+     * @param obj JSON object.
+     * @return Value.
+     */
+    private static String getInfo(final JsonObject obj) {
+        final JsonValue val = obj.get("info");
+        final String res;
+        if (val == null) {
+            res = null;
+        } else {
+            res = val.asString();
+        }
+        return res;
     }
 }
