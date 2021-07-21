@@ -15,8 +15,11 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary.german;
 
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
+import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -67,6 +70,21 @@ public final class GermanVerb extends Word {
         this.perfect = perfect;
     }
 
+    /**
+     * Ctor.
+     *
+     * @param obj JSON object.
+     */
+    public GermanVerb(final JsonObject obj) {
+        this(
+            obj.get("id").asLong(),
+            new SimpleWord(obj.get("infinitive").asObject()),
+            new SimpleWord(obj.get("preterite").asObject()),
+            new SimpleWord(obj.get("perfect").asObject()),
+            GermanVerb.getInfo(obj)
+        );
+    }
+
     @Override
     public List<Question> questions() {
         final List<Question> inf = this.infinitive.questions();
@@ -95,5 +113,22 @@ public final class GermanVerb extends Word {
     @Override
     public Question primaryQuestion() {
         return this.infinitive.primaryQuestion();
+    }
+
+    /**
+     * Get lexical unit info if it is present.
+     *
+     * @param obj JSON object.
+     * @return Value.
+     */
+    private static String getInfo(final JsonObject obj) {
+        final JsonValue val = obj.get("info");
+        final String res;
+        if (val == null) {
+            res = null;
+        } else {
+            res = val.asString();
+        }
+        return res;
     }
 }

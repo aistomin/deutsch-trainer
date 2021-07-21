@@ -17,12 +17,9 @@ package com.github.aistomin.trainer.deutsch;
 
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
-import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.trainer.deutsch.utils.JsonFile;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
-import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
-import com.github.aistomin.trainer.deutsch.vocabulary.Word;
 import com.github.aistomin.trainer.deutsch.vocabulary.german.GermanVerb;
 import java.io.File;
 import java.util.ArrayList;
@@ -85,10 +82,10 @@ public final class JsonDictionary implements Dictionary {
                 final LexicalUnit res;
                 switch (obj.get("ps").asString()) {
                     case "v":
-                        res = JsonDictionary.createVerb(obj);
+                        res = new GermanVerb(obj);
                         break;
                     case "i":
-                        res = JsonDictionary.createSentence(obj);
+                        res = new Sentence(obj);
                         break;
                     case "n":
                         throw new IllegalStateException(
@@ -151,75 +148,5 @@ public final class JsonDictionary implements Dictionary {
      */
     private JsonObject json() {
         return new JsonFile(this.source).json();
-    }
-
-    /**
-     * Create German verb using JSON data.
-     *
-     * @param obj JSON object.
-     * @return German verb.
-     */
-    private static GermanVerb createVerb(final JsonObject obj) {
-        return new GermanVerb(
-            obj.get("id").asLong(),
-            JsonDictionary.createWord(obj.get("infinitive").asObject()),
-            JsonDictionary.createWord(obj.get("preterite").asObject()),
-            JsonDictionary.createWord(obj.get("perfect").asObject()),
-            JsonDictionary.getInfo(obj)
-        );
-    }
-
-    /**
-     * Create a word using JSON data.
-     *
-     * @param obj JSON object.
-     * @return Word.
-     */
-    private static Word createWord(final JsonObject obj) {
-        final JsonArray examples = obj.get("ex").asArray();
-        final List<Sentence> usages = new ArrayList<>(examples.size());
-        for (final JsonValue item : examples) {
-            usages.add(JsonDictionary.createSentence(item.asObject()));
-        }
-        return new SimpleWord(
-            obj.get("id").asLong(),
-            obj.get("o").asString(),
-            StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
-                .map(JsonValue::toString).collect(Collectors.toList()),
-            usages, JsonDictionary.getInfo(obj)
-        );
-    }
-
-    /**
-     * Create a sentence using JSON data.
-     *
-     * @param obj JSON object.
-     * @return Word.
-     */
-    private static Sentence createSentence(final JsonObject obj) {
-        return new Sentence(
-            obj.get("id").asLong(),
-            obj.get("o").asString(),
-            StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
-                .map(JsonValue::toString).collect(Collectors.toList()),
-            JsonDictionary.getInfo(obj)
-        );
-    }
-
-    /**
-     * Get lexical unit info if it is present.
-     *
-     * @param obj JSON object.
-     * @return Value.
-     */
-    private static String getInfo(final JsonObject obj) {
-        final JsonValue val = obj.get("info");
-        final String res;
-        if (val == null) {
-            res = null;
-        } else {
-            res = val.asString();
-        }
-        return res;
     }
 }

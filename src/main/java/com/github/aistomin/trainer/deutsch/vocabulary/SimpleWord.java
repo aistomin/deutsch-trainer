@@ -15,6 +15,8 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary;
 
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.testist.simple.SimpleQuestion;
@@ -25,6 +27,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 /**
  * Class that represents a verb in a language.
@@ -90,6 +93,25 @@ public final class SimpleWord extends Word {
         this.usages = examples;
     }
 
+    /**
+     * Ctor.
+     *
+     * @param obj JSON object.
+     */
+    public SimpleWord(final JsonObject obj) {
+        this(
+            obj.get("id").asLong(),
+            obj.get("o").asString(),
+            StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
+                .map(JsonValue::toString)
+                .collect(Collectors.toList()),
+            StreamSupport.stream(obj.get("ex").asArray().spliterator(), false)
+                .map(item -> new Sentence(item.asObject()))
+                .collect(Collectors.toList()),
+            SimpleWord.getInfo(obj)
+        );
+    }
+
     @Override
     public List<Question> questions() {
         final ArrayList<Question> questions =
@@ -125,5 +147,22 @@ public final class SimpleWord extends Word {
     @Override
     public Question primaryQuestion() {
         return this.questions().stream().findFirst().get();
+    }
+
+    /**
+     * Get lexical unit info if it is present.
+     *
+     * @param obj JSON object.
+     * @return Value.
+     */
+    private static String getInfo(final JsonObject obj) {
+        final JsonValue val = obj.get("info");
+        final String res;
+        if (val == null) {
+            res = null;
+        } else {
+            res = val.asString();
+        }
+        return res;
     }
 }
