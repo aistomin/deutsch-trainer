@@ -108,7 +108,7 @@ public final class SimpleWord extends Word {
             StreamSupport.stream(obj.get("ex").asArray().spliterator(), false)
                 .map(item -> new Sentence(item.asObject()))
                 .collect(Collectors.toList()),
-            SimpleWord.getInfo(obj)
+            SimpleWord.parseInfo(obj)
         );
     }
 
@@ -147,22 +147,5 @@ public final class SimpleWord extends Word {
     @Override
     public Question primaryQuestion() {
         return this.questions().stream().findFirst().get();
-    }
-
-    /**
-     * Get lexical unit info if it is present.
-     *
-     * @param obj JSON object.
-     * @return Value.
-     */
-    private static String getInfo(final JsonObject obj) {
-        final JsonValue val = obj.get("info");
-        final String res;
-        if (val == null) {
-            res = null;
-        } else {
-            res = val.asString();
-        }
-        return res;
     }
 }

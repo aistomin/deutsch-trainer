@@ -16,7 +16,6 @@
 package com.github.aistomin.trainer.deutsch.vocabulary.german;
 
 import com.eclipsesource.json.JsonObject;
-import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
@@ -81,7 +80,7 @@ public final class GermanVerb extends Word {
             new SimpleWord(obj.get("infinitive").asObject()),
             new SimpleWord(obj.get("preterite").asObject()),
             new SimpleWord(obj.get("perfect").asObject()),
-            GermanVerb.getInfo(obj)
+            GermanVerb.parseInfo(obj)
         );
     }
 
@@ -113,22 +112,5 @@ public final class GermanVerb extends Word {
     @Override
     public Question primaryQuestion() {
         return this.infinitive.primaryQuestion();
-    }
-
-    /**
-     * Get lexical unit info if it is present.
-     *
-     * @param obj JSON object.
-     * @return Value.
-     */
-    private static String getInfo(final JsonObject obj) {
-        final JsonValue val = obj.get("info");
-        final String res;
-        if (val == null) {
-            res = null;
-        } else {
-            res = val.asString();
-        }
-        return res;
     }
 }

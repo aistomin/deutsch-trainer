@@ -90,7 +90,7 @@ public final class Sentence extends LexicalUnit {
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
                 .map(JsonValue::toString).collect(Collectors.toList()),
-            Sentence.getInfo(obj)
+            Sentence.parseInfo(obj)
         );
     }
 
@@ -121,22 +121,5 @@ public final class Sentence extends LexicalUnit {
     @Override
     public Set<LexicalUnit> relatedLexicalUnits() {
         return new HashSet<>(0);
-    }
-
-    /**
-     * Get lexical unit info if it is present.
-     *
-     * @param obj JSON object.
-     * @return Value.
-     */
-    private static String getInfo(final JsonObject obj) {
-        final JsonValue val = obj.get("info");
-        final String res;
-        if (val == null) {
-            res = null;
-        } else {
-            res = val.asString();
-        }
-        return res;
     }
 }

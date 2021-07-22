@@ -15,6 +15,8 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary;
 
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
 import java.util.List;
 import java.util.Set;
@@ -77,5 +79,22 @@ public abstract class LexicalUnit {
      */
     public String info() {
         return this.description;
+    }
+
+    /**
+     * Get lexical unit info if it is present.
+     *
+     * @param obj JSON object.
+     * @return Value.
+     */
+    protected static String parseInfo(final JsonObject obj) {
+        final JsonValue val = obj.get("info");
+        final String res;
+        if (val == null) {
+            res = null;
+        } else {
+            res = val.asString();
+        }
+        return res;
     }
 }
