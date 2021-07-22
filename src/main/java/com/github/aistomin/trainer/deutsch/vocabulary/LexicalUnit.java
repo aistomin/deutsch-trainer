@@ -29,6 +29,11 @@ import java.util.Set;
 public abstract class LexicalUnit {
 
     /**
+     * Info JSON field.
+     */
+    private  static final String INFO_FIELD = "info";
+
+    /**
      * Unique unit's identifier.
      */
     private final Long code;
@@ -82,13 +87,25 @@ public abstract class LexicalUnit {
     }
 
     /**
+     * Convert the lexical unit to JSON object.
+     *
+     * @return JSON object.
+     */
+    public JsonObject toJson() {
+        final JsonObject obj = new JsonObject();
+        obj.set("id", this.identifier());
+        obj.set(LexicalUnit.INFO_FIELD, this.info());
+        return obj;
+    }
+
+    /**
      * Get lexical unit info if it is present.
      *
      * @param obj JSON object.
      * @return Value.
      */
     protected static String parseInfo(final JsonObject obj) {
-        final JsonValue val = obj.get("info");
+        final JsonValue val = obj.get(LexicalUnit.INFO_FIELD);
         final String res;
         if (val == null) {
             res = null;

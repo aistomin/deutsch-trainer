@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary;
 
+import com.eclipsesource.json.JsonObject;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.trainer.deutsch.Constant;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -72,6 +74,21 @@ final class SimpleWordTest {
             quest.answer(new SimpleAnswer(ans));
             Assertions.assertTrue(quest.isCorrect());
         }
+    }
+
+    /**
+     * Check that we correctly convert the entity to JSON.
+     */
+    @Test
+    void testToJson() {
+        final long id = 1L;
+        final String info = UUID.randomUUID().toString();
+        final Word word = new SimpleWord(
+            id, "Hallo", "Hello", new ArrayList<>(0), info
+        );
+        final JsonObject obj = word.toJson();
+        Assertions.assertEquals(id, obj.getLong("id", 0L));
+        Assertions.assertEquals(info, obj.getString("info", ""));
     }
 
     /**
