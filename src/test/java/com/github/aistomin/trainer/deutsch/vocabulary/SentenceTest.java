@@ -15,6 +15,9 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary;
 
+import com.eclipsesource.json.JsonArray;
+import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import java.util.Arrays;
@@ -57,7 +60,7 @@ final class SentenceTest {
         final List<String> correct =
             Arrays.asList("I'm Andrej.", "My name is Andrej.");
         final Sentence sentence = new Sentence(
-            1L, "Ich bin Andrej.", correct, "info"
+            1L, "Ich bin Andrej.", correct, "some info"
         );
         final Question question = sentence.questions().get(0);
         question.answer(new SimpleAnswer("My name is John."));
@@ -66,6 +69,30 @@ final class SentenceTest {
             final Question quest = sentence.questions().get(0);
             quest.answer(new SimpleAnswer(ans));
             Assertions.assertTrue(quest.isCorrect());
+        }
+    }
+
+    /**
+     * Check that we correctly convert sentence to JSON.
+     */
+    @Test
+    void testToJson() {
+        final List<String> correct =
+            Arrays.asList("hi!", "hello!");
+        final String their = "Servus!";
+        final String info = "bayerisch";
+        final long id = 1L;
+        final Sentence sentence = new Sentence(
+            id, their, correct, info
+        );
+        final JsonObject json = sentence.toJson();
+        Assertions.assertEquals(id, json.getLong("id", 0L));
+        Assertions.assertEquals(their, json.getString("o", ""));
+        Assertions.assertEquals(info, json.getString("info", ""));
+        final JsonArray translations = json.get("t").asArray();
+        Assertions.assertEquals(correct.size(), translations.size());
+        for (final JsonValue translation : translations) {
+            Assertions.assertTrue(correct.contains(translation.asString()));
         }
     }
 }
