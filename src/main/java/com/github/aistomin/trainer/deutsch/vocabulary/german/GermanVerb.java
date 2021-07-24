@@ -33,6 +33,21 @@ import java.util.Set;
 public final class GermanVerb extends Word {
 
     /**
+     * Infinitive JSON member.
+     */
+    private static final String INFINITIVE = "infinitive";
+
+    /**
+     * Preterite JSON member.
+     */
+    private static final String PRETERITE = "preterite";
+
+    /**
+     * Perfect JSON member.
+     */
+    private static final String PERFECT = "perfect";
+
+    /**
      * Infinitive form of the verb.
      */
     private final Word infinitive;
@@ -77,9 +92,9 @@ public final class GermanVerb extends Word {
     public GermanVerb(final JsonObject obj) {
         this(
             obj.get("id").asLong(),
-            new SimpleWord(obj.get("infinitive").asObject()),
-            new SimpleWord(obj.get("preterite").asObject()),
-            new SimpleWord(obj.get("perfect").asObject()),
+            new SimpleWord(obj.get(GermanVerb.INFINITIVE).asObject()),
+            new SimpleWord(obj.get(GermanVerb.PRETERITE).asObject()),
+            new SimpleWord(obj.get(GermanVerb.PERFECT).asObject()),
             GermanVerb.parseInfo(obj)
         );
     }
@@ -112,5 +127,15 @@ public final class GermanVerb extends Word {
     @Override
     public Question primaryQuestion() {
         return this.infinitive.primaryQuestion();
+    }
+
+    @Override
+    public JsonObject toJson() {
+        final JsonObject json = super.toJson();
+        json.set("ps", "v");
+        json.set(GermanVerb.INFINITIVE, this.infinitive.toJson());
+        json.set(GermanVerb.PRETERITE, this.preterite.toJson());
+        json.set(GermanVerb.PERFECT, this.perfect.toJson());
+        return json;
     }
 }
