@@ -77,6 +77,13 @@ final class JsonDictionaryTest {
     void testValidation() throws URISyntaxException, InvalidDictionaryException {
         JsonDictionaryTest.dictionary().validate();
         new JsonDictionary(Resources.find("dict.json")).validate();
+        Assertions.assertThrows(
+            InvalidDictionaryException.class,
+            () ->
+                new JsonDictionary(
+                    Resources.find("corrupted_dict_sample.json")
+                ).validate()
+        );
     }
 
     /**
