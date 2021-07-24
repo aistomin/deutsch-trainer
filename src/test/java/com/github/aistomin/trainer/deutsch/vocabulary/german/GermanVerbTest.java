@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary.german;
 
+import com.eclipsesource.json.JsonObject;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.trainer.deutsch.Constant;
@@ -53,6 +54,17 @@ final class GermanVerbTest {
             Constant.TWELVE,
             GermanVerbTest.createTestVerb().questions().size()
         );
+    }
+
+    /**
+     * Check that we correctly convert the verb to JSON.
+     */
+    @Test
+    void testToJson() {
+        final JsonObject json = GermanVerbTest.createTestVerb().toJson();
+        Assertions.assertNotNull(json.get("infinitive").asObject());
+        Assertions.assertNotNull(json.get("preterite").asObject());
+        Assertions.assertNotNull(json.get("perfect").asObject());
     }
 
     /**
