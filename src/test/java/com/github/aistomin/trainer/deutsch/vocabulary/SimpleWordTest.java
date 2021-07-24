@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary;
 
+import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
@@ -83,12 +84,34 @@ final class SimpleWordTest {
     void testToJson() {
         final long id = 1L;
         final String info = UUID.randomUUID().toString();
+        final List<Sentence> examples = Arrays.asList(
+            new Sentence(
+                Constant.TWO,
+                "Hallo, ich bin Andrej!", "Hello, my name is Andrej",
+                UUID.randomUUID().toString()
+            ), new Sentence(
+                Constant.THREE,
+                "Hallo, wie geht's?", "Hello, how are you?",
+                UUID.randomUUID().toString()
+            )
+        );
+        final List<String> translations = Arrays.asList("Hello", "Hi");
+        final String hallo = "Hallo";
         final Word word = new SimpleWord(
-            id, "Hallo", "Hello", new ArrayList<>(0), info
+            id, hallo, translations, examples, info
         );
         final JsonObject obj = word.toJson();
         Assertions.assertEquals(id, obj.getLong("id", 0L));
-        Assertions.assertEquals(info, obj.getString("info", ""));
+        final String empty = "";
+        Assertions.assertEquals(hallo, obj.getString("o", empty));
+        final JsonArray trans = obj.get("t").asArray();
+        Assertions.assertEquals(translations.size(), trans.size());
+        Assertions.assertEquals(translations.get(0), trans.get(0).asString());
+        Assertions.assertEquals(translations.get(1), trans.get(1).asString());
+        Assertions.assertEquals(
+            examples.size(), obj.get("ex").asArray().size()
+        );
+        Assertions.assertEquals(info, obj.getString("info", empty));
     }
 
     /**
