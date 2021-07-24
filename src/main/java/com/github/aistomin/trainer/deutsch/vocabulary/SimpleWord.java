@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary;
 
+import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
@@ -147,5 +148,22 @@ public final class SimpleWord extends Word {
     @Override
     public Question primaryQuestion() {
         return this.questions().stream().findFirst().get();
+    }
+
+    @Override
+    public JsonObject toJson() {
+        final JsonObject json = super.toJson();
+        json.set("o", this.original);
+        final JsonArray trans = new JsonArray();
+        for (final String translation : this.translations) {
+            trans.add(translation);
+        }
+        json.set("t", trans);
+        final JsonArray examples = new JsonArray();
+        for (final Sentence usage : this.usages) {
+            examples.add(usage.toJson());
+        }
+        json.set("ex", examples);
+        return json;
     }
 }
