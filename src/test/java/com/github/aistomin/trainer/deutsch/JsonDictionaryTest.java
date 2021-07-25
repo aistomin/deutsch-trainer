@@ -16,6 +16,8 @@
 package com.github.aistomin.trainer.deutsch;
 
 import com.github.aistomin.trainer.deutsch.utils.Resources;
+import java.io.File;
+import java.io.IOException;
 import java.net.URISyntaxException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -96,6 +98,24 @@ final class JsonDictionaryTest {
         Assertions.assertEquals(
             Constant.TWO_HUNDRED_TWELVE,
             JsonDictionaryTest.dictionary().generateNextId()
+        );
+    }
+
+    /**
+     * Check that we correctly dump the dictionary.
+     * @throws URISyntaxException If something goes wrong.
+     * @throws IOException If something goes wrong.
+     */
+    @Test
+    void testDump() throws URISyntaxException, IOException {
+        final Dictionary original = JsonDictionaryTest.dictionary();
+        final File file = new File("target/test_dump.json");
+        original.dump(file);
+        final Dictionary restored = new JsonDictionary(file);
+        Assertions.assertEquals(original.version(), restored.version());
+        Assertions.assertEquals(
+            original.words(WordsFilter.ALL).size(),
+            restored.words(WordsFilter.ALL).size()
         );
     }
 

@@ -21,7 +21,10 @@ import com.github.aistomin.trainer.deutsch.utils.JsonFile;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
 import com.github.aistomin.trainer.deutsch.vocabulary.german.GermanVerb;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -139,6 +142,13 @@ public final class JsonDictionary implements Dictionary {
             .map(LexicalUnit::identifier)
             .max(Long::compareTo)
             .orElse(1L);
+    }
+
+    @Override
+    public void dump(final File file) throws IOException {
+        final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
+        writer.write(this.json().toString());
+        writer.close();
     }
 
     /**
