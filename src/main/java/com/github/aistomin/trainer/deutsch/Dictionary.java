@@ -16,6 +16,8 @@
 package com.github.aistomin.trainer.deutsch;
 
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -53,4 +55,12 @@ public interface Dictionary {
      * @return ID.
      */
     Long generateNextId();
+
+    /**
+     * Dump dictionary to the new file.
+     *
+     * @param file Destination file.
+     * @throws IOException If read/write error occurs.
+     */
+    void dump(File file) throws IOException;
 }
