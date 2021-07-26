@@ -103,6 +103,7 @@ final class JsonDictionaryTest {
 
     /**
      * Check that we correctly dump the dictionary.
+     *
      * @throws URISyntaxException If something goes wrong.
      * @throws IOException If something goes wrong.
      */
@@ -120,12 +121,38 @@ final class JsonDictionaryTest {
     }
 
     /**
+     * Check that we correctly save the dictionary.
+     *
+     * @throws URISyntaxException If something goes wrong.
+     * @throws IOException If something goes wrong.
+     */
+    @Test
+    void testSave() throws URISyntaxException, IOException {
+        final JsonDictionary original = JsonDictionaryTest.dictionary();
+        original.save();
+        final JsonDictionary saved = JsonDictionaryTest.dictionary();
+        final Dictionary backup = new JsonDictionary(
+            Resources.find("dict_sample.json_bk")
+        );
+        Assertions.assertEquals(original.version(), saved.version());
+        Assertions.assertEquals(
+            original.words(WordsFilter.ALL).size(),
+            saved.words(WordsFilter.ALL).size()
+        );
+        Assertions.assertEquals(original.version(), backup.version());
+        Assertions.assertEquals(
+            original.words(WordsFilter.ALL).size(),
+            backup.words(WordsFilter.ALL).size()
+        );
+    }
+
+    /**
      * Load the test dictionary.
      *
      * @return Test dictionary.
      * @throws URISyntaxException If something goes wrong.
      */
-    private static Dictionary dictionary() throws URISyntaxException {
+    private static JsonDictionary dictionary() throws URISyntaxException {
         return new JsonDictionary(Resources.find("dict_sample.json"));
     }
 }
