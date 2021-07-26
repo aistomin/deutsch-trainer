@@ -146,9 +146,26 @@ public final class JsonDictionary implements Dictionary {
 
     @Override
     public void dump(final File file) throws IOException {
+        final String json = this.json().toString();
         final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
-        writer.write(this.json().toString());
+        writer.write(json);
         writer.close();
+    }
+
+    /**
+     * Save the dictionary.
+     *
+     * @throws IOException If read/write error occurs.
+     */
+    public void save() throws IOException {
+        final File backup = new File(
+            this.source.getParent(),
+            String.format("%s_bk", this.source.getName())
+        );
+        final BufferedWriter writer = Files.newBufferedWriter(backup.toPath());
+        writer.write(this.originalJson().toString());
+        writer.close();
+        this.dump(this.source);
     }
 
     /**
@@ -157,6 +174,15 @@ public final class JsonDictionary implements Dictionary {
      * @return JSON Object.
      */
     private JsonObject json() {
+        return new JsonFile(this.source).json();
+    }
+
+    /**
+     * Parse JSON content of the file.
+     *
+     * @return JSON Object.
+     */
+    private JsonObject originalJson() {
         return new JsonFile(this.source).json();
     }
 }

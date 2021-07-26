@@ -19,6 +19,7 @@ import com.eclipsesource.json.Json;
 import com.eclipsesource.json.JsonObject;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 /**
@@ -50,7 +51,9 @@ public final class JsonFile {
     public JsonObject json() {
         try {
             return Json.parse(
-                Files.newBufferedReader(this.source.toPath())
+                Files.newBufferedReader(
+                    this.source.toPath(), StandardCharsets.UTF_8
+                )
             ).asObject();
         } catch (final IOException exception) {
             throw new IllegalStateException(exception);
