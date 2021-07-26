@@ -63,4 +63,16 @@ public interface Dictionary {
      * @throws IOException If read/write error occurs.
      */
     void dump(File file) throws IOException;
+
+    /**
+     * Delete a lexical unit from the dictionary.
+     *
+     * @param unit A lexical unit to be deleted.
+     * @throws InvalidDictionaryException If the dictionary became inconsistent
+     *  after the modification.
+     * @throws IOException If read/write error occurs.
+     */
+    void delete(
+        LexicalUnit unit
+    ) throws InvalidDictionaryException, IOException;
 }

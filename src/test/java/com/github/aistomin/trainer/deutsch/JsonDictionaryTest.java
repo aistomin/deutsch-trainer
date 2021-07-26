@@ -16,9 +16,12 @@
 package com.github.aistomin.trainer.deutsch;
 
 import com.github.aistomin.trainer.deutsch.utils.Resources;
+import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Random;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -144,6 +147,23 @@ final class JsonDictionaryTest {
             original.words(WordsFilter.ALL).size(),
             backup.words(WordsFilter.ALL).size()
         );
+    }
+
+    /**
+     * Check that we can correctly delete a word from the dictionary.
+     *
+     * @throws URISyntaxException If something goes wrong.
+     * @throws InvalidDictionaryException If something goes wrong.
+     * @throws IOException If something goes wrong.
+     */
+    @Test
+    void testDelete()
+        throws URISyntaxException, InvalidDictionaryException, IOException {
+        final JsonDictionary dict = dictionary();
+        final List<LexicalUnit> words = dict.words(WordsFilter.ALL);
+        final LexicalUnit del = words.get(new Random().nextInt(words.size()));
+        dict.delete(del);
+        Assertions.assertFalse(dict.words(WordsFilter.ALL).contains(del));
     }
 
     /**
