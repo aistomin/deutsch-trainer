@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch;
 
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.trainer.deutsch.utils.JsonFile;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
@@ -31,6 +32,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
 
 /**
@@ -46,22 +48,28 @@ public final class JsonDictionary implements Dictionary {
     private final File source;
 
     /**
+     * Dictionary itself.
+     */
+    private final JsonObject dict;
+
+    /**
      * Ctor.
      *
      * @param source JSON file.
      */
     public JsonDictionary(final File source) {
         this.source = source;
+        this.dict = this.originalJson();
     }
 
     @Override
     public String version() {
-        return this.json().get("version").asString();
+        return this.dict.get("version").asString();
     }
 
     @Override
     public List<LexicalUnit> words(final WordsFilter filter) {
-        final JsonArray vocabulary = this.json().get("vocabulary").asArray();
+        final JsonArray vocabulary = this.vocabulary();
         return StreamSupport.stream(
             vocabulary.spliterator(), false
         ).filter(
@@ -146,10 +154,31 @@ public final class JsonDictionary implements Dictionary {
 
     @Override
     public void dump(final File file) throws IOException {
-        final String json = this.json().toString();
+        final String json = this.dict.toString();
         final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
         writer.write(json);
         writer.close();
+    }
+
+    @Override
+    public void delete(
+        final LexicalUnit unit
+    ) throws InvalidDictionaryException, IOException {
+        final JsonArray vocabulary = this.vocabulary();
+        final Set<Integer> toremove = new HashSet<>();
+        IntStream.range(0, vocabulary.size()).forEach(
+            idx -> {
+                final JsonValue val = vocabulary.get(idx);
+                if (val.asObject().getLong("id", 0L) == unit.identifier()) {
+                    toremove.add(idx);
+                }
+            }
+        );
+        for (final Integer idx : toremove) {
+            vocabulary.remove(idx);
+        }
+        this.validate();
+        this.save();
     }
 
     /**
@@ -173,16 +202,16 @@ public final class JsonDictionary implements Dictionary {
      *
      * @return JSON Object.
      */
-    private JsonObject json() {
+    private JsonObject originalJson() {
         return new JsonFile(this.source).json();
     }
 
     /**
-     * Parse JSON content of the file.
+     * Get vocabulary array.
      *
-     * @return JSON Object.
+     * @return Array.
      */
-    private JsonObject originalJson() {
-        return new JsonFile(this.source).json();
+    private JsonArray vocabulary() {
+        return this.dict.get("vocabulary").asArray();
     }
 }
