@@ -44,14 +44,23 @@ public abstract class LexicalUnit {
     private final String description;
 
     /**
+     * Is the unit a new word?
+     */
+    private final Boolean neu;
+
+    /**
      * Ctor.
      *
      * @param id Unique unit's identifier.
      * @param info Some additional free-text information.
+     * @param nword Is the unit a new word?
      */
-    protected LexicalUnit(final Long id, final String info) {
+    protected LexicalUnit(
+        final Long id, final String info, final Boolean nword
+    ) {
         this.code = id;
         this.description = info;
+        this.neu = nword;
     }
 
     /**
@@ -95,6 +104,7 @@ public abstract class LexicalUnit {
         final JsonObject obj = new JsonObject();
         obj.set("id", this.identifier());
         obj.set(LexicalUnit.INFO_FIELD, this.info());
+        obj.set("is_new", this.neu);
         return obj;
     }
 
@@ -107,7 +117,7 @@ public abstract class LexicalUnit {
     protected static String parseInfo(final JsonObject obj) {
         final JsonValue val = obj.get(LexicalUnit.INFO_FIELD);
         final String res;
-        if (val == null) {
+        if (val == null || val.isNull()) {
             res = null;
         } else {
             res = val.asString();

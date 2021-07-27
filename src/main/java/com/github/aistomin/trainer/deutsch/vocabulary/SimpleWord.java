@@ -59,6 +59,7 @@ public final class SimpleWord extends Word {
      * @param mine The word in the student's language.
      * @param examples Examples of the word usages.
      * @param info Some additional free-text information.
+     * @param nword Is the unit a new word?
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SimpleWord(
@@ -66,9 +67,10 @@ public final class SimpleWord extends Word {
         final String their,
         final String mine,
         final List<Sentence> examples,
-        final String info
+        final String info,
+        final Boolean nword
     ) {
-        this(id, their, Collections.singletonList(mine), examples, info);
+        this(id, their, Collections.singletonList(mine), examples, info, nword);
     }
 
     /**
@@ -79,6 +81,7 @@ public final class SimpleWord extends Word {
      * @param mine The correct translations in the student's language.
      * @param examples Examples of the word usages.
      * @param info Some additional free-text information.
+     * @param nword Is the unit a new word?
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SimpleWord(
@@ -86,9 +89,10 @@ public final class SimpleWord extends Word {
         final String their,
         final List<String> mine,
         final List<Sentence> examples,
-        final String info
+        final String info,
+        final Boolean nword
     ) {
-        super(id, info);
+        super(id, info, nword);
         this.original = their;
         this.translations = mine;
         this.usages = examples;
@@ -109,7 +113,7 @@ public final class SimpleWord extends Word {
             StreamSupport.stream(obj.get("ex").asArray().spliterator(), false)
                 .map(item -> new Sentence(item.asObject()))
                 .collect(Collectors.toList()),
-            SimpleWord.parseInfo(obj)
+            SimpleWord.parseInfo(obj), obj.getBoolean("is_new", false)
         );
     }
 

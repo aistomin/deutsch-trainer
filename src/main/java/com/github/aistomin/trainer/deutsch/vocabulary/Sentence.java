@@ -54,12 +54,14 @@ public final class Sentence extends LexicalUnit {
      * @param their The sentence in original language.
      * @param mine The sentence in the student's language.
      * @param info Some additional free-text information.
+     * @param nword Is the unit a new word?
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public Sentence(
-        final Long id, final String their, final String mine, final String info
+        final Long id, final String their, final String mine, final String info,
+        final Boolean nword
     ) {
-        this(id, their, Collections.singletonList(mine), info);
+        this(id, their, Collections.singletonList(mine), info, nword);
     }
 
     /**
@@ -69,13 +71,14 @@ public final class Sentence extends LexicalUnit {
      * @param their The sentence in original language.
      * @param mine The correct translations in the student's language.
      * @param info Some additional free-text information.
+     * @param nword Is the unit a new word?
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public Sentence(
         final Long id, final String their, final List<String> mine,
-        final String info
+        final String info, final Boolean nword
     ) {
-        super(id, info);
+        super(id, info, nword);
         this.original = their;
         this.translations = mine;
     }
@@ -91,7 +94,7 @@ public final class Sentence extends LexicalUnit {
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
                 .map(JsonValue::toString).collect(Collectors.toList()),
-            Sentence.parseInfo(obj)
+            Sentence.parseInfo(obj), obj.getBoolean("is_new", false)
         );
     }
 
@@ -127,6 +130,7 @@ public final class Sentence extends LexicalUnit {
     @Override
     public JsonObject toJson() {
         final JsonObject json = super.toJson();
+        json.set("ps", "i");
         json.set("o", this.original);
         final JsonArray trans = new JsonArray();
         for (final String translation : this.translations) {
