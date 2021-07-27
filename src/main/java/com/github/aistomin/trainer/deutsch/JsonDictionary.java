@@ -18,6 +18,7 @@ package com.github.aistomin.trainer.deutsch;
 import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
+import com.eclipsesource.json.PrettyPrint;
 import com.github.aistomin.trainer.deutsch.utils.JsonFile;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
@@ -154,7 +155,7 @@ public final class JsonDictionary implements Dictionary {
 
     @Override
     public void dump(final File file) throws IOException {
-        final String json = this.dict.toString();
+        final String json = this.dict.toString(PrettyPrint.PRETTY_PRINT);
         final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
         writer.write(json);
         writer.close();
@@ -201,7 +202,7 @@ public final class JsonDictionary implements Dictionary {
         );
         this.validate();
         final BufferedWriter writer = Files.newBufferedWriter(backup.toPath());
-        writer.write(this.originalJson().toString());
+        writer.write(this.originalJson().toString(PrettyPrint.PRETTY_PRINT));
         writer.close();
         this.dump(this.source);
     }
