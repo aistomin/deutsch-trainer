@@ -60,9 +60,10 @@ public interface Dictionary {
      * Dump dictionary to the new file.
      *
      * @param file Destination file.
+     * @return New dictionary associated with the file.
      * @throws IOException If read/write error occurs.
      */
-    void dump(File file) throws IOException;
+    Dictionary dump(File file) throws IOException;
 
     /**
      * Add a lexical unit to the dictionary.

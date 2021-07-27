@@ -25,6 +25,7 @@ import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.UUID;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -34,6 +35,7 @@ import org.junit.jupiter.api.Test;
  *
  * @since 1.0
  */
+@SuppressWarnings("PMD.TooManyMethods")
 final class JsonDictionaryTest {
 
     /**
@@ -173,6 +175,13 @@ final class JsonDictionaryTest {
         dict.add(del);
     }
 
+    /**
+     * Check that we can correctly add a lexical unit to the dictionary.
+     *
+     * @throws URISyntaxException If something goes wrong.
+     * @throws InvalidDictionaryException If something goes wrong.
+     * @throws IOException If something goes wrong.
+     */
     @Test
     void testAdd()
         throws URISyntaxException, InvalidDictionaryException, IOException {
@@ -208,6 +217,18 @@ final class JsonDictionaryTest {
         dict.add(verb);
         Assertions.assertEquals(before + 1, dict.words(WordsFilter.ALL).size());
         dict.delete(verb);
+    }
+
+    /**
+     * Check that we can correctly create an empty dictionary.
+     */
+    @Test
+    void testCreateNewDictionary() {
+        final JsonDictionary dict = new JsonDictionary(
+            new File(String.format("%s.json", UUID.randomUUID()))
+        );
+        Assertions.assertEquals(0, dict.words(WordsFilter.ALL).size());
+        Assertions.assertEquals("v1.0", dict.version());
     }
 
     /**
