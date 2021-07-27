@@ -65,7 +65,7 @@ final class SimpleWordTest {
     void testQuestionWithSeveralCorrectAnswers() {
         final List<String> correct = Arrays.asList("smooth", "slippery");
         final Word word = new SimpleWord(
-            1L, "glatt", correct, new ArrayList<>(0), "information"
+            1L, "glatt", correct, new ArrayList<>(0), "information", false
         );
         final Question question = word.primaryQuestion();
         question.answer(new SimpleAnswer("white"));
@@ -88,17 +88,17 @@ final class SimpleWordTest {
             new Sentence(
                 Constant.TWO,
                 "Hallo, ich bin Andrej!", "Hello, my name is Andrej",
-                UUID.randomUUID().toString()
+                UUID.randomUUID().toString(), false
             ), new Sentence(
                 Constant.THREE,
                 "Hallo, wie geht's?", "Hello, how are you?",
-                UUID.randomUUID().toString()
+                UUID.randomUUID().toString(), false
             )
         );
         final List<String> translations = Arrays.asList("Hello", "Hi");
         final String hallo = "Hallo";
         final Word word = new SimpleWord(
-            id, hallo, translations, examples, info
+            id, hallo, translations, examples, info, false
         );
         final JsonObject obj = word.toJson();
         Assertions.assertEquals(id, obj.getLong("id", 0L));
@@ -127,10 +127,10 @@ final class SimpleWordTest {
         final ArrayList<Sentence> examples = new ArrayList<>(1);
         final Random rnd = new Random();
         examples.add(
-            new Sentence(rnd.nextLong(), eoriginal, etranslation, "")
+            new Sentence(rnd.nextLong(), eoriginal, etranslation, "", false)
         );
         return new SimpleWord(
-            rnd.nextLong(), woriginal, wtranslation, examples, "hello"
+            rnd.nextLong(), woriginal, wtranslation, examples, "hello", false
         );
     }
 }

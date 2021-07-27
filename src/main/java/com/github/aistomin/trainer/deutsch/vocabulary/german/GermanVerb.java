@@ -69,6 +69,7 @@ public final class GermanVerb extends Word {
      * @param preterite Preterite form of the verb.
      * @param perfect Perfect form of the verb.
      * @param info Some additional free-text information.
+     * @param nword Is the unit a new word?
      * @checkstyle ParameterNumberCheck (10 lines)
      */
     public GermanVerb(
@@ -76,9 +77,10 @@ public final class GermanVerb extends Word {
         final Word infinitive,
         final Word preterite,
         final Word perfect,
-        final String info
+        final String info,
+        final Boolean nword
     ) {
-        super(id, info);
+        super(id, info, nword);
         this.infinitive = infinitive;
         this.preterite = preterite;
         this.perfect = perfect;
@@ -95,7 +97,7 @@ public final class GermanVerb extends Word {
             new SimpleWord(obj.get(GermanVerb.INFINITIVE).asObject()),
             new SimpleWord(obj.get(GermanVerb.PRETERITE).asObject()),
             new SimpleWord(obj.get(GermanVerb.PERFECT).asObject()),
-            GermanVerb.parseInfo(obj)
+            GermanVerb.parseInfo(obj), obj.getBoolean("is_new", false)
         );
     }
 

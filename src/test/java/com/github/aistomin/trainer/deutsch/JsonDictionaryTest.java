@@ -170,6 +170,7 @@ final class JsonDictionaryTest {
         final LexicalUnit del = words.get(new Random().nextInt(words.size()));
         dict.delete(del);
         Assertions.assertFalse(dict.words(WordsFilter.ALL).contains(del));
+        dict.add(del);
     }
 
     @Test
@@ -186,23 +187,23 @@ final class JsonDictionaryTest {
                 "nehmen",
                 "to take",
                 new ArrayList<>(0),
-                info
+                info, false
             ),
             new SimpleWord(
                 id.incrementAndGet(),
                 "nahm",
                 "took",
                 new ArrayList<>(0),
-                info
+                info, false
             ),
             new SimpleWord(
                 id.incrementAndGet(),
                 "genommen",
                 "taken",
                 new ArrayList<>(0),
-                info
+                info, false
             ),
-            info
+            info, false
         );
         dict.add(verb);
         Assertions.assertEquals(before + 1, dict.words(WordsFilter.ALL).size());

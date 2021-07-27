@@ -29,9 +29,10 @@ public abstract class Word extends LexicalUnit {
      *
      * @param id Unique unit's identifier.
      * @param info Some additional free-text information.
+     * @param nword Is the unit a new word?
      */
-    public Word(final Long id, final String info) {
-        super(id, info);
+    public Word(final Long id, final String info, final Boolean nword) {
+        super(id, info, nword);
     }
 
     /**
