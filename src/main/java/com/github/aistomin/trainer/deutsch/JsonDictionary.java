@@ -44,6 +44,16 @@ import java.util.stream.StreamSupport;
 public final class JsonDictionary implements Dictionary {
 
     /**
+     * Version JSON field.
+     */
+    public static final String VER = "version";
+
+    /**
+     * Vocabulary JSON field.
+     */
+    public static final String VOC = "vocabulary";
+
+    /**
      * JSON file.
      */
     private final File source;
@@ -58,14 +68,22 @@ public final class JsonDictionary implements Dictionary {
      *
      * @param source JSON file.
      */
+    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public JsonDictionary(final File source) {
         this.source = source;
-        this.dict = this.originalJson();
+        if (source.exists()) {
+            this.dict = this.originalJson();
+        } else {
+            final JsonObject obj = new JsonObject();
+            obj.set(JsonDictionary.VER, "v1.0");
+            obj.set(JsonDictionary.VOC, new JsonArray());
+            this.dict = obj;
+        }
     }
 
     @Override
     public String version() {
-        return this.dict.get("version").asString();
+        return this.dict.get(JsonDictionary.VER).asString();
     }
 
     @Override
@@ -154,11 +172,12 @@ public final class JsonDictionary implements Dictionary {
     }
 
     @Override
-    public void dump(final File file) throws IOException {
+    public Dictionary dump(final File file) throws IOException {
         final String json = this.dict.toString(PrettyPrint.PRETTY_PRINT);
         final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
         writer.write(json);
         writer.close();
+        return new JsonDictionary(file);
     }
 
     @Override
@@ -222,6 +241,6 @@ public final class JsonDictionary implements Dictionary {
      * @return Array.
      */
     private JsonArray vocabulary() {
-        return this.dict.get("vocabulary").asArray();
+        return this.dict.get(JsonDictionary.VOC).asArray();
     }
 }
