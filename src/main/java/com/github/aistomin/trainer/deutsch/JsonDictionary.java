@@ -161,6 +161,13 @@ public final class JsonDictionary implements Dictionary {
     }
 
     @Override
+    public void add(final LexicalUnit unit)
+        throws InvalidDictionaryException, IOException {
+        this.vocabulary().add(unit.toJson());
+        this.save();
+    }
+
+    @Override
     public void delete(
         final LexicalUnit unit
     ) throws InvalidDictionaryException, IOException {
@@ -177,7 +184,6 @@ public final class JsonDictionary implements Dictionary {
         for (final Integer idx : toremove) {
             vocabulary.remove(idx);
         }
-        this.validate();
         this.save();
     }
 
@@ -185,12 +191,15 @@ public final class JsonDictionary implements Dictionary {
      * Save the dictionary.
      *
      * @throws IOException If read/write error occurs.
+     * @throws InvalidDictionaryException If the dictionary became inconsistent
+     *  after the modification.
      */
-    public void save() throws IOException {
+    public void save() throws IOException, InvalidDictionaryException {
         final File backup = new File(
             this.source.getParent(),
             String.format("%s_bk", this.source.getName())
         );
+        this.validate();
         final BufferedWriter writer = Files.newBufferedWriter(backup.toPath());
         writer.write(this.originalJson().toString());
         writer.close();

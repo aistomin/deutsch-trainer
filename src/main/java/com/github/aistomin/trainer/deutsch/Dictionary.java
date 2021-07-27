@@ -65,6 +65,16 @@ public interface Dictionary {
     void dump(File file) throws IOException;
 
     /**
+     * Add a lexical unit to the dictionary.
+     *
+     * @param unit A lexical unit to add.
+     * @throws InvalidDictionaryException If the dictionary became inconsistent
+     *  after the modification.
+     * @throws IOException If read/write error occurs.
+     */
+    void add(LexicalUnit unit) throws InvalidDictionaryException, IOException;
+
+    /**
      * Delete a lexical unit from the dictionary.
      *
      * @param unit A lexical unit to be deleted.

@@ -17,11 +17,15 @@ package com.github.aistomin.trainer.deutsch;
 
 import com.github.aistomin.trainer.deutsch.utils.Resources;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
+import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
+import com.github.aistomin.trainer.deutsch.vocabulary.german.GermanVerb;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -128,9 +132,11 @@ final class JsonDictionaryTest {
      *
      * @throws URISyntaxException If something goes wrong.
      * @throws IOException If something goes wrong.
+     * @throws InvalidDictionaryException If something goes wrong.
      */
     @Test
-    void testSave() throws URISyntaxException, IOException {
+    void testSave()
+        throws URISyntaxException, IOException, InvalidDictionaryException {
         final JsonDictionary original = JsonDictionaryTest.dictionary();
         original.save();
         final JsonDictionary saved = JsonDictionaryTest.dictionary();
@@ -164,6 +170,43 @@ final class JsonDictionaryTest {
         final LexicalUnit del = words.get(new Random().nextInt(words.size()));
         dict.delete(del);
         Assertions.assertFalse(dict.words(WordsFilter.ALL).contains(del));
+    }
+
+    @Test
+    void testAdd()
+        throws URISyntaxException, InvalidDictionaryException, IOException {
+        final JsonDictionary dict = dictionary();
+        final int before = dict.words(WordsFilter.ALL).size();
+        final String info = "";
+        final AtomicLong id = new AtomicLong(dict.generateNextId());
+        final GermanVerb verb = new GermanVerb(
+            id.incrementAndGet(),
+            new SimpleWord(
+                id.incrementAndGet(),
+                "nehmen",
+                "to take",
+                new ArrayList<>(0),
+                info
+            ),
+            new SimpleWord(
+                id.incrementAndGet(),
+                "nahm",
+                "took",
+                new ArrayList<>(0),
+                info
+            ),
+            new SimpleWord(
+                id.incrementAndGet(),
+                "genommen",
+                "taken",
+                new ArrayList<>(0),
+                info
+            ),
+            info
+        );
+        dict.add(verb);
+        Assertions.assertEquals(before + 1, dict.words(WordsFilter.ALL).size());
+        dict.delete(verb);
     }
 
     /**
