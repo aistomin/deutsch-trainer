@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -40,7 +41,9 @@ import java.util.stream.StreamSupport;
  * Dictionary that uses JSON file as a data provider.
  *
  * @since 1.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (1000 lines)
  */
+@SuppressWarnings("PMD.TooManyMethods")
 public final class JsonDictionary implements Dictionary {
 
     /**
@@ -185,6 +188,27 @@ public final class JsonDictionary implements Dictionary {
         throws InvalidDictionaryException, IOException {
         this.vocabulary().add(unit.toJson());
         this.save();
+    }
+
+    @Override
+    public void replace(
+        final LexicalUnit replacement
+    ) throws InvalidDictionaryException, IOException, NotFoundException {
+        final Optional<LexicalUnit> found = this.words(WordsFilter.ALL)
+            .stream()
+            .filter(unit -> unit.identifier().equals(replacement.identifier()))
+            .findAny();
+        if (found.isPresent()) {
+            this.delete(found.get());
+            this.add(replacement);
+        } else {
+            throw new NotFoundException(
+                String.format(
+                    "Unit with ID = %s not found.",
+                    replacement.identifier().toString()
+                )
+            );
+        }
     }
 
     @Override
