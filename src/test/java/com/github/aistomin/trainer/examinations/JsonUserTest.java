@@ -16,7 +16,6 @@
 package com.github.aistomin.trainer.examinations;
 
 import com.github.aistomin.trainer.deutsch.utils.Resources;
-import java.net.URISyntaxException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,10 +29,10 @@ final class JsonUserTest {
     /**
      * Check that we correctly load the data from JSON file.
      *
-     * @throws URISyntaxException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testReadFromJson() throws URISyntaxException {
+    void testReadFromJson() throws Exception {
         final User usr = new JsonUser(Resources.find("user.json"));
         Assertions.assertEquals(1L, usr.identifier());
         Assertions.assertEquals("andrej", usr.username());
