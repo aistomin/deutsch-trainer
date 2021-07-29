@@ -15,19 +15,14 @@
  */
 package com.github.aistomin.trainer.deutsch;
 
-import com.eclipsesource.json.JsonArray;
-import com.eclipsesource.json.JsonObject;
-import com.eclipsesource.json.PrettyPrint;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.german.GermanVerb;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -228,12 +223,26 @@ final class JsonDictionaryTest {
 
     /**
      * Check that we can correctly create an empty dictionary.
+     *
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testCreateNewDictionary() {
+    void testCreateNewDictionary() throws Exception {
+        Assertions.assertThrows(
+            IOException.class,
+            () -> new JsonDictionary(
+                new File(
+                    String.format(
+                        "/%s/target/%s.json",
+                        UUID.randomUUID(), UUID.randomUUID()
+                    )
+                )
+            ).save()
+        );
         final JsonDictionary dict = new JsonDictionary(
             new File(String.format("target/%s.json", UUID.randomUUID()))
         );
+        dict.save();
         Assertions.assertEquals(0, dict.words(WordsFilter.ALL).size());
         Assertions.assertEquals("v1.0", dict.version());
     }
@@ -244,17 +253,10 @@ final class JsonDictionaryTest {
      * @throws Exception If something goes wrong.
      */
     @Test
-    void testReplaceUnit()
-        throws Exception {
-        final File file = new File(String.format("target/%s-1.json", UUID.randomUUID()));
-        file.createNewFile();
-        final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
-        final JsonObject obj = new JsonObject();
-        obj.set(JsonDictionary.VER, "v0.1-test");
-        obj.set(JsonDictionary.VOC, new JsonArray());
-        writer.write(obj.toString(PrettyPrint.PRETTY_PRINT));
-        writer.close();
-        final Dictionary dict = new JsonDictionary(file);
+    void testReplaceUnit() throws Exception {
+        final Dictionary dict = new JsonDictionary(
+            new File(String.format("target/%s-1.json", UUID.randomUUID()))
+        );
         dict.add(
             new Sentence(
                 1L,
