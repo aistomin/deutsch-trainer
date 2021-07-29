@@ -239,14 +239,25 @@ public final class JsonDictionary implements Dictionary {
      *  after the modification.
      */
     public void save() throws IOException, InvalidDictionaryException {
-        final File backup = new File(
-            this.source.getParent(),
-            String.format("%s_bk", this.source.getName())
-        );
+        if (this.source.exists()) {
+            final File backup = new File(
+                this.source.getParent(),
+                String.format("%s_bk", this.source.getName())
+            );
+            final BufferedWriter writer = Files.newBufferedWriter(backup.toPath());
+            writer.write(this.originalJson().toString(PrettyPrint.PRETTY_PRINT));
+            writer.close();
+        } else {
+            if (!this.source.createNewFile()) {
+                throw new IOException(
+                    String.format(
+                        "Can not create a file: %s",
+                        this.source.getAbsolutePath()
+                    )
+                );
+            }
+        }
         this.validate();
-        final BufferedWriter writer = Files.newBufferedWriter(backup.toPath());
-        writer.write(this.originalJson().toString(PrettyPrint.PRETTY_PRINT));
-        writer.close();
         this.dump(this.source);
     }
 
