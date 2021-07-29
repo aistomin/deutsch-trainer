@@ -22,7 +22,6 @@ import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.german.GermanVerb;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -43,10 +42,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we correctly read the dictionary version.
      *
-     * @throws URISyntaxException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testVersion() throws URISyntaxException {
+    void testVersion() throws Exception {
         Assertions.assertEquals(
             "v1.0-test",
             JsonDictionaryTest.dictionary().version()
@@ -56,10 +55,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we correctly parse the vocabulary from JSON.
      *
-     * @throws URISyntaxException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testVocabulary() throws URISyntaxException {
+    void testVocabulary() throws Exception {
         Assertions.assertEquals(
             Constant.THREE,
             JsonDictionaryTest.dictionary().words(WordsFilter.ALL).size()
@@ -69,10 +68,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we correctly filter the records if necessary.
      *
-     * @throws URISyntaxException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testFiltering() throws URISyntaxException {
+    void testFiltering() throws Exception {
         final Dictionary dict = JsonDictionaryTest.dictionary();
         Assertions.assertEquals(
             Constant.THREE, dict.words(WordsFilter.ALL).size()
@@ -83,11 +82,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we correctly validate the dictionary consistency.
      *
-     * @throws URISyntaxException If something goes wrong.
-     * @throws InvalidDictionaryException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testValidation() throws URISyntaxException, InvalidDictionaryException {
+    void testValidation() throws Exception {
         JsonDictionaryTest.dictionary().validate();
         new JsonDictionary(Resources.find("dict.json")).validate();
         Assertions.assertThrows(
@@ -102,10 +100,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we correctly generate new ID.
      *
-     * @throws URISyntaxException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testGenerateNextId() throws URISyntaxException {
+    void testGenerateNextId() throws Exception {
         Assertions.assertEquals(
             Constant.TWO_HUNDRED_TWELVE,
             JsonDictionaryTest.dictionary().generateNextId()
@@ -115,11 +113,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we correctly dump the dictionary.
      *
-     * @throws URISyntaxException If something goes wrong.
-     * @throws IOException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testDump() throws URISyntaxException, IOException {
+    void testDump() throws Exception {
         final Dictionary original = JsonDictionaryTest.dictionary();
         final File file = new File("target/test_dump.json");
         original.dump(file);
@@ -134,13 +131,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we correctly save the dictionary.
      *
-     * @throws URISyntaxException If something goes wrong.
-     * @throws IOException If something goes wrong.
-     * @throws InvalidDictionaryException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testSave()
-        throws URISyntaxException, IOException, InvalidDictionaryException {
+    void testSave() throws Exception {
         final JsonDictionary original = JsonDictionaryTest.dictionary();
         original.save();
         final JsonDictionary saved = JsonDictionaryTest.dictionary();
@@ -162,13 +156,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we can correctly delete a word from the dictionary.
      *
-     * @throws URISyntaxException If something goes wrong.
-     * @throws InvalidDictionaryException If something goes wrong.
-     * @throws IOException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testDelete()
-        throws URISyntaxException, InvalidDictionaryException, IOException {
+    void testDelete() throws Exception {
         final JsonDictionary dict = dictionary();
         final List<LexicalUnit> words = dict.words(WordsFilter.ALL);
         final LexicalUnit del = words.get(new Random().nextInt(words.size()));
@@ -180,13 +171,10 @@ final class JsonDictionaryTest {
     /**
      * Check that we can correctly add a lexical unit to the dictionary.
      *
-     * @throws URISyntaxException If something goes wrong.
-     * @throws InvalidDictionaryException If something goes wrong.
-     * @throws IOException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testAdd()
-        throws URISyntaxException, InvalidDictionaryException, IOException {
+    void testAdd() throws Exception {
         final JsonDictionary dict = dictionary();
         final int before = dict.words(WordsFilter.ALL).size();
         final String info = "";
@@ -294,9 +282,9 @@ final class JsonDictionaryTest {
      * Load the test dictionary.
      *
      * @return Test dictionary.
-     * @throws URISyntaxException If something goes wrong.
+     * @throws Exception If something goes wrong.
      */
-    private static JsonDictionary dictionary() throws URISyntaxException {
+    private static JsonDictionary dictionary() throws Exception {
         return new JsonDictionary(Resources.find("dict_sample.json"));
     }
 }
