@@ -18,6 +18,7 @@ package com.github.aistomin.trainer.deutsch.vocabulary;
 import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
+import com.github.aistomin.trainer.deutsch.Dictionary;
 import java.util.List;
 import java.util.Set;
 
@@ -76,6 +77,14 @@ public abstract class LexicalUnit {
      * @return Related units.
      */
     public abstract Set<LexicalUnit> relatedLexicalUnits();
+
+    /**
+     * Clone the lexical unit.
+     *
+     * @param dict Dictionary that provides the ID of the cloned unit.
+     * @return Cloned unit.
+     */
+    public abstract LexicalUnit clone(Dictionary dict);
 
     /**
      * Unique lexical unit's identifier.
