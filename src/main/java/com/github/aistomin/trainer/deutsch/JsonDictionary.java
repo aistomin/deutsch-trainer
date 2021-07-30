@@ -58,6 +58,11 @@ public final class JsonDictionary implements Dictionary {
     public static final String VOC = "vocabulary";
 
     /**
+     * The synchronisation object.
+     */
+    private static final Object MUTEX = new Object();
+
+    /**
      * JSON file.
      */
     private final File source;
@@ -93,133 +98,147 @@ public final class JsonDictionary implements Dictionary {
 
     @Override
     public String version() {
-        return this.dict.get(JsonDictionary.VER).asString();
+        synchronized (JsonDictionary.MUTEX) {
+            return this.dict.get(JsonDictionary.VER).asString();
+        }
     }
 
     @Override
     public List<LexicalUnit> words(final WordsFilter filter) {
-        final JsonArray vocabulary = this.vocabulary();
-        return StreamSupport.stream(
-            vocabulary.spliterator(), false
-        ).filter(
-            value -> {
-                final boolean res;
-                switch (filter) {
-                    case ONLY_NEW:
-                        res = value.asObject().getBoolean("is_new", false);
-                        break;
-                    case ALL:
-                        res = true;
-                        break;
-                    default:
-                        throw new IllegalStateException("Unknown filter.");
+        synchronized (JsonDictionary.MUTEX) {
+            final JsonArray vocabulary = this.vocabulary();
+            return StreamSupport.stream(
+                vocabulary.spliterator(), false
+            ).filter(
+                value -> {
+                    final boolean res;
+                    switch (filter) {
+                        case ONLY_NEW:
+                            res = value.asObject().getBoolean("is_new", false);
+                            break;
+                        case ALL:
+                            res = true;
+                            break;
+                        default:
+                            throw new IllegalStateException("Unknown filter.");
+                    }
+                    return res;
                 }
-                return res;
-            }
-        ).map(
-            value -> {
-                final JsonObject obj = value.asObject();
-                final LexicalUnit res;
-                switch (obj.get("ps").asString()) {
-                    case "v":
-                        res = new GermanVerb(obj);
-                        break;
-                    case "i":
-                        res = new Sentence(obj);
-                        break;
-                    case "n":
-                        throw new IllegalStateException(
-                            "We do not support nouns for now."
-                        );
-                    default:
-                        throw new IllegalStateException("Wrong file format.");
+            ).map(
+                value -> {
+                    final JsonObject obj = value.asObject();
+                    final LexicalUnit res;
+                    switch (obj.get("ps").asString()) {
+                        case "v":
+                            res = new GermanVerb(obj);
+                            break;
+                        case "i":
+                            res = new Sentence(obj);
+                            break;
+                        case "n":
+                            throw new IllegalStateException(
+                                "We do not support nouns for now."
+                            );
+                        default:
+                            throw new IllegalStateException("Wrong file format.");
+                    }
+                    return res;
                 }
-                return res;
-            }
-        ).collect(Collectors.toList());
+            ).collect(Collectors.toList());
+        }
     }
 
     @Override
     public void validate() throws InvalidDictionaryException {
-        final List<Long> ids = new ArrayList<>(0);
-        final List<LexicalUnit> words = this.words(WordsFilter.ALL);
-        for (final LexicalUnit unit : words) {
-            ids.add(unit.identifier());
-            ids.addAll(
-                unit.relatedLexicalUnits()
-                    .stream()
-                    .map(LexicalUnit::identifier)
-                    .collect(Collectors.toList())
-            );
-        }
-        final Set<Long> unique = new HashSet<>(ids);
-        if (ids.size() != unique.size()) {
-            final List<Long> duplicates = unique.stream()
-                .filter(id -> Collections.frequency(ids, id) > 1)
-                .collect(Collectors.toList());
-            throw new InvalidDictionaryException(
-                String.format(
-                    "The dictionary contains non-unique ID(s): %s",
-                    duplicates.stream()
-                        .map(Object::toString)
-                        .collect(Collectors.joining(", "))
-                )
-            );
+        synchronized (JsonDictionary.MUTEX) {
+            final List<Long> ids = new ArrayList<>(0);
+            final List<LexicalUnit> words = this.words(WordsFilter.ALL);
+            for (final LexicalUnit unit : words) {
+                ids.add(unit.identifier());
+                ids.addAll(
+                    unit.relatedLexicalUnits()
+                        .stream()
+                        .map(LexicalUnit::identifier)
+                        .collect(Collectors.toList())
+                );
+            }
+            final Set<Long> unique = new HashSet<>(ids);
+            if (ids.size() != unique.size()) {
+                final List<Long> duplicates = unique.stream()
+                    .filter(id -> Collections.frequency(ids, id) > 1)
+                    .collect(Collectors.toList());
+                throw new InvalidDictionaryException(
+                    String.format(
+                        "The dictionary contains non-unique ID(s): %s",
+                        duplicates.stream()
+                            .map(Object::toString)
+                            .collect(Collectors.joining(", "))
+                    )
+                );
+            }
         }
     }
 
     @Override
     public Long generateNextId() {
-        if (this.generator.get() == -1L) {
-            final List<LexicalUnit> units = new ArrayList<>(0);
-            for (final LexicalUnit unit : this.words(WordsFilter.ALL)) {
-                units.add(unit);
-                units.addAll(unit.relatedLexicalUnits());
+        synchronized (JsonDictionary.MUTEX) {
+            if (this.generator.get() == -1L) {
+                final List<LexicalUnit> units = new ArrayList<>(0);
+                for (final LexicalUnit unit : this.words(WordsFilter.ALL)) {
+                    units.add(unit);
+                    units.addAll(unit.relatedLexicalUnits());
+                }
+                this.generator.set(
+                    units.stream()
+                        .map(LexicalUnit::identifier)
+                        .max(Long::compareTo)
+                        .orElse(0L)
+                );
             }
-            this.generator.set(
-                units.stream()
-                    .map(LexicalUnit::identifier)
-                    .max(Long::compareTo)
-                    .orElse(0L)
-            );
+            return this.generator.incrementAndGet();
         }
-        return this.generator.incrementAndGet();
     }
 
     @Override
     public Dictionary dump(final File file) throws IOException {
-        final String json = this.dict.toString(PrettyPrint.PRETTY_PRINT);
-        final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
-        writer.write(json);
-        writer.close();
-        return new JsonDictionary(file);
+        synchronized (JsonDictionary.MUTEX) {
+            final String json = this.dict.toString(PrettyPrint.PRETTY_PRINT);
+            final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
+            writer.write(json);
+            writer.close();
+            return new JsonDictionary(file);
+        }
     }
 
     @Override
     public void add(final LexicalUnit unit)
         throws InvalidDictionaryException, IOException {
-        this.vocabulary().add(unit.toJson());
-        this.save();
+        synchronized (JsonDictionary.MUTEX) {
+            this.vocabulary().add(unit.toJson());
+            this.save();
+        }
     }
 
     @Override
     public void replace(
         final LexicalUnit replacement
     ) throws InvalidDictionaryException, IOException, NotFoundException {
-        final Optional<LexicalUnit> found = this.words(WordsFilter.ALL)
-            .stream()
-            .filter(unit -> unit.identifier().equals(replacement.identifier()))
-            .findAny();
-        if (found.isPresent()) {
-            this.delete(found.get());
-            this.add(replacement);
-        } else {
-            throw new NotFoundException(
-                String.format(
-                    "Unit with ID = %s not found.",
-                    replacement.identifier().toString()
-                )
-            );
+        synchronized (JsonDictionary.MUTEX) {
+            final Optional<LexicalUnit> found = this.words(WordsFilter.ALL)
+                .stream()
+                .filter(unit -> unit.identifier().equals(replacement.identifier()))
+                .findAny();
+            if (found.isPresent()) {
+                this.delete(found.get());
+                this.add(replacement);
+            } else {
+                throw new NotFoundException(
+                    String.format(
+                        "Unit with ID = %s not found.",
+                        replacement.identifier().toString()
+                    )
+                );
+            }
         }
     }
 
@@ -227,20 +246,22 @@ public final class JsonDictionary implements Dictionary {
     public void delete(
         final LexicalUnit unit
     ) throws InvalidDictionaryException, IOException {
-        final JsonArray vocabulary = this.vocabulary();
-        final Set<Integer> toremove = new HashSet<>();
-        IntStream.range(0, vocabulary.size()).forEach(
-            idx -> {
-                final JsonValue val = vocabulary.get(idx);
-                if (val.asObject().getLong("id", 0L) == unit.identifier()) {
-                    toremove.add(idx);
+        synchronized (JsonDictionary.MUTEX) {
+            final JsonArray vocabulary = this.vocabulary();
+            final Set<Integer> toremove = new HashSet<>();
+            IntStream.range(0, vocabulary.size()).forEach(
+                idx -> {
+                    final JsonValue val = vocabulary.get(idx);
+                    if (val.asObject().getLong("id", 0L) == unit.identifier()) {
+                        toremove.add(idx);
+                    }
                 }
+            );
+            for (final Integer idx : toremove) {
+                vocabulary.remove(idx);
             }
-        );
-        for (final Integer idx : toremove) {
-            vocabulary.remove(idx);
+            this.save();
         }
-        this.save();
     }
 
     /**
@@ -251,26 +272,28 @@ public final class JsonDictionary implements Dictionary {
      *  after the modification.
      */
     public void save() throws IOException, InvalidDictionaryException {
-        if (this.source.exists()) {
-            final File backup = new File(
-                this.source.getParent(),
-                String.format("%s_bk", this.source.getName())
-            );
-            final BufferedWriter writer = Files.newBufferedWriter(backup.toPath());
-            writer.write(this.originalJson().toString(PrettyPrint.PRETTY_PRINT));
-            writer.close();
-        } else {
-            if (!this.source.createNewFile()) {
-                throw new IOException(
-                    String.format(
-                        "Can not create a file: %s",
-                        this.source.getAbsolutePath()
-                    )
+        synchronized (JsonDictionary.MUTEX) {
+            if (this.source.exists()) {
+                final File backup = new File(
+                    this.source.getParent(),
+                    String.format("%s_bk", this.source.getName())
                 );
+                final BufferedWriter writer = Files.newBufferedWriter(backup.toPath());
+                writer.write(this.originalJson().toString(PrettyPrint.PRETTY_PRINT));
+                writer.close();
+            } else {
+                if (!this.source.createNewFile()) {
+                    throw new IOException(
+                        String.format(
+                            "Can not create a file: %s",
+                            this.source.getAbsolutePath()
+                        )
+                    );
+                }
             }
+            this.validate();
+            this.dump(this.source);
         }
-        this.validate();
-        this.dump(this.source);
     }
 
     /**
