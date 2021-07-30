@@ -26,7 +26,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
-import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -105,7 +104,7 @@ final class JsonDictionaryTest {
     @Test
     void testGenerateNextId() throws Exception {
         Assertions.assertEquals(
-            Constant.TWO_HUNDRED_TWELVE,
+            Constant.TWO_HUNDRED_THIRTEEN,
             JsonDictionaryTest.dictionary().generateNextId()
         );
     }
@@ -178,25 +177,24 @@ final class JsonDictionaryTest {
         final JsonDictionary dict = dictionary();
         final int before = dict.words(WordsFilter.ALL).size();
         final String info = "";
-        final AtomicLong id = new AtomicLong(dict.generateNextId());
         final GermanVerb verb = new GermanVerb(
-            id.incrementAndGet(),
+            dict.generateNextId(),
             new SimpleWord(
-                id.incrementAndGet(),
+                dict.generateNextId(),
                 "nehmen",
                 "to take",
                 new ArrayList<>(0),
                 info, false
             ),
             new SimpleWord(
-                id.incrementAndGet(),
+                dict.generateNextId(),
                 "nahm",
                 "took",
                 new ArrayList<>(0),
                 info, false
             ),
             new SimpleWord(
-                id.incrementAndGet(),
+                dict.generateNextId(),
                 "genommen",
                 "taken",
                 new ArrayList<>(0),
