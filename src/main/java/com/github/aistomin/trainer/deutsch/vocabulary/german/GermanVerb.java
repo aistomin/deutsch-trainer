@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.vocabulary.german;
 
 import com.eclipsesource.json.JsonObject;
 import com.github.aistomin.testist.Question;
+import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
@@ -124,6 +125,11 @@ public final class GermanVerb extends Word {
         result.add(this.perfect);
         result.addAll(this.perfect.relatedLexicalUnits());
         return result;
+    }
+
+    @Override
+    public LexicalUnit clone(final Dictionary dict) {
+        return null;
     }
 
     @Override

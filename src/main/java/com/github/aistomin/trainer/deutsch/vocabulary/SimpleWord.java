@@ -22,6 +22,7 @@ import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.testist.simple.SimpleQuestion;
 import com.github.aistomin.testist.simple.SimpleText;
+import com.github.aistomin.trainer.deutsch.Dictionary;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -147,6 +148,11 @@ public final class SimpleWord extends Word {
     @Override
     public Set<LexicalUnit> relatedLexicalUnits() {
         return new HashSet<>(this.usages);
+    }
+
+    @Override
+    public LexicalUnit clone(final Dictionary dict) {
+        return null;
     }
 
     @Override
