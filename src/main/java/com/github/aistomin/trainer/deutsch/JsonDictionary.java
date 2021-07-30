@@ -33,6 +33,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 import java.util.stream.StreamSupport;
@@ -72,12 +73,18 @@ public final class JsonDictionary implements Dictionary {
     private final JsonObject dict;
 
     /**
+     * IDs' generator.
+     */
+    private final AtomicLong generator;
+
+    /**
      * Ctor.
      *
      * @param source JSON file.
      */
     @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public JsonDictionary(final File source) {
+        this.generator = new AtomicLong(-1);
         this.source = source;
         if (source.exists()) {
             this.dict = this.originalJson();
@@ -175,15 +182,20 @@ public final class JsonDictionary implements Dictionary {
     @Override
     public Long generateNextId() {
         synchronized (JsonDictionary.MUTEX) {
-            final List<LexicalUnit> units = new ArrayList<>(0);
-            for (final LexicalUnit unit : this.words(WordsFilter.ALL)) {
-                units.add(unit);
-                units.addAll(unit.relatedLexicalUnits());
+            if (this.generator.get() == -1L) {
+                final List<LexicalUnit> units = new ArrayList<>(0);
+                for (final LexicalUnit unit : this.words(WordsFilter.ALL)) {
+                    units.add(unit);
+                    units.addAll(unit.relatedLexicalUnits());
+                }
+                this.generator.set(
+                    units.stream()
+                        .map(LexicalUnit::identifier)
+                        .max(Long::compareTo)
+                        .orElse(0L)
+                );
             }
-            return units.stream()
-                .map(LexicalUnit::identifier)
-                .max(Long::compareTo)
-                .orElse(1L);
+            return this.generator.incrementAndGet();
         }
     }
 
