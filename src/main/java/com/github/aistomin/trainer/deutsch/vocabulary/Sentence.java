@@ -130,7 +130,13 @@ public final class Sentence extends LexicalUnit {
 
     @Override
     public LexicalUnit clone(final Dictionary dict) {
-        return null;
+        return new Sentence(
+            dict.generateNextId(),
+            this.original,
+            this.translations,
+            this.info(),
+            this.isNew()
+        );
     }
 
     @Override
