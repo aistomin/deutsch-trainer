@@ -20,6 +20,8 @@ import com.eclipsesource.json.JsonObject;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.trainer.deutsch.Constant;
+import com.github.aistomin.trainer.deutsch.JsonDictionary;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -112,6 +114,28 @@ final class SimpleWordTest {
             examples.size(), obj.get("ex").asArray().size()
         );
         Assertions.assertEquals(info, obj.getString("info", empty));
+    }
+
+    /**
+     * Check that we can correctly clone a word.
+     */
+    @Test
+    void testClone() {
+        final Word word = SimpleWordTest.createTestWord();
+        final LexicalUnit clone = word.clone(
+            new JsonDictionary(
+                new File(String.format("target/%s.json", UUID.randomUUID()))
+            )
+        );
+        final JsonObject json = clone.toJson();
+        Assertions.assertEquals(
+            clone.identifier(), json.getLong("id", -1L)
+        );
+        word.toJson().remove("id").forEach(
+            member -> Assertions.assertEquals(
+                member.getValue(), json.get(member.getName())
+            )
+        );
     }
 
     /**

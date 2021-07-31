@@ -118,6 +118,15 @@ public abstract class LexicalUnit {
     }
 
     /**
+     * Is this word new?
+     *
+     * @return True - new; false - old.
+     */
+    public Boolean isNew() {
+        return this.neu;
+    }
+
+    /**
      * Get lexical unit info if it is present.
      *
      * @param obj JSON object.

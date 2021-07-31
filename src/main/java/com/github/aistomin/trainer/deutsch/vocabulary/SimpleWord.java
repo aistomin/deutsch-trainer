@@ -152,7 +152,14 @@ public final class SimpleWord extends Word {
 
     @Override
     public LexicalUnit clone(final Dictionary dict) {
-        return null;
+        return new SimpleWord(
+            dict.generateNextId(),
+            this.original,
+            this.translations,
+            this.usages,
+            this.info(),
+            this.isNew()
+        );
     }
 
     @Override
