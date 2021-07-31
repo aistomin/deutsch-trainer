@@ -20,8 +20,12 @@ import com.eclipsesource.json.JsonObject;
 import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
+import com.github.aistomin.trainer.deutsch.JsonDictionary;
+import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -94,5 +98,31 @@ final class SentenceTest {
         for (final JsonValue translation : translations) {
             Assertions.assertTrue(correct.contains(translation.asString()));
         }
+    }
+
+    /**
+     * Check that we can correctly clone a word.
+     */
+    @Test
+    void testClone() {
+        final Random rnd = new Random();
+        final Sentence sentence = new Sentence(
+            rnd.nextLong(),
+            "Mist!", "Shit!", UUID.randomUUID().toString(), rnd.nextBoolean()
+        );
+        final LexicalUnit clone = sentence.clone(
+            new JsonDictionary(
+                new File(String.format("target/%s.json", UUID.randomUUID()))
+            )
+        );
+        final JsonObject json = clone.toJson();
+        Assertions.assertEquals(
+            clone.identifier(), json.getLong("id", -1L)
+        );
+        sentence.toJson().remove("id").forEach(
+            member -> Assertions.assertEquals(
+                member.getValue(), json.get(member.getName())
+            )
+        );
     }
 }
