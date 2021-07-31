@@ -19,10 +19,14 @@ import com.eclipsesource.json.JsonObject;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.trainer.deutsch.Constant;
+import com.github.aistomin.trainer.deutsch.JsonDictionary;
+import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
+import java.io.File;
 import java.util.Collections;
+import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -68,11 +72,33 @@ final class GermanVerbTest {
     }
 
     /**
+     * Check that we can correctly clone a word.
+     */
+    @Test
+    void testClone() {
+        final Word verb = GermanVerbTest.createTestVerb();
+        final LexicalUnit clone = verb.clone(
+            new JsonDictionary(
+                new File(String.format("target/%s.json", UUID.randomUUID()))
+            )
+        );
+        final JsonObject json = clone.toJson();
+        Assertions.assertEquals(
+            clone.identifier(), json.getLong("id", -1L)
+        );
+        verb.toJson().remove("id").forEach(
+            member -> Assertions.assertEquals(
+                member.getValue(), json.get(member.getName())
+            )
+        );
+    }
+
+    /**
      * Create a verb for testing.
      *
      * @return Test verb.
      */
-    private static Word createTestVerb() {
+    private static GermanVerb createTestVerb() {
         return new GermanVerb(
             0L,
             new SimpleWord(
