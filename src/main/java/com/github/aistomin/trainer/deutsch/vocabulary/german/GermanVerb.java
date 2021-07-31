@@ -129,7 +129,14 @@ public final class GermanVerb extends Word {
 
     @Override
     public LexicalUnit clone(final Dictionary dict) {
-        return null;
+        return new GermanVerb(
+            dict.generateNextId(),
+            this.infinitive,
+            this.preterite,
+            this.perfect,
+            this.info(),
+            this.isNew()
+        );
     }
 
     @Override
