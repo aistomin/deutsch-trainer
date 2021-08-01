@@ -24,9 +24,11 @@ import com.github.aistomin.trainer.deutsch.JsonDictionary;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -36,6 +38,11 @@ import org.junit.jupiter.api.Test;
  * @since 1.0
  */
 final class SimpleWordTest {
+
+    /**
+     * Info JSON field.
+     */
+    public static final String INFO = "info";
 
     /**
      * Check that we correctly return the list of questions related to the
@@ -86,7 +93,7 @@ final class SimpleWordTest {
     void testToJson() {
         final long id = 1L;
         final String info = UUID.randomUUID().toString();
-        final List<Sentence> examples = Arrays.asList(
+        final List<LexicalUnit> examples = Arrays.asList(
             new Sentence(
                 Constant.TWO,
                 "Hallo, ich bin Andrej!", "Hello, my name is Andrej",
@@ -113,7 +120,9 @@ final class SimpleWordTest {
         Assertions.assertEquals(
             examples.size(), obj.get("ex").asArray().size()
         );
-        Assertions.assertEquals(info, obj.getString("info", empty));
+        Assertions.assertEquals(
+            info, obj.getString(SimpleWordTest.INFO, empty)
+        );
     }
 
     /**
@@ -131,10 +140,30 @@ final class SimpleWordTest {
         Assertions.assertEquals(
             clone.identifier(), json.getLong("id", -1L)
         );
-        word.toJson().remove("id").forEach(
-            member -> Assertions.assertEquals(
-                member.getValue(), json.get(member.getName())
-            )
+        final JsonObject original = word.toJson();
+        Assertions.assertEquals(
+            original.get(SimpleWordTest.INFO), json.get(SimpleWordTest.INFO)
+        );
+        final String neu = "is_new";
+        Assertions.assertEquals(original.get(neu), json.get(neu));
+        final String part = "ps";
+        Assertions.assertEquals(original.get(part), json.get(part));
+        final String origin = "o";
+        Assertions.assertEquals(original.get(origin), json.get(origin));
+        final String trans = "t";
+        Assertions.assertEquals(original.get(trans), json.get(trans));
+        final String examples = "ex";
+        final JsonArray oex = original.get(examples).asArray();
+        final JsonArray cex = json.get(examples).asArray();
+        IntStream.range(0, oex.size()).forEach(
+            idx ->
+                oex.get(idx).asObject().remove("id").forEach(
+                    member ->
+                        Assertions.assertEquals(
+                            member.getValue(),
+                            cex.get(idx).asObject().get(member.getName())
+                        )
+                )
         );
     }
 
@@ -148,13 +177,17 @@ final class SimpleWordTest {
         final String wtranslation = "I";
         final String eoriginal = "Ich heiße Andrej.";
         final String etranslation = "My name is Andrej.";
-        final ArrayList<Sentence> examples = new ArrayList<>(1);
         final Random rnd = new Random();
-        examples.add(
-            new Sentence(rnd.nextLong(), eoriginal, etranslation, "", false)
-        );
         return new SimpleWord(
-            rnd.nextLong(), woriginal, wtranslation, examples, "hello", false
+            rnd.nextLong(),
+            woriginal,
+            wtranslation,
+            Collections.singletonList(
+                new Sentence(
+                    rnd.nextLong(), eoriginal, etranslation, "", false
+                )
+            ),
+            "hello", false
         );
     }
 }

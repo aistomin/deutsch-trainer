@@ -51,7 +51,7 @@ public final class SimpleWord extends Word {
     /**
      * Examples of the word usages.
      */
-    private final List<Sentence> usages;
+    private final List<LexicalUnit> usages;
 
     /**
      * Ctor.
@@ -67,7 +67,7 @@ public final class SimpleWord extends Word {
         final Long id,
         final String their,
         final String mine,
-        final List<Sentence> examples,
+        final List<LexicalUnit> examples,
         final String info,
         final Boolean nword
     ) {
@@ -89,7 +89,7 @@ public final class SimpleWord extends Word {
         final Long id,
         final String their,
         final List<String> mine,
-        final List<Sentence> examples,
+        final List<LexicalUnit> examples,
         final String info,
         final Boolean nword
     ) {
@@ -139,7 +139,7 @@ public final class SimpleWord extends Word {
                 )
             );
         }
-        for (final Sentence sent : this.usages) {
+        for (final LexicalUnit sent : this.usages) {
             questions.addAll(sent.questions());
         }
         return questions;
@@ -156,7 +156,10 @@ public final class SimpleWord extends Word {
             dict.generateNextId(),
             this.original,
             this.translations,
-            this.usages,
+            this.usages
+                .stream()
+                .map(sentence -> sentence.clone(dict))
+                .collect(Collectors.toList()),
             this.info(),
             this.isNew()
         );
@@ -177,7 +180,7 @@ public final class SimpleWord extends Word {
         }
         json.set("t", trans);
         final JsonArray examples = new JsonArray();
-        for (final Sentence usage : this.usages) {
+        for (final LexicalUnit usage : this.usages) {
             examples.add(usage.toJson());
         }
         json.set("ex", examples);
