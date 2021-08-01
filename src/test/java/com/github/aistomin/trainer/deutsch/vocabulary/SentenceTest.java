@@ -92,7 +92,7 @@ final class SentenceTest {
         final JsonObject json = sentence.toJson();
         Assertions.assertEquals(id, json.getLong("id", 0L));
         Assertions.assertEquals(their, json.getString("o", ""));
-        Assertions.assertEquals(info, json.getString("info", ""));
+        Assertions.assertEquals(info, json.getString(LexicalUnit.INFO_FIELD, ""));
         final JsonArray translations = json.get("t").asArray();
         Assertions.assertEquals(correct.size(), translations.size());
         for (final JsonValue translation : translations) {

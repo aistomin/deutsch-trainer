@@ -114,7 +114,7 @@ public final class SimpleWord extends Word {
             StreamSupport.stream(obj.get("ex").asArray().spliterator(), false)
                 .map(item -> new Sentence(item.asObject()))
                 .collect(Collectors.toList()),
-            SimpleWord.parseInfo(obj), obj.getBoolean("is_new", false)
+            SimpleWord.parseInfo(obj), obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
         );
     }
 

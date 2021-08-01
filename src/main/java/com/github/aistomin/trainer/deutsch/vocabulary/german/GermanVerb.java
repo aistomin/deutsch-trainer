@@ -36,32 +36,32 @@ public final class GermanVerb extends Word {
     /**
      * Infinitive JSON member.
      */
-    private static final String INFINITIVE = "infinitive";
+    public static final String INFINITIVE = "infinitive";
 
     /**
      * Preterite JSON member.
      */
-    private static final String PRETERITE = "preterite";
+    public static final String PRETERITE = "preterite";
 
     /**
      * Perfect JSON member.
      */
-    private static final String PERFECT = "perfect";
+    public static final String PERFECT = "perfect";
 
     /**
      * Infinitive form of the verb.
      */
-    private final Word infinitive;
+    private final LexicalUnit infinitive;
 
     /**
      * Preterite form of the verb.
      */
-    private final Word preterite;
+    private final LexicalUnit preterite;
 
     /**
      * Perfect form of the verb.
      */
-    private final Word perfect;
+    private final LexicalUnit perfect;
 
     /**
      * Ctor.
@@ -75,9 +75,9 @@ public final class GermanVerb extends Word {
      */
     public GermanVerb(
         final Long id,
-        final Word infinitive,
-        final Word preterite,
-        final Word perfect,
+        final LexicalUnit infinitive,
+        final LexicalUnit preterite,
+        final LexicalUnit perfect,
         final String info,
         final Boolean nword
     ) {
@@ -98,7 +98,7 @@ public final class GermanVerb extends Word {
             new SimpleWord(obj.get(GermanVerb.INFINITIVE).asObject()),
             new SimpleWord(obj.get(GermanVerb.PRETERITE).asObject()),
             new SimpleWord(obj.get(GermanVerb.PERFECT).asObject()),
-            GermanVerb.parseInfo(obj), obj.getBoolean("is_new", false)
+            GermanVerb.parseInfo(obj), obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
         );
     }
 
@@ -131,9 +131,9 @@ public final class GermanVerb extends Word {
     public LexicalUnit clone(final Dictionary dict) {
         return new GermanVerb(
             dict.generateNextId(),
-            this.infinitive,
-            this.preterite,
-            this.perfect,
+            this.infinitive.clone(dict),
+            this.preterite.clone(dict),
+            this.perfect.clone(dict),
             this.info(),
             this.isNew()
         );
@@ -141,7 +141,7 @@ public final class GermanVerb extends Word {
 
     @Override
     public Question primaryQuestion() {
-        return this.infinitive.primaryQuestion();
+        return this.infinitive.questions().get(0);
     }
 
     @Override
