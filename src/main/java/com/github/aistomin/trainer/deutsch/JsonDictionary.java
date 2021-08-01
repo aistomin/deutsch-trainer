@@ -212,6 +212,19 @@ public final class JsonDictionary implements Dictionary {
     }
 
     @Override
+    public Dictionary clone(
+        final File file
+    ) throws InvalidDictionaryException, IOException {
+        synchronized (JsonDictionary.MUTEX) {
+            final Dictionary cloned = new JsonDictionary(file);
+            for (final LexicalUnit unit : this.words(WordsFilter.ALL)) {
+                cloned.add(unit.clone(cloned));
+            }
+            return cloned;
+        }
+    }
+
+    @Override
     public void add(final LexicalUnit unit)
         throws InvalidDictionaryException, IOException {
         synchronized (JsonDictionary.MUTEX) {

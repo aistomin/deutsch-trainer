@@ -21,13 +21,12 @@ import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.trainer.deutsch.Constant;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
+import com.github.aistomin.trainer.deutsch.TestJsonFile;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
-import java.io.File;
 import java.util.Collections;
-import java.util.UUID;
 import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -80,9 +79,7 @@ final class GermanVerbTest {
     void testClone() {
         final Word verb = GermanVerbTest.createTestVerb();
         final LexicalUnit clone = verb.clone(
-            new JsonDictionary(
-                new File(String.format("target/%s.json", UUID.randomUUID()))
-            )
+            new JsonDictionary(new TestJsonFile())
         );
         final JsonObject original = verb.toJson();
         final JsonObject target = clone.toJson();
