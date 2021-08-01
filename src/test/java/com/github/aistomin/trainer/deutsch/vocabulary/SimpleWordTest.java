@@ -21,7 +21,7 @@ import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.trainer.deutsch.Constant;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
-import java.io.File;
+import com.github.aistomin.trainer.deutsch.TestJsonFile;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -127,9 +127,7 @@ final class SimpleWordTest {
     void testClone() {
         final Word word = SimpleWordTest.createTestWord();
         final LexicalUnit clone = word.clone(
-            new JsonDictionary(
-                new File(String.format("target/%s.json", UUID.randomUUID()))
-            )
+            new JsonDictionary(new TestJsonFile())
         );
         final JsonObject json = clone.toJson();
         Assertions.assertEquals(

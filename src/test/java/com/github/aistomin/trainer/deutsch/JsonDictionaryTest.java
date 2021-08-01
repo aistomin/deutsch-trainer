@@ -26,6 +26,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.UUID;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -225,9 +226,7 @@ final class JsonDictionaryTest {
                 )
             ).save()
         );
-        final JsonDictionary dict = new JsonDictionary(
-            new File(String.format("target/%s.json", UUID.randomUUID()))
-        );
+        final JsonDictionary dict = new JsonDictionary(new TestJsonFile());
         dict.save();
         Assertions.assertEquals(0, dict.words(WordsFilter.ALL).size());
         Assertions.assertEquals("v1.0", dict.version());
@@ -274,6 +273,26 @@ final class JsonDictionaryTest {
         Assertions.assertEquals(2, words.size());
         Assertions.assertTrue(words.get(1).toJson().toString().contains(their));
         Assertions.assertTrue(words.get(1).toJson().toString().contains(mine));
+    }
+
+    /**
+     * Check that we can correctly clone a dictionary.
+     *
+     * @throws Exception If something goes wrong.
+     */
+    @Test
+    void testClone() throws Exception {
+        final JsonDictionary original = JsonDictionaryTest.dictionary();
+        final Dictionary clone = original.clone(new TestJsonFile());
+        final List<LexicalUnit> owords = original.words(WordsFilter.ALL);
+        final List<LexicalUnit> cwords = clone.words(WordsFilter.ALL);
+        Assertions.assertEquals(owords.size(), cwords.size());
+        IntStream.range(0, owords.size()).forEach(
+            idx -> Assertions.assertEquals(
+                owords.get(idx).questions().get(0).toDisplayableString(),
+                cwords.get(idx).questions().get(0).toDisplayableString()
+            )
+        );
     }
 
     /**

@@ -21,7 +21,7 @@ import com.eclipsesource.json.JsonValue;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
-import java.io.File;
+import com.github.aistomin.trainer.deutsch.TestJsonFile;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
@@ -111,9 +111,7 @@ final class SentenceTest {
             "Mist!", "Shit!", UUID.randomUUID().toString(), rnd.nextBoolean()
         );
         final LexicalUnit clone = sentence.clone(
-            new JsonDictionary(
-                new File(String.format("target/%s.json", UUID.randomUUID()))
-            )
+            new JsonDictionary(new TestJsonFile())
         );
         final JsonObject json = clone.toJson();
         Assertions.assertEquals(
