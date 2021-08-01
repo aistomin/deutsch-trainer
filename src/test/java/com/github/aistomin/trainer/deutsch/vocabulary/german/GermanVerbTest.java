@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.trainer.deutsch.vocabulary.german;
 
+import com.eclipsesource.json.JsonArray;
 import com.eclipsesource.json.JsonObject;
 import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.simple.SimpleAnswer;
@@ -27,6 +28,7 @@ import com.github.aistomin.trainer.deutsch.vocabulary.Word;
 import java.io.File;
 import java.util.Collections;
 import java.util.UUID;
+import java.util.stream.IntStream;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -66,9 +68,9 @@ final class GermanVerbTest {
     @Test
     void testToJson() {
         final JsonObject json = GermanVerbTest.createTestVerb().toJson();
-        Assertions.assertNotNull(json.get("infinitive").asObject());
-        Assertions.assertNotNull(json.get("preterite").asObject());
-        Assertions.assertNotNull(json.get("perfect").asObject());
+        Assertions.assertNotNull(json.get(GermanVerb.INFINITIVE).asObject());
+        Assertions.assertNotNull(json.get(GermanVerb.PRETERITE).asObject());
+        Assertions.assertNotNull(json.get(GermanVerb.PERFECT).asObject());
     }
 
     /**
@@ -82,14 +84,27 @@ final class GermanVerbTest {
                 new File(String.format("target/%s.json", UUID.randomUUID()))
             )
         );
-        final JsonObject json = clone.toJson();
+        final JsonObject original = verb.toJson();
+        final JsonObject target = clone.toJson();
         Assertions.assertEquals(
-            clone.identifier(), json.getLong("id", -1L)
+            clone.identifier(), target.getLong("id", -1L)
         );
-        verb.toJson().remove("id").forEach(
-            member -> Assertions.assertEquals(
-                member.getValue(), json.get(member.getName())
-            )
+        Assertions.assertEquals(
+            original.get(LexicalUnit.IS_NEW_FIELD), target.get(LexicalUnit.IS_NEW_FIELD)
+        );
+        final String part = "ps";
+        Assertions.assertEquals(original.get(part), target.get(part));
+        GermanVerbTest.assertWordsEquals(
+            original.get(GermanVerb.INFINITIVE).asObject(),
+            target.get(GermanVerb.INFINITIVE).asObject()
+        );
+        GermanVerbTest.assertWordsEquals(
+            original.get(GermanVerb.PRETERITE).asObject(),
+            target.get(GermanVerb.PRETERITE).asObject()
+        );
+        GermanVerbTest.assertWordsEquals(
+            original.get(GermanVerb.PERFECT).asObject(),
+            target.get(GermanVerb.PERFECT).asObject()
         );
     }
 
@@ -124,6 +139,42 @@ final class GermanVerbTest {
                     )
                 ), "test5", false
             ), "information", false
+        );
+    }
+
+    /**
+     * Compare that two words serialised to JSON are the same.
+     *
+     * @param original Word one.
+     * @param target Word two.
+     */
+    private static void assertWordsEquals(
+        final JsonObject original, final JsonObject target
+    ) {
+        Assertions.assertEquals(
+            original.get(LexicalUnit.INFO_FIELD), target.get(LexicalUnit.INFO_FIELD)
+        );
+        Assertions.assertEquals(
+            original.get(LexicalUnit.IS_NEW_FIELD), target.get(LexicalUnit.IS_NEW_FIELD)
+        );
+        final String part = "ps";
+        Assertions.assertEquals(original.get(part), target.get(part));
+        final String origin = "o";
+        Assertions.assertEquals(original.get(origin), target.get(origin));
+        final String trans = "t";
+        Assertions.assertEquals(original.get(trans), target.get(trans));
+        final String examples = "ex";
+        final JsonArray oex = original.get(examples).asArray();
+        final JsonArray cex = target.get(examples).asArray();
+        IntStream.range(0, oex.size()).forEach(
+            idx ->
+                oex.get(idx).asObject().remove("id").forEach(
+                    member ->
+                        Assertions.assertEquals(
+                            member.getValue(),
+                            cex.get(idx).asObject().get(member.getName())
+                        )
+                )
         );
     }
 }

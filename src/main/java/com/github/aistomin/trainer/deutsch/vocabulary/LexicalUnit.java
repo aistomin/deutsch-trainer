@@ -32,7 +32,12 @@ public abstract class LexicalUnit {
     /**
      * Info JSON field.
      */
-    private  static final String INFO_FIELD = "info";
+    public static final String INFO_FIELD = "info";
+
+    /**
+     * Info JSON field.
+     */
+    public static final String IS_NEW_FIELD = "is_new";
 
     /**
      * Unique unit's identifier.
@@ -113,7 +118,7 @@ public abstract class LexicalUnit {
         final JsonObject obj = new JsonObject();
         obj.set("id", this.identifier());
         obj.set(LexicalUnit.INFO_FIELD, this.info());
-        obj.set("is_new", this.neu);
+        obj.set(LexicalUnit.IS_NEW_FIELD, this.neu);
         return obj;
     }
 

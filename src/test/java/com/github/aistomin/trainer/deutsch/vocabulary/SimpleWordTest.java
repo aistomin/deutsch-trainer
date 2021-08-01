@@ -40,11 +40,6 @@ import org.junit.jupiter.api.Test;
 final class SimpleWordTest {
 
     /**
-     * Info JSON field.
-     */
-    public static final String INFO = "info";
-
-    /**
      * Check that we correctly return the list of questions related to the
      * simple word.
      */
@@ -121,7 +116,7 @@ final class SimpleWordTest {
             examples.size(), obj.get("ex").asArray().size()
         );
         Assertions.assertEquals(
-            info, obj.getString(SimpleWordTest.INFO, empty)
+            info, obj.getString(LexicalUnit.INFO_FIELD, empty)
         );
     }
 
@@ -142,10 +137,11 @@ final class SimpleWordTest {
         );
         final JsonObject original = word.toJson();
         Assertions.assertEquals(
-            original.get(SimpleWordTest.INFO), json.get(SimpleWordTest.INFO)
+            original.get(LexicalUnit.INFO_FIELD), json.get(LexicalUnit.INFO_FIELD)
         );
-        final String neu = "is_new";
-        Assertions.assertEquals(original.get(neu), json.get(neu));
+        Assertions.assertEquals(
+            original.get(LexicalUnit.IS_NEW_FIELD), json.get(LexicalUnit.IS_NEW_FIELD)
+        );
         final String part = "ps";
         Assertions.assertEquals(original.get(part), json.get(part));
         final String origin = "o";

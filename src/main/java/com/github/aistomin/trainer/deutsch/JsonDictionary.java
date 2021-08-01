@@ -114,7 +114,8 @@ public final class JsonDictionary implements Dictionary {
                     final boolean res;
                     switch (filter) {
                         case ONLY_NEW:
-                            res = value.asObject().getBoolean("is_new", false);
+                            res = value.asObject()
+                                .getBoolean(LexicalUnit.IS_NEW_FIELD, false);
                             break;
                         case ALL:
                             res = true;
