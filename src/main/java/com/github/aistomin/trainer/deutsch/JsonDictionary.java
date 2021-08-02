@@ -225,8 +225,15 @@ public final class JsonDictionary implements Dictionary {
     public Dictionary clone(
         final File file
     ) throws InvalidDictionaryException, IOException {
+        return this.clone(file, this.version());
+    }
+
+    @Override
+    public Dictionary clone(
+        final File file, final String version
+    ) throws InvalidDictionaryException, IOException {
         synchronized (JsonDictionary.MUTEX) {
-            final Dictionary cloned = new JsonDictionary(file);
+            final Dictionary cloned = new JsonDictionary(file, version);
             for (final LexicalUnit unit : this.words(WordsFilter.ALL)) {
                 cloned.add(unit.clone(cloned));
             }
