@@ -52,7 +52,7 @@ public abstract class LexicalUnit {
     /**
      * Is the unit a new word?
      */
-    private final Boolean neu;
+    private final boolean neu;
 
     /**
      * Ctor.
@@ -117,7 +117,9 @@ public abstract class LexicalUnit {
     public JsonObject toJson() {
         final JsonObject obj = new JsonObject();
         obj.set("id", this.identifier());
-        obj.set(LexicalUnit.INFO_FIELD, this.info());
+        if (this.info() != null && this.info().length() > 0) {
+            obj.set(LexicalUnit.INFO_FIELD, this.info());
+        }
         obj.set(LexicalUnit.IS_NEW_FIELD, this.neu);
         return obj;
     }
