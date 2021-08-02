@@ -82,15 +82,25 @@ public final class JsonDictionary implements Dictionary {
      *
      * @param source JSON file.
      */
-    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public JsonDictionary(final File source) {
+        this(source, "v1.0");
+    }
+
+    /**
+     * Ctor.
+     *
+     * @param source JSON file.
+     * @param version Dictionary version.
+     */
+    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
+    public JsonDictionary(final File source, final String version) {
         this.generator = new AtomicLong(-1);
         this.source = source;
         if (source.exists()) {
             this.dict = this.originalJson();
         } else {
             final JsonObject obj = new JsonObject();
-            obj.set(JsonDictionary.VER, "v1.0");
+            obj.set(JsonDictionary.VER, version);
             obj.set(JsonDictionary.VOC, new JsonArray());
             this.dict = obj;
         }
