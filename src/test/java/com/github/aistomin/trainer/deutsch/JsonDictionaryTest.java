@@ -46,9 +46,10 @@ final class JsonDictionaryTest {
      */
     @Test
     void testVersion() throws Exception {
+        final String version = UUID.randomUUID().toString();
         Assertions.assertEquals(
-            "v1.0-test",
-            JsonDictionaryTest.dictionary().version()
+            version,
+            new JsonDictionary(new TestJsonFile(), version).version()
         );
     }
 

@@ -77,6 +77,20 @@ public interface Dictionary {
     Dictionary clone(File file) throws InvalidDictionaryException, IOException;
 
     /**
+     * Clone the dictionary.
+     *
+     * @param file Destination file.
+     * @param version New dictionary version.
+     * @return New dictionary associated with the file.
+     * @throws InvalidDictionaryException If the dictionary became inconsistent
+     *  after the modification.
+     * @throws IOException If read/write error occurs.
+     */
+    Dictionary clone(
+        File file, String version
+    ) throws InvalidDictionaryException, IOException;
+
+    /**
      * Add a lexical unit to the dictionary.
      *
      * @param unit A lexical unit to add.
