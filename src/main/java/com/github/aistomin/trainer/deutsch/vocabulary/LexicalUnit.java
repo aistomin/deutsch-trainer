@@ -117,7 +117,7 @@ public abstract class LexicalUnit {
     public JsonObject toJson() {
         final JsonObject obj = new JsonObject();
         obj.set("id", this.identifier());
-        if (this.info() != null) {
+        if (this.info() != null && this.info().length() > 0) {
             obj.set(LexicalUnit.INFO_FIELD, this.info());
         }
         obj.set(LexicalUnit.IS_NEW_FIELD, this.neu);
