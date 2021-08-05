@@ -73,7 +73,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <mainClass>com.github.aistomin.trainer.deutsch.Trainer</mainClass>
+                            <mainClass>com.github.aistomin.trainer.deutsch.ui.Trainer</mainClass>
                         </manifest>
                         <manifestEntries>
                             <Class-Path>.</Class-Path>
@@ -89,7 +89,7 @@
                     <finalName>deutsch-trainer</finalName>
                     <archive>
                         <manifest>
-                            <mainClass>com.github.aistomin.trainer.deutsch.Trainer</mainClass>
+                            <mainClass>com.github.aistomin.trainer.deutsch.ui.Trainer</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
@@ -106,14 +106,6 @@
                         </goals>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.openjfx</groupId>
-                <artifactId>javafx-maven-plugin</artifactId>
-                <version>0.0.6</version>
-                <configuration>
-                    <mainClass>com.github.aistomin.trainer.deutsch.Trainer</mainClass>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>com.github.aistomin</groupId>
@@ -136,11 +128,6 @@
                 <version>0.18.19</version>
                 <configuration>
                     <license>file:${basedir}/LICENSE</license>
-                    <excludes>
-                        <exclude>dependencies:org.openjfx:javafx-controls</exclude>
-                        <exclude>dependencies:org.openjfx:javafx-graphics</exclude>
-                        <exclude>duplicatefinder:.*</exclude>
-                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
@@ -180,7 +167,7 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.90</minimum>
+                                            <minimum>0.89</minimum>
                                         </limit>
                                     </limits>
                                 </rule>
