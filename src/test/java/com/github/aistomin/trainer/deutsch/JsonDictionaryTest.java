@@ -297,6 +297,15 @@ final class JsonDictionaryTest {
     }
 
     /**
+     * Check that we correctly get the dictionary's file.
+     */
+    @Test
+    void testGetFile() {
+        final File file = new TestJsonFile();
+        Assertions.assertEquals(file, new JsonDictionary(file).file());
+    }
+
+    /**
      * Load the test dictionary.
      *
      * @return Test dictionary.

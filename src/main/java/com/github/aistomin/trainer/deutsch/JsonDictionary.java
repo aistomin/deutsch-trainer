@@ -328,6 +328,15 @@ public final class JsonDictionary implements Dictionary {
     }
 
     /**
+     * Get JSON file.
+     *
+     * @return JSON file.
+     */
+    public File file() {
+        return this.source;
+    }
+
+    /**
      * Parse JSON content of the file.
      *
      * @return JSON Object.
