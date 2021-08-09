@@ -49,14 +49,22 @@ public final class JsonFile {
      * @return JSON object.
      */
     public JsonObject json() {
+        return Json.parse(this.content()).asObject();
+    }
+
+    /**
+     * Load string content of the file.
+     *
+     * @return String content.
+     */
+    public String content() {
+        final StringBuilder result = new StringBuilder();
         try {
-            return Json.parse(
-                Files.newBufferedReader(
-                    this.source.toPath(), StandardCharsets.UTF_8
-                )
-            ).asObject();
+            Files.lines(this.source.toPath(), StandardCharsets.UTF_8)
+                .forEach(line -> result.append(line).append("\n"));
         } catch (final IOException exception) {
             throw new IllegalStateException(exception);
         }
+        return result.toString();
     }
 }
