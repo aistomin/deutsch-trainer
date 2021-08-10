@@ -109,7 +109,7 @@ public final class SimpleWord extends Word {
             obj.get("id").asLong(),
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
-                .map(JsonValue::toString)
+                .map(JsonValue::asString)
                 .collect(Collectors.toList()),
             StreamSupport.stream(obj.get("ex").asArray().spliterator(), false)
                 .map(item -> new Sentence(item.asObject()))
