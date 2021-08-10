@@ -94,7 +94,7 @@ public final class Sentence extends LexicalUnit {
             obj.get("id").asLong(),
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
-                .map(JsonValue::toString).collect(Collectors.toList()),
+                .map(JsonValue::asString).collect(Collectors.toList()),
             Sentence.parseInfo(obj), obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
         );
     }
