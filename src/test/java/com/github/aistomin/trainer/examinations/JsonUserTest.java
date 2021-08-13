@@ -16,6 +16,8 @@
 package com.github.aistomin.trainer.examinations;
 
 import com.github.aistomin.trainer.deutsch.utils.Resources;
+import java.util.Random;
+import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -36,5 +38,17 @@ final class JsonUserTest {
         final User usr = new JsonUser(Resources.find("user.json"));
         Assertions.assertEquals(1L, usr.identifier());
         Assertions.assertEquals("andrej", usr.username());
+    }
+
+    /**
+     * Check that we can correctly create user with ID and username.
+     */
+    @Test
+    void testCreateWithIdAndUsername() {
+        final Long id = new Random().nextLong();
+        final String username = UUID.randomUUID().toString();
+        final User usr = new JsonUser(id, username);
+        Assertions.assertEquals(id, usr.identifier());
+        Assertions.assertEquals(username, usr.username());
     }
 }
