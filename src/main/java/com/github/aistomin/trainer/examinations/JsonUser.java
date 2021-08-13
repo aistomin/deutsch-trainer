@@ -27,9 +27,19 @@ import java.io.File;
 public final class JsonUser implements User {
 
     /**
-     * JSON file.
+     * User ID field in JSON file.
      */
-    private final File source;
+    public static final String ID = "id";
+
+    /**
+     * Username field in JSON file.
+     */
+    public static final String NAME = "username";
+
+    /**
+     * JSON.
+     */
+    private final JsonObject json;
 
     /**
      * Ctor.
@@ -37,25 +47,59 @@ public final class JsonUser implements User {
      * @param file JSON file.
      */
     public JsonUser(final File file) {
-        this.source = file;
+        this(JsonUser.parseJson(file));
+    }
+
+    /**
+     * Ctor.
+     *
+     * @param obj JSON object.
+     */
+    public JsonUser(final JsonObject obj) {
+        this.json = obj;
+    }
+
+    /**
+     * Ctor.
+     *
+     * @param id User ID.
+     * @param username Username.
+     */
+    public JsonUser(final Long id, final String username) {
+        this(JsonUser.createUser(id, username));
     }
 
     @Override
     public Long identifier() {
-        return this.json().getLong("id", 0L);
+        return this.json.getLong(JsonUser.ID, 0L);
     }
 
     @Override
     public String username() {
-        return this.json().getString("username", "");
+        return this.json.getString(JsonUser.NAME, "");
     }
 
     /**
      * Parse JSON content of the file.
      *
+     * @param file JSON file.
      * @return JSON Object.
      */
-    private JsonObject json() {
-        return new JsonFile(this.source).json();
+    private static JsonObject parseJson(final File file) {
+        return new JsonFile(file).json();
+    }
+
+    /**
+     * Create JSON object with user's data.
+     *
+     * @param id User ID.
+     * @param username Username.
+     * @return JSON object.
+     */
+    private static JsonObject createUser(final Long id, final String username) {
+        final JsonObject obj = new JsonObject();
+        obj.set(JsonUser.ID, id);
+        obj.set(JsonUser.NAME, username);
+        return obj;
     }
 }
