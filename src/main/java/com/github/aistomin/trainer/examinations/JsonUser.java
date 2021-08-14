@@ -79,6 +79,11 @@ public final class JsonUser implements User {
         return this.json.getString(JsonUser.NAME, "");
     }
 
+    @Override
+    public void changeUsername(final String username) {
+        this.json.set(JsonUser.NAME, username);
+    }
+
     /**
      * Parse JSON content of the file.
      *
