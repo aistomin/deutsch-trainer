@@ -51,4 +51,15 @@ final class JsonUserTest {
         Assertions.assertEquals(id, usr.identifier());
         Assertions.assertEquals(username, usr.username());
     }
+
+    /**
+     * Check that we can correctly change username.
+     */
+    @Test
+    void testChangeUsername() {
+        final User usr = new JsonUser(1L, "test");
+        final String username = UUID.randomUUID().toString();
+        usr.changeUsername(username);
+        Assertions.assertEquals(username, usr.username());
+    }
 }

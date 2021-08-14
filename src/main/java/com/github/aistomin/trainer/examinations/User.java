@@ -35,4 +35,11 @@ public interface User {
      * @return Username.
      */
     String username();
+
+    /**
+     * Change username.
+     *
+     * @param username New username.
+     */
+    void changeUsername(String username);
 }
