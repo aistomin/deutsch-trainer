@@ -26,10 +26,12 @@ import org.junit.jupiter.api.Test;
 final class JsonExamTest {
 
     /**
-     * Delete it when we have at least one other test in this file.
+     * Check that we correctly construct the exam.
      */
     @Test
-    void testDummy() {
-        Assertions.assertNotNull(new JsonExam());
+    void testConstructor() {
+        final JsonUser user = new JsonUser(1L, "test");
+        final Exam exam = new JsonExam(user);
+        Assertions.assertEquals(user.identifier(), exam.user().identifier());
     }
 }

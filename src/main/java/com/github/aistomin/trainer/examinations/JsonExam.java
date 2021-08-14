@@ -24,9 +24,23 @@ import com.github.aistomin.testist.Test;
  */
 public final class JsonExam implements Exam {
 
+    /**
+     * User who is taken the exam.
+     */
+    private final User student;
+
+    /**
+     * Ctor.
+     *
+     * @param user User who is taken the exam.
+     */
+    public JsonExam(final User user) {
+        this.student = user;
+    }
+
     @Override
     public User user() {
-        return null;
+        return this.student;
     }
 
     @Override
