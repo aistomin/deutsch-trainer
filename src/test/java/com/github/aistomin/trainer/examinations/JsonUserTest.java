@@ -15,7 +15,9 @@
  */
 package com.github.aistomin.trainer.examinations;
 
+import com.github.aistomin.trainer.deutsch.TestJsonFile;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
+import java.io.File;
 import java.util.Random;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
@@ -47,7 +49,7 @@ final class JsonUserTest {
     void testCreateWithIdAndUsername() {
         final Long id = new Random().nextLong();
         final String username = UUID.randomUUID().toString();
-        final User usr = new JsonUser(id, username);
+        final User usr = new JsonUser(new TestJsonFile(), id, username);
         Assertions.assertEquals(id, usr.identifier());
         Assertions.assertEquals(username, usr.username());
     }
@@ -57,9 +59,28 @@ final class JsonUserTest {
      */
     @Test
     void testChangeUsername() {
-        final User usr = new JsonUser(1L, "test");
+        final User usr = new JsonUser(
+            new TestJsonFile(), 1L, UUID.randomUUID().toString()
+        );
         final String username = UUID.randomUUID().toString();
         usr.changeUsername(username);
         Assertions.assertEquals(username, usr.username());
+    }
+
+    /**
+     * Check that we correctly clone the user.
+     */
+    @Test
+    void testClone() {
+        final User usr = new JsonUser(
+            new TestJsonFile(), 1L, UUID.randomUUID().toString()
+        );
+        final File file = new TestJsonFile();
+        final JsonUser clone = (JsonUser) usr.clone(file);
+        Assertions.assertEquals(
+            file.getAbsolutePath(), clone.file().getAbsolutePath()
+        );
+        Assertions.assertEquals(usr.identifier(), clone.identifier());
+        Assertions.assertEquals(usr.username(), clone.username());
     }
 }
