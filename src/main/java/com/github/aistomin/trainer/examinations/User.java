@@ -52,4 +52,13 @@ public interface User {
      * @return Cloned user.
      */
     User clone(File file);
+
+    /**
+     * Clone the user to new file with new ID.
+     *
+     * @param file File.
+     * @param id New user identifier.
+     * @return Cloned user.
+     */
+    User clone(File file, Long id);
 }
