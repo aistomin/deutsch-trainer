@@ -15,6 +15,8 @@
  */
 package com.github.aistomin.trainer.examinations;
 
+import java.io.File;
+
 /**
  * User interface.
  *
@@ -42,4 +44,12 @@ public interface User {
      * @param username New username.
      */
     void changeUsername(String username);
+
+    /**
+     * Clone the user to new file.
+     *
+     * @param file File.
+     * @return Cloned user.
+     */
+    User clone(File file);
 }

@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.trainer.examinations;
 
+import com.github.aistomin.trainer.deutsch.TestJsonFile;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -30,7 +31,7 @@ final class JsonExamTest {
      */
     @Test
     void testConstructor() {
-        final JsonUser user = new JsonUser(1L, "test");
+        final JsonUser user = new JsonUser(new TestJsonFile(), 1L, "test");
         final Exam exam = new JsonExam(user);
         Assertions.assertEquals(user.identifier(), exam.user().identifier());
     }

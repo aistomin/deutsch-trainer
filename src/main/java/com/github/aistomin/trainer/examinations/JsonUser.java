@@ -37,6 +37,11 @@ public final class JsonUser implements User {
     public static final String NAME = "username";
 
     /**
+     * File.
+     */
+    private final File storage;
+
+    /**
      * JSON.
      */
     private final JsonObject json;
@@ -47,26 +52,29 @@ public final class JsonUser implements User {
      * @param file JSON file.
      */
     public JsonUser(final File file) {
-        this(JsonUser.parseJson(file));
+        this(file, JsonUser.parseJson(file));
     }
 
     /**
      * Ctor.
      *
+     * @param file File.
      * @param obj JSON object.
      */
-    public JsonUser(final JsonObject obj) {
+    public JsonUser(final File file, final JsonObject obj) {
+        this.storage = file;
         this.json = obj;
     }
 
     /**
      * Ctor.
      *
+     * @param file File.
      * @param id User ID.
      * @param username Username.
      */
-    public JsonUser(final Long id, final String username) {
-        this(JsonUser.createUser(id, username));
+    public JsonUser(final File file, final Long id, final String username) {
+        this(file, JsonUser.createUser(id, username));
     }
 
     @Override
@@ -82,6 +90,20 @@ public final class JsonUser implements User {
     @Override
     public void changeUsername(final String username) {
         this.json.set(JsonUser.NAME, username);
+    }
+
+    @Override
+    public User clone(final File file) {
+        return new JsonUser(file, this.identifier(), this.username());
+    }
+
+    /**
+     * Get JSON file where user is stored.
+     *
+     * @return File.
+     */
+    public File file() {
+        return this.storage;
     }
 
     /**
