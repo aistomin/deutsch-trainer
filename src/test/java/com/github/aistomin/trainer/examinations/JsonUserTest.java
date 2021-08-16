@@ -82,5 +82,12 @@ final class JsonUserTest {
         );
         Assertions.assertEquals(usr.identifier(), clone.identifier());
         Assertions.assertEquals(usr.username(), clone.username());
+        final Long id = new Random().nextLong();
+        final JsonUser nclone = (JsonUser) usr.clone(file, id);
+        Assertions.assertEquals(
+            file.getAbsolutePath(), nclone.file().getAbsolutePath()
+        );
+        Assertions.assertEquals(id, nclone.identifier());
+        Assertions.assertEquals(usr.username(), nclone.username());
     }
 }

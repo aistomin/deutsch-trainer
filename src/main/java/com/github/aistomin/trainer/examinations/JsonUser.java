@@ -94,7 +94,12 @@ public final class JsonUser implements User {
 
     @Override
     public User clone(final File file) {
-        return new JsonUser(file, this.identifier(), this.username());
+        return this.clone(file, this.identifier());
+    }
+
+    @Override
+    public User clone(final File file, final Long id) {
+        return new JsonUser(file, id, this.username());
     }
 
     /**
