@@ -16,7 +16,6 @@
 package com.github.aistomin.trainer.deutsch.ui;
 
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 
 /**
  * Main class that run's application UI.
@@ -51,8 +50,7 @@ public final class Trainer {
             () -> {
                 final JFrame frame = new JFrame("Deutsch Trainer");
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                final JLabel label = new JLabel("Hello World");
-                frame.getContentPane().add(label);
+                frame.add(new MenuPane().init());
                 frame.pack();
                 frame.setSize(Trainer.WIDTH, Trainer.HEIGHT);
                 frame.setLocationRelativeTo(null);
