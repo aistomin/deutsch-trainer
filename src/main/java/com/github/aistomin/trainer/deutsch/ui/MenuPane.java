@@ -17,6 +17,8 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.util.Locale;
+import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -56,10 +58,14 @@ public final class MenuPane extends JPanel {
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         final JPanel buttons = new JPanel(new GridBagLayout());
-        buttons.add(new JButton("Learn new words"), gbc);
-        buttons.add(new JButton("Test new words"), gbc);
-        buttons.add(new JButton("Test old words"), gbc);
-        buttons.add(new JButton("Edit dictionary"), gbc);
+        final ResourceBundle bundle = ResourceBundle.getBundle(
+            "messages",
+            Locale.getDefault()
+        );
+        buttons.add(new JButton(bundle.getString("menu.learn.new.words")), gbc);
+        buttons.add(new JButton(bundle.getString("menu.test.new.words")), gbc);
+        buttons.add(new JButton(bundle.getString("menu.test.old.words")), gbc);
+        buttons.add(new JButton(bundle.getString("menu.edit.dictionary")), gbc);
         gbc.weighty = 1;
         this.add(buttons, gbc);
         return this;
