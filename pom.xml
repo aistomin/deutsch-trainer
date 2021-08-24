@@ -11,7 +11,7 @@
         <maven.compiler.source>15</maven.compiler.source>
         <maven.compiler.target>15</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junitVersion>5.8.0-M1</junitVersion>
+        <junitVersion>5.8.0-RC1</junitVersion>
         <slf4j.version>2.0.0-alpha4</slf4j.version>
     </properties>
     <dependencies>
