@@ -62,7 +62,11 @@ public final class MenuPane extends JPanel {
             "messages",
             Locale.getDefault()
         );
-        buttons.add(new JButton(bundle.getString("menu.learn.new.words")), gbc);
+        final JButton learn = new JButton(
+            bundle.getString("menu.learn.new.words")
+        );
+        learn.setName("btnLearnNewWords");
+        buttons.add(learn, gbc);
         buttons.add(new JButton(bundle.getString("menu.test.new.words")), gbc);
         buttons.add(new JButton(bundle.getString("menu.test.old.words")), gbc);
         buttons.add(new JButton(bundle.getString("menu.edit.dictionary")), gbc);
