@@ -46,5 +46,6 @@ final class TrainerTest extends UITest {
             }
         ).using(robot);
         Assertions.assertNotNull(frame.button("btnLearnNewWords"));
+        Assertions.assertEquals(0, 1);
     }
 }
