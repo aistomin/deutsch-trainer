@@ -89,5 +89,6 @@ final class JsonUserTest {
         );
         Assertions.assertEquals(id, nclone.identifier());
         Assertions.assertEquals(usr.username(), nclone.username());
+        Assertions.assertEquals(0, 1);
     }
 }
