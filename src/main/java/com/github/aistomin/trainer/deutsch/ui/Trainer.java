@@ -15,8 +15,6 @@
  */
 package com.github.aistomin.trainer.deutsch.ui;
 
-import java.util.Locale;
-import java.util.ResourceBundle;
 import javax.swing.JFrame;
 
 /**
@@ -51,10 +49,7 @@ public final class Trainer {
         javax.swing.SwingUtilities.invokeLater(
             () -> {
                 final JFrame frame = new JFrame(
-                    ResourceBundle.getBundle(
-                        "messages",
-                        Locale.getDefault()
-                    ).getString("app.title")
+                    new TextMessages().message("app.title")
                 );
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.add(new MenuPane().init());

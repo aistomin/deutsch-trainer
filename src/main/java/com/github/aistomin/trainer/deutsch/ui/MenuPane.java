@@ -17,8 +17,6 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -54,24 +52,49 @@ public final class MenuPane extends JPanel {
         final GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.NORTH;
-        add(new JLabel("Deutsch Trainer"), gbc);
+        final JLabel label = new JLabel(
+            new TextMessages().message("app.title")
+        );
+        label.setName("lblTitle");
+        add(label, gbc);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         final JPanel buttons = new JPanel(new GridBagLayout());
-        final ResourceBundle bundle = ResourceBundle.getBundle(
-            "messages",
-            Locale.getDefault()
+        buttons.add(
+            MenuPane.createButton("btnLearnNewWords", "menu.learn.new.words"),
+            gbc
         );
-        final JButton learn = new JButton(
-            bundle.getString("menu.learn.new.words")
+        buttons.add(
+            MenuPane.createButton("btnTestNewWords", "menu.test.new.words"),
+            gbc
         );
-        learn.setName("btnLearnNewWords");
-        buttons.add(learn, gbc);
-        buttons.add(new JButton(bundle.getString("menu.test.new.words")), gbc);
-        buttons.add(new JButton(bundle.getString("menu.test.old.words")), gbc);
-        buttons.add(new JButton(bundle.getString("menu.edit.dictionary")), gbc);
+        buttons.add(
+            MenuPane.createButton("btnTestOldWords", "menu.test.old.words"),
+            gbc
+        );
+        buttons.add(
+            MenuPane.createButton("btnEditDictionary", "menu.edit.dictionary"),
+            gbc
+        );
         gbc.weighty = 1;
         this.add(buttons, gbc);
         return this;
+    }
+
+    /**
+     * Create a button.
+     *
+     * @param name Button's name.
+     * @param caption Button's caption's localisation key.
+     * @return The button.
+     */
+    private static JButton createButton(
+        final String name, final String caption
+    ) {
+        final JButton learn = new JButton(
+            new TextMessages().message(caption)
+        );
+        learn.setName(name);
+        return learn;
     }
 }
