@@ -54,24 +54,56 @@ public final class MenuPane extends JPanel {
         final GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.NORTH;
-        add(new JLabel("Deutsch Trainer"), gbc);
+        final JLabel label = new JLabel(
+            ResourceBundle.getBundle(
+                "messages",
+                Locale.getDefault()
+            ).getString("app.title")
+        );
+        label.setName("lblTitle");
+        add(label, gbc);
         gbc.anchor = GridBagConstraints.CENTER;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         final JPanel buttons = new JPanel(new GridBagLayout());
+        buttons.add(
+            MenuPane.createButton("btnLearnNewWords", "menu.learn.new.words"),
+            gbc
+        );
+        buttons.add(
+            MenuPane.createButton("btnTestNewWords", "menu.test.new.words"),
+            gbc
+        );
+        buttons.add(
+            MenuPane.createButton("btnTestOldWords", "menu.test.old.words"),
+            gbc
+        );
+        buttons.add(
+            MenuPane.createButton("btnEditDictionary", "menu.edit.dictionary"),
+            gbc
+        );
+        gbc.weighty = 1;
+        this.add(buttons, gbc);
+        return this;
+    }
+
+    /**
+     * Create a button.
+     *
+     * @param name Button's name.
+     * @param caption Button's caption's localisation key.
+     * @return The button.
+     */
+    private static JButton createButton(
+        final String name, final String caption
+    ) {
         final ResourceBundle bundle = ResourceBundle.getBundle(
             "messages",
             Locale.getDefault()
         );
         final JButton learn = new JButton(
-            bundle.getString("menu.learn.new.words")
+            bundle.getString(caption)
         );
-        learn.setName("btnLearnNewWords");
-        buttons.add(learn, gbc);
-        buttons.add(new JButton(bundle.getString("menu.test.new.words")), gbc);
-        buttons.add(new JButton(bundle.getString("menu.test.old.words")), gbc);
-        buttons.add(new JButton(bundle.getString("menu.edit.dictionary")), gbc);
-        gbc.weighty = 1;
-        this.add(buttons, gbc);
-        return this;
+        learn.setName(name);
+        return learn;
     }
 }

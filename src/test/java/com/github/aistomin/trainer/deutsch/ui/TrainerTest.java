@@ -20,6 +20,8 @@ import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.finder.WindowFinder;
 import org.assertj.swing.fixture.FrameFixture;
+import org.assertj.swing.fixture.JButtonFixture;
+import org.assertj.swing.fixture.JLabelFixture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -37,14 +39,29 @@ final class TrainerTest extends UITest {
     void testMainWindow() {
         final Robot robot = robot();
         Assertions.assertNotNull(robot);
+        final String trainer = "Deutsch Trainer";
         final FrameFixture frame = WindowFinder.findFrame(
             new GenericTypeMatcher<Frame>(Frame.class) {
                 protected boolean isMatching(final Frame frame) {
-                    return "Deutsch Trainer".equals(frame.getTitle())
+                    return trainer.equals(frame.getTitle())
                         && frame.isShowing();
                 }
             }
         ).using(robot);
-        Assertions.assertNotNull(frame.button("btnLearnNewWords"));
+        final JLabelFixture title = frame.label("lblTitle");
+        Assertions.assertNotNull(title);
+        Assertions.assertEquals(trainer, title.text());
+        final JButtonFixture learn = frame.button("btnLearnNewWords");
+        Assertions.assertNotNull(learn);
+        Assertions.assertEquals("Learn new words", learn.text());
+        final JButtonFixture ntest = frame.button("btnTestNewWords");
+        Assertions.assertNotNull(ntest);
+        Assertions.assertEquals("Test new words", ntest.text());
+        final JButtonFixture otest = frame.button("btnTestOldWords");
+        Assertions.assertNotNull(otest);
+        Assertions.assertEquals("Test old words", otest.text());
+        final JButtonFixture edit = frame.button("btnEditDictionary");
+        Assertions.assertNotNull(edit);
+        Assertions.assertEquals("Edit dictionary", edit.text());
     }
 }
