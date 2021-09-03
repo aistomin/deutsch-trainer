@@ -17,8 +17,6 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.util.Locale;
-import java.util.ResourceBundle;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -55,10 +53,7 @@ public final class MenuPane extends JPanel {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.NORTH;
         final JLabel label = new JLabel(
-            ResourceBundle.getBundle(
-                "messages",
-                Locale.getDefault()
-            ).getString("app.title")
+            new TextMessages().message("app.title")
         );
         label.setName("lblTitle");
         add(label, gbc);
@@ -96,12 +91,8 @@ public final class MenuPane extends JPanel {
     private static JButton createButton(
         final String name, final String caption
     ) {
-        final ResourceBundle bundle = ResourceBundle.getBundle(
-            "messages",
-            Locale.getDefault()
-        );
         final JButton learn = new JButton(
-            bundle.getString(caption)
+            new TextMessages().message(caption)
         );
         learn.setName(name);
         return learn;
