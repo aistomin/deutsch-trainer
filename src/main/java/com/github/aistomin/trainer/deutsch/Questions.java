@@ -26,7 +26,7 @@ import java.util.Random;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
- * The application entry point.
+ * Questions provider.
  *
  * @since 1.0
  */

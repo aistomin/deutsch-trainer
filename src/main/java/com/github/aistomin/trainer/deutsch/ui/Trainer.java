@@ -16,6 +16,8 @@
 package com.github.aistomin.trainer.deutsch.ui;
 
 import javax.swing.JFrame;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Main class that run's application UI.
@@ -46,6 +48,13 @@ public final class Trainer {
      * @param args Arguments.
      */
     public static void main(final String... args) {
+        final Logger logger = LoggerFactory.getLogger(Trainer.class);
+        logger.info(
+            String.format(
+                "Application started with parameters: %s",
+                String.join("; ", args)
+            )
+        );
         javax.swing.SwingUtilities.invokeLater(
             () -> {
                 final JFrame frame = new JFrame(
