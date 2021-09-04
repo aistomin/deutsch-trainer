@@ -19,7 +19,6 @@ import com.github.aistomin.testist.Question;
 import com.github.aistomin.testist.QuestionsProvider;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
-import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -65,24 +64,20 @@ public final class Questions implements QuestionsProvider {
     @Override
     public List<Question> questions() {
         final List<Question> result = new ArrayList<>(this.amount);
-        try {
-            final Dictionary dict =
-                new JsonDictionary(Resources.find("dict.json"));
-            final Random rand = new Random();
-            final AtomicInteger index = new AtomicInteger();
-            while (index.get() < this.amount) {
-                final List<LexicalUnit> words = dict.words(this.filter);
-                final List<Question> questions =
-                    words.get(rand.nextInt(words.size())).questions();
-                final Question question = questions.get(rand.nextInt(questions.size()));
-                if (!result.contains(question)) {
-                    result.add(question);
-                    index.set(index.get() + 1);
-                }
+        final Dictionary dict =
+            new JsonDictionary(Resources.find("dict.json"));
+        final Random rand = new Random();
+        final AtomicInteger index = new AtomicInteger();
+        while (index.get() < this.amount) {
+            final List<LexicalUnit> words = dict.words(this.filter);
+            final List<Question> questions =
+                words.get(rand.nextInt(words.size())).questions();
+            final Question question = questions.get(rand.nextInt(questions.size()));
+            if (!result.contains(question)) {
+                result.add(question);
+                index.set(index.get() + 1);
             }
-            return result;
-        } catch (final URISyntaxException exception) {
-            throw new IllegalStateException("File not found", exception);
         }
+        return result;
     }
 }

@@ -39,18 +39,17 @@ final class TrainerTest extends UITest {
     void testMainWindow() {
         final Robot robot = robot();
         Assertions.assertNotNull(robot);
-        final String trainer = "Deutsch Trainer";
         final FrameFixture frame = WindowFinder.findFrame(
             new GenericTypeMatcher<Frame>(Frame.class) {
                 protected boolean isMatching(final Frame frame) {
-                    return trainer.equals(frame.getTitle())
+                    return "Deutsch Trainer".equals(frame.getTitle())
                         && frame.isShowing();
                 }
             }
         ).using(robot);
         final JLabelFixture title = frame.label("lblTitle");
         Assertions.assertNotNull(title);
-        Assertions.assertEquals(trainer, title.text());
+        Assertions.assertEquals("Hello andrej!", title.text());
         final JButtonFixture learn = frame.button("btnLearnNewWords");
         Assertions.assertNotNull(learn);
         Assertions.assertEquals("Learn new words", learn.text());
