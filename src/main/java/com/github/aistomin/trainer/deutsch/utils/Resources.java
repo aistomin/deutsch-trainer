@@ -37,14 +37,17 @@ public final class Resources {
      *
      * @param filename Filename.
      * @return Found file.
-     * @throws URISyntaxException If something goes wrong.
      */
-    public static File find(final String filename) throws URISyntaxException {
-        return new File(
-            Thread
-                .currentThread()
-                .getContextClassLoader()
-                .getResource(filename).toURI()
-        );
+    public static File find(final String filename) {
+        try {
+            return new File(
+                Thread
+                    .currentThread()
+                    .getContextClassLoader()
+                    .getResource(filename).toURI()
+            );
+        } catch (final URISyntaxException error) {
+            throw new IllegalStateException("Current user not found.", error);
+        }
     }
 }

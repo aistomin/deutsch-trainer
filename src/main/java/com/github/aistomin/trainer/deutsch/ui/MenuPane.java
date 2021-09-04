@@ -26,6 +26,7 @@ import javax.swing.border.EmptyBorder;
  * Main menu UI.
  *
  * @since 1.0
+ * @checkstyle ClassDataAbstractionCouplingCheck (1000 lines)
  */
 public final class MenuPane extends JPanel {
 
@@ -53,7 +54,10 @@ public final class MenuPane extends JPanel {
         gbc.gridwidth = GridBagConstraints.REMAINDER;
         gbc.anchor = GridBagConstraints.NORTH;
         final JLabel label = new JLabel(
-            new TextMessages().message("app.title")
+            String.format(
+                new TextMessages().message("app.greeting"),
+                new CurrentUser().username()
+            )
         );
         label.setName("lblTitle");
         add(label, gbc);
