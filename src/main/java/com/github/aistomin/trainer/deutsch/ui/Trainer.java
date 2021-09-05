@@ -16,6 +16,7 @@
 package com.github.aistomin.trainer.deutsch.ui;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -61,12 +62,62 @@ public final class Trainer {
                     new TextMessages().message("app.title")
                 );
                 frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                frame.add(new MenuPane().init());
+                frame.add(new MenuPane(new MainMenuActions(frame)).init());
                 frame.pack();
                 frame.setSize(Trainer.WIDTH, Trainer.HEIGHT);
                 frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         );
+    }
+
+    /**
+     * Main menu actions.
+     *
+     * @since 1.0
+     */
+    private static class MainMenuActions implements MenuController {
+
+        /**
+         * Parent frame.
+         */
+        private final JFrame frame;
+
+        /**
+         * Ctor.
+         *
+         * @param parent Parent frame.
+         */
+        MainMenuActions(final JFrame parent) {
+            this.frame = parent;
+        }
+
+        @Override
+        public void learnNewWords() {
+            JOptionPane.showMessageDialog(
+                this.frame, "TODO: Learn new words."
+            );
+        }
+
+        @Override
+        public void testNewWords() {
+            JOptionPane.showMessageDialog(
+                this.frame, "TODO: Test new words."
+            );
+        }
+
+        @Override
+        public void testOldWords() {
+            JOptionPane.showMessageDialog(
+                this.frame, "TODO: Test old words."
+            );
+        }
+
+        @Override
+        public void editDictionary() {
+            JOptionPane.showMessageDialog(
+                this.frame, "TODO: Edit dictionary."
+            );
+        }
     }
 }
