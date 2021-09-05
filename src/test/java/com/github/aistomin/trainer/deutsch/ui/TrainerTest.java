@@ -16,12 +16,10 @@
 package com.github.aistomin.trainer.deutsch.ui;
 
 import java.awt.Frame;
-import javax.swing.JDialog;
 import org.assertj.swing.core.GenericTypeMatcher;
 import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.finder.WindowFinder;
-import org.assertj.swing.fixture.DialogFixture;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JLabelFixture;
@@ -38,7 +36,7 @@ final class TrainerTest extends UITest {
     /**
      * Name of the "Learn new words" button.
      */
-    public static final String BTN_LEARN_NEW_WORDS = "btnLearnNewWords";
+    public static final String LEARN_NEW = "btnLearnNewWords";
 
     /**
      * Check that we correctly start the application.
@@ -50,7 +48,7 @@ final class TrainerTest extends UITest {
         Assertions.assertNotNull(title);
         Assertions.assertEquals("Hello andrej!", title.text());
         final JButtonFixture learn = frame.button(
-            TrainerTest.BTN_LEARN_NEW_WORDS
+            TrainerTest.LEARN_NEW
         );
         Assertions.assertNotNull(learn);
         Assertions.assertEquals("Learn new words", learn.text());
@@ -73,7 +71,7 @@ final class TrainerTest extends UITest {
     void testLearnNewWords() {
         final FrameFixture frame = this.createFixture();
         final JButtonFixture btn = frame.button(
-            TrainerTest.BTN_LEARN_NEW_WORDS
+            TrainerTest.LEARN_NEW
         );
         btn.click(MouseButton.LEFT_BUTTON);
     }
