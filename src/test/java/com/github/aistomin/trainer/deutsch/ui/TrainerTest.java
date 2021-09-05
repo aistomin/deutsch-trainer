@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import java.awt.Frame;
 import org.assertj.swing.core.GenericTypeMatcher;
+import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.Robot;
 import org.assertj.swing.finder.WindowFinder;
 import org.assertj.swing.fixture.FrameFixture;
@@ -33,24 +34,22 @@ import org.junit.jupiter.api.Test;
 final class TrainerTest extends UITest {
 
     /**
+     * Name of the "Learn new words" button.
+     */
+    public static final String LEARN_NEW = "btnLearnNewWords";
+
+    /**
      * Check that we correctly start the application.
      */
     @Test
     void testMainWindow() {
-        final Robot robot = robot();
-        Assertions.assertNotNull(robot);
-        final FrameFixture frame = WindowFinder.findFrame(
-            new GenericTypeMatcher<Frame>(Frame.class) {
-                protected boolean isMatching(final Frame frame) {
-                    return "Deutsch Trainer".equals(frame.getTitle())
-                        && frame.isShowing();
-                }
-            }
-        ).using(robot);
+        final FrameFixture frame = this.createFixture();
         final JLabelFixture title = frame.label("lblTitle");
         Assertions.assertNotNull(title);
         Assertions.assertEquals("Hello andrej!", title.text());
-        final JButtonFixture learn = frame.button("btnLearnNewWords");
+        final JButtonFixture learn = frame.button(
+            TrainerTest.LEARN_NEW
+        );
         Assertions.assertNotNull(learn);
         Assertions.assertEquals("Learn new words", learn.text());
         final JButtonFixture ntest = frame.button("btnTestNewWords");
@@ -62,5 +61,36 @@ final class TrainerTest extends UITest {
         final JButtonFixture edit = frame.button("btnEditDictionary");
         Assertions.assertNotNull(edit);
         Assertions.assertEquals("Edit dictionary", edit.text());
+        this.robot().cleanUpWithoutDisposingWindows();
+    }
+
+    /**
+     * Check that "Learn new words" menu action works properly.
+     */
+    @Test
+    void testLearnNewWords() {
+        final FrameFixture frame = this.createFixture();
+        final JButtonFixture btn = frame.button(
+            TrainerTest.LEARN_NEW
+        );
+        btn.click(MouseButton.LEFT_BUTTON);
+    }
+
+    /**
+     * Create test frame fixture.
+     *
+     * @return Created fixture.
+     */
+    private FrameFixture createFixture() {
+        final Robot robot = this.robot();
+        Assertions.assertNotNull(robot);
+        return WindowFinder.findFrame(
+            new GenericTypeMatcher<Frame>(Frame.class) {
+                protected boolean isMatching(final Frame frame) {
+                    return "Deutsch Trainer".equals(frame.getTitle())
+                        && frame.isShowing();
+                }
+            }
+        ).using(robot);
     }
 }

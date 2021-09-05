@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
+import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -34,6 +35,20 @@ public final class MenuPane extends JPanel {
      * Menu's border size.
      */
     private static final int BORDER = 10;
+
+    /**
+     * Main menu controller.
+     */
+    private final MenuController actions;
+
+    /**
+     * Ctor.
+     *
+     * @param controller Main menu controller.
+     */
+    public MenuPane(final MenuController controller) {
+        this.actions = controller;
+    }
 
     /**
      * Initialise the pane.
@@ -65,19 +80,35 @@ public final class MenuPane extends JPanel {
         gbc.fill = GridBagConstraints.HORIZONTAL;
         final JPanel buttons = new JPanel(new GridBagLayout());
         buttons.add(
-            MenuPane.createButton("btnLearnNewWords", "menu.learn.new.words"),
+            MenuPane.createButton(
+                "btnLearnNewWords",
+                "menu.learn.new.words",
+                event -> this.actions.learnNewWords()
+            ),
             gbc
         );
         buttons.add(
-            MenuPane.createButton("btnTestNewWords", "menu.test.new.words"),
+            MenuPane.createButton(
+                "btnTestNewWords",
+                "menu.test.new.words",
+                event -> this.actions.testNewWords()
+            ),
             gbc
         );
         buttons.add(
-            MenuPane.createButton("btnTestOldWords", "menu.test.old.words"),
+            MenuPane.createButton(
+                "btnTestOldWords",
+                "menu.test.old.words",
+                event -> this.actions.testOldWords()
+                ),
             gbc
         );
         buttons.add(
-            MenuPane.createButton("btnEditDictionary", "menu.edit.dictionary"),
+            MenuPane.createButton(
+                "btnEditDictionary",
+                "menu.edit.dictionary",
+                event -> this.actions.editDictionary()
+            ),
             gbc
         );
         gbc.weighty = 1;
@@ -90,15 +121,17 @@ public final class MenuPane extends JPanel {
      *
      * @param name Button's name.
      * @param caption Button's caption's localisation key.
+     * @param onclick On click event.
      * @return The button.
      */
     private static JButton createButton(
-        final String name, final String caption
+        final String name, final String caption, final ActionListener onclick
     ) {
-        final JButton learn = new JButton(
+        final JButton btn = new JButton(
             new TextMessages().message(caption)
         );
-        learn.setName(name);
-        return learn;
+        btn.setName(name);
+        btn.addActionListener(onclick);
+        return btn;
     }
 }
