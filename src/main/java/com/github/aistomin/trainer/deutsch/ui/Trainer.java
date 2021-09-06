@@ -94,8 +94,7 @@ public final class Trainer {
 
         @Override
         public void learnNewWords() {
-            System.out.println("MainMenuActions.learnNewWords");
-            JOptionPane.showMessageDialog(this.frame, "TODO: Learn new words." );
+            JOptionPane.showMessageDialog(this.frame, "TODO: Learn new words.");
         }
 
         @Override
