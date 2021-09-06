@@ -17,12 +17,13 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import java.awt.Frame;
 import org.assertj.swing.core.GenericTypeMatcher;
-import org.assertj.swing.core.MouseButton;
 import org.assertj.swing.core.Robot;
+import org.assertj.swing.finder.JOptionPaneFinder;
 import org.assertj.swing.finder.WindowFinder;
 import org.assertj.swing.fixture.FrameFixture;
 import org.assertj.swing.fixture.JButtonFixture;
 import org.assertj.swing.fixture.JLabelFixture;
+import org.assertj.swing.fixture.JOptionPaneFixture;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -70,10 +71,11 @@ final class TrainerTest extends UITest {
     @Test
     void testLearnNewWords() {
         final FrameFixture frame = this.createFixture();
-        final JButtonFixture btn = frame.button(
-            TrainerTest.LEARN_NEW
-        );
-        btn.click(MouseButton.LEFT_BUTTON);
+        frame.button(TrainerTest.LEARN_NEW).target().doClick();
+        final JOptionPaneFixture fixture = JOptionPaneFinder.findOptionPane()
+            .using(this.robot());
+        fixture.requireMessage("TODO: Learn new words.");
+        this.robot().cleanUpWithoutDisposingWindows();
     }
 
     /**
