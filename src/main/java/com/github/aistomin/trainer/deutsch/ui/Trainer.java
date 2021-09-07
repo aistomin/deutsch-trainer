@@ -30,12 +30,12 @@ public final class Trainer {
     /**
      * Window's width.
      */
-    private static final int WIDTH = 400;
+    private static final int WIDTH = 800;
 
     /**
      * Windows height.
      */
-    private static final int HEIGHT = 200;
+    private static final int HEIGHT = 400;
 
     /**
      * Ctor.
@@ -113,9 +113,14 @@ public final class Trainer {
 
         @Override
         public void editDictionary() {
-            JOptionPane.showMessageDialog(
-                this.frame, "TODO: Edit dictionary."
+            final JFrame dictionary = new JFrame(
+                new TextMessages().message("menu.edit.dictionary")
             );
+            dictionary.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+            dictionary.pack();
+            dictionary.setSize(Trainer.WIDTH, Trainer.HEIGHT);
+            dictionary.setLocationRelativeTo(null);
+            dictionary.setVisible(true);
         }
     }
 }
