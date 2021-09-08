@@ -28,16 +28,6 @@ import org.slf4j.LoggerFactory;
 public final class Trainer {
 
     /**
-     * Window's width.
-     */
-    private static final int WIDTH = 800;
-
-    /**
-     * Windows height.
-     */
-    private static final int HEIGHT = 400;
-
-    /**
      * Ctor.
      */
     private Trainer() {
@@ -58,14 +48,11 @@ public final class Trainer {
         );
         javax.swing.SwingUtilities.invokeLater(
             () -> {
-                final JFrame frame = new JFrame(
-                    new TextMessages().message("app.title")
+                final JFrame frame = new TrainerFrame(
+                    "app.title", JFrame.EXIT_ON_CLOSE
                 );
-                frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
                 frame.add(new MenuPane(new MainMenuActions(frame)).init());
                 frame.pack();
-                frame.setSize(Trainer.WIDTH, Trainer.HEIGHT);
-                frame.setLocationRelativeTo(null);
                 frame.setVisible(true);
             }
         );
@@ -94,7 +81,11 @@ public final class Trainer {
 
         @Override
         public void learnNewWords() {
-            JOptionPane.showMessageDialog(this.frame, "TODO: Learn new words.");
+            final JFrame learn = new TrainerFrame(
+                "menu.learn.new.words", JFrame.HIDE_ON_CLOSE
+            );
+            learn.pack();
+            learn.setVisible(true);
         }
 
         @Override
@@ -113,13 +104,10 @@ public final class Trainer {
 
         @Override
         public void editDictionary() {
-            final JFrame dictionary = new JFrame(
-                new TextMessages().message("menu.edit.dictionary")
+            final JFrame dictionary = new TrainerFrame(
+                "menu.edit.dictionary", JFrame.HIDE_ON_CLOSE
             );
-            dictionary.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
             dictionary.pack();
-            dictionary.setSize(Trainer.WIDTH, Trainer.HEIGHT);
-            dictionary.setLocationRelativeTo(null);
             dictionary.setVisible(true);
         }
     }
