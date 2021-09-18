@@ -90,4 +90,21 @@ final class JsonUserTest {
         Assertions.assertEquals(id, nclone.identifier());
         Assertions.assertEquals(usr.username(), nclone.username());
     }
+
+    /**
+     * Check that we correctly dump the user.
+     *
+     * @throws Exception If something goes wrong.
+     */
+    @Test
+    void testDump() throws Exception {
+        final User original = new JsonUser(
+            new TestJsonFile(), 1L, UUID.randomUUID().toString()
+        );
+        final File file = new File("target/test_user_dump.json");
+        original.dump(file);
+        final User restored = new JsonUser(file);
+        Assertions.assertEquals(original.identifier(), restored.identifier());
+        Assertions.assertEquals(original.username(), restored.username());
+    }
 }
