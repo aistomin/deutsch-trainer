@@ -16,8 +16,12 @@
 package com.github.aistomin.trainer.examinations;
 
 import com.eclipsesource.json.JsonObject;
+import com.eclipsesource.json.PrettyPrint;
 import com.github.aistomin.trainer.deutsch.utils.JsonFile;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 
 /**
  * User implementation that takes data from JSON file.
@@ -100,6 +104,15 @@ public final class JsonUser implements User {
     @Override
     public User clone(final File file, final Long id) {
         return new JsonUser(file, id, this.username());
+    }
+
+    @Override
+    public User dump(final File file) throws IOException {
+        final String content = this.json.toString(PrettyPrint.PRETTY_PRINT);
+        final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
+        writer.write(content);
+        writer.close();
+        return new JsonUser(file);
     }
 
     /**

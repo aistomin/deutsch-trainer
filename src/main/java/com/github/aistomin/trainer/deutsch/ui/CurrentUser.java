@@ -19,6 +19,7 @@ import com.github.aistomin.trainer.deutsch.utils.Resources;
 import com.github.aistomin.trainer.examinations.JsonUser;
 import com.github.aistomin.trainer.examinations.User;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * Current application user.
@@ -71,5 +72,10 @@ public final class CurrentUser implements User {
     @Override
     public User clone(final File file, final Long id) {
         return new CurrentUser(this.usr.clone(file, id));
+    }
+
+    @Override
+    public User dump(final File file) throws IOException {
+        return this.usr.dump(file);
     }
 }
