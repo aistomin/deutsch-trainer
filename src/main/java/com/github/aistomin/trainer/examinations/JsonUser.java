@@ -41,6 +41,11 @@ public final class JsonUser implements User {
     public static final String NAME = "username";
 
     /**
+     * The synchronisation object.
+     */
+    private static final Object MUTEX = new Object();
+
+    /**
      * File.
      */
     private final File storage;
@@ -83,17 +88,23 @@ public final class JsonUser implements User {
 
     @Override
     public Long identifier() {
-        return this.json.getLong(JsonUser.ID, 0L);
+        synchronized (JsonUser.MUTEX) {
+            return this.json.getLong(JsonUser.ID, 0L);
+        }
     }
 
     @Override
     public String username() {
-        return this.json.getString(JsonUser.NAME, "");
+        synchronized (JsonUser.MUTEX) {
+            return this.json.getString(JsonUser.NAME, "");
+        }
     }
 
     @Override
     public void changeUsername(final String username) {
-        this.json.set(JsonUser.NAME, username);
+        synchronized (JsonUser.MUTEX) {
+            this.json.set(JsonUser.NAME, username);
+        }
     }
 
     @Override
@@ -108,11 +119,13 @@ public final class JsonUser implements User {
 
     @Override
     public User dump(final File file) throws IOException {
-        final String content = this.json.toString(PrettyPrint.PRETTY_PRINT);
-        final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
-        writer.write(content);
-        writer.close();
-        return new JsonUser(file);
+        synchronized (JsonUser.MUTEX) {
+            final String content = this.json.toString(PrettyPrint.PRETTY_PRINT);
+            final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
+            writer.write(content);
+            writer.close();
+            return new JsonUser(file);
+        }
     }
 
     /**
