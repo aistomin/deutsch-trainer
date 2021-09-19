@@ -101,9 +101,10 @@ public final class JsonUser implements User {
     }
 
     @Override
-    public void changeUsername(final String username) {
+    public void changeUsername(final String username) throws IOException {
         synchronized (JsonUser.MUTEX) {
             this.json.set(JsonUser.NAME, username);
+            this.save();
         }
     }
 
@@ -135,6 +136,15 @@ public final class JsonUser implements User {
      */
     public File file() {
         return this.storage;
+    }
+
+    /**
+     * Save user to the associated file.
+     *
+     * @throws IOException If read/write error occurs.
+     */
+    private void save() throws IOException {
+        this.dump(this.storage);
     }
 
     /**

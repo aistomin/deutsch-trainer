@@ -43,8 +43,9 @@ public interface User {
      * Change username.
      *
      * @param username New username.
+     * @throws IOException If read/write error occurs.
      */
-    void changeUsername(String username);
+    void changeUsername(String username) throws IOException;
 
     /**
      * Clone the user to new file.
