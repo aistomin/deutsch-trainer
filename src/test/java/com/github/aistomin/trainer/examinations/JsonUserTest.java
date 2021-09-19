@@ -56,9 +56,11 @@ final class JsonUserTest {
 
     /**
      * Check that we can correctly change username.
+     *
+     * @throws Exception If something goes wrong.
      */
     @Test
-    void testChangeUsername() {
+    void testChangeUsername() throws Exception {
         final User usr = new JsonUser(
             new TestJsonFile(), 1L, UUID.randomUUID().toString()
         );
