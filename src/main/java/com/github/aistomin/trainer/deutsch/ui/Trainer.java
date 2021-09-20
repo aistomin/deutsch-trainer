@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -47,14 +48,10 @@ public final class Trainer {
             )
         );
         javax.swing.SwingUtilities.invokeLater(
-            () -> {
-                final JFrame frame = new TrainerFrame(
-                    "app.title", JFrame.EXIT_ON_CLOSE
-                );
-                frame.add(new MenuPane(new MainMenuActions(frame)).init());
-                frame.pack();
-                frame.setVisible(true);
-            }
+            () -> new TrainerFrame(
+                "app.title", JFrame.EXIT_ON_CLOSE,
+                new MenuPane(new MainMenuActions()).init()
+            ).setVisible(true)
         );
     }
 
@@ -65,50 +62,32 @@ public final class Trainer {
      */
     private static class MainMenuActions implements MenuController {
 
-        /**
-         * Parent frame.
-         */
-        private final JFrame frame;
-
-        /**
-         * Ctor.
-         *
-         * @param parent Parent frame.
-         */
-        MainMenuActions(final JFrame parent) {
-            this.frame = parent;
-        }
-
         @Override
         public void learnNewWords() {
-            final JFrame learn = new TrainerFrame(
-                "menu.learn.new.words", JFrame.HIDE_ON_CLOSE
-            );
-            learn.pack();
-            learn.setVisible(true);
+            new TrainerFrame(
+                "menu.learn.new.words", JFrame.HIDE_ON_CLOSE, new JPanel()
+            ).setVisible(true);
         }
 
         @Override
         public void testNewWords() {
             JOptionPane.showMessageDialog(
-                this.frame, "TODO: Test new words."
+                null, "TODO: Test new words."
             );
         }
 
         @Override
         public void testOldWords() {
             JOptionPane.showMessageDialog(
-                this.frame, "TODO: Test old words."
+                null, "TODO: Test old words."
             );
         }
 
         @Override
         public void editDictionary() {
-            final JFrame dictionary = new TrainerFrame(
-                "menu.edit.dictionary", JFrame.HIDE_ON_CLOSE
-            );
-            dictionary.pack();
-            dictionary.setVisible(true);
+            new TrainerFrame(
+                "menu.edit.dictionary", JFrame.HIDE_ON_CLOSE, new JPanel()
+            ).setVisible(true);
         }
     }
 }

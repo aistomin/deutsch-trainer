@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import java.awt.HeadlessException;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * Standard frame of the application.
@@ -40,15 +41,19 @@ public final class TrainerFrame extends JFrame {
      *
      * @param key The frame's title's localisation key.
      * @param close Default close operation.
+     * @param content The main panel of the window.
      * @throws HeadlessException If the graphical UI is not available.
      */
     @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public TrainerFrame(
         final String key,
-        final int close
+        final int close,
+        final JPanel content
     ) throws HeadlessException {
         super(new TextMessages().message(key));
         this.setDefaultCloseOperation(close);
+        this.add(content);
+        this.pack();
         this.setSize(TrainerFrame.WIDTH, TrainerFrame.HEIGHT);
         this.setLocationRelativeTo(null);
     }
