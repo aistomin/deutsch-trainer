@@ -15,6 +15,9 @@
  */
 package com.github.aistomin.trainer.deutsch.ui;
 
+import com.github.aistomin.trainer.deutsch.Dictionary;
+import com.github.aistomin.trainer.deutsch.JsonDictionary;
+import com.github.aistomin.trainer.deutsch.utils.Resources;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -47,10 +50,13 @@ public final class Trainer {
                 String.join("; ", args)
             )
         );
+        final Dictionary dictionary = new JsonDictionary(
+            Resources.find("dict.json")
+        );
         javax.swing.SwingUtilities.invokeLater(
             () -> new TrainerFrame(
                 "app.title", JFrame.EXIT_ON_CLOSE,
-                new MenuPane(new MainMenuActions()).init()
+                new MenuPane(new MainMenuActions(dictionary)).init()
             ).setVisible(true)
         );
     }
@@ -60,7 +66,21 @@ public final class Trainer {
      *
      * @since 1.0
      */
-    private static class MainMenuActions implements MenuController {
+    private static final class MainMenuActions implements MenuController {
+
+        /**
+         * Dictionary.
+         */
+        private final Dictionary dict;
+
+        /**
+         * Ctor.
+         *
+         * @param dictionary Dictionary.
+         */
+        private MainMenuActions(final Dictionary dictionary) {
+            this.dict = dictionary;
+        }
 
         @Override
         public void learnNewWords() {
@@ -86,7 +106,8 @@ public final class Trainer {
         @Override
         public void editDictionary() {
             new TrainerFrame(
-                "menu.edit.dictionary", JFrame.HIDE_ON_CLOSE, new JPanel()
+                "menu.edit.dictionary", JFrame.HIDE_ON_CLOSE,
+                new EditDictionaryPane(this.dict).init()
             ).setVisible(true);
         }
     }
