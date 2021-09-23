@@ -92,6 +92,13 @@ public abstract class LexicalUnit {
     public abstract LexicalUnit clone(Dictionary dict);
 
     /**
+     * Get the simple translation for the unit.
+     *
+     * @return The translation.
+     */
+    public abstract Translation translation();
+
+    /**
      * Unique lexical unit's identifier.
      *
      * @return Identifier.

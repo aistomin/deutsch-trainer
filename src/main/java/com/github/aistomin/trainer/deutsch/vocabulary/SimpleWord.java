@@ -166,6 +166,11 @@ public final class SimpleWord extends Word {
     }
 
     @Override
+    public Translation translation() {
+        return new Translation(this.original, this.translations.get(0));
+    }
+
+    @Override
     public Question primaryQuestion() {
         return this.questions().stream().findFirst().get();
     }

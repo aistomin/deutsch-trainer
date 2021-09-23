@@ -18,6 +18,7 @@ package com.github.aistomin.trainer.deutsch.ui;
 import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.WordsFilter;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
+import com.github.aistomin.trainer.deutsch.vocabulary.Translation;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.JPanel;
@@ -125,10 +126,9 @@ public final class EditDictionaryPane extends JPanel {
         public Object getValueAt(final int row, final int column) {
             final LexicalUnit word = this.words.get(row);
             final String id = word.identifier().toString();
+            final Translation translation = word.translation();
             final List<String> values = Arrays.asList(
-                id,
-                String.format("German %s", id),
-                String.format("English %s", id)
+                id, translation.originalText(), translation.translationText()
             );
             return values.get(column);
         }
