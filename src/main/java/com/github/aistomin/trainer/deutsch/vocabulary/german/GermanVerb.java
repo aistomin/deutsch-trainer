@@ -20,6 +20,7 @@ import com.github.aistomin.testist.Question;
 import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
+import com.github.aistomin.trainer.deutsch.vocabulary.Translation;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -137,6 +138,11 @@ public final class GermanVerb extends Word {
             this.info(),
             this.isNew()
         );
+    }
+
+    @Override
+    public Translation translation() {
+        return this.infinitive.translation();
     }
 
     @Override

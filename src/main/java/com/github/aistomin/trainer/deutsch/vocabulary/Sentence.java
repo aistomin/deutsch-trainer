@@ -140,6 +140,13 @@ public final class Sentence extends LexicalUnit {
     }
 
     @Override
+    public Translation translation() {
+        return new Translation(
+            this.original, this.translations.get(0)
+        );
+    }
+
+    @Override
     public JsonObject toJson() {
         final JsonObject json = super.toJson();
         json.set("ps", "i");
