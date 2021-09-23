@@ -123,4 +123,18 @@ final class SentenceTest {
             )
         );
     }
+
+    /**
+     * Check that we can correctly create translation and retrieve data from it.
+     */
+    @Test
+    void testTranslation() {
+        final String original = UUID.randomUUID().toString();
+        final String target = UUID.randomUUID().toString();
+        final Translation translation = new Sentence(
+            0L, original, target, "some awesome info", false
+        ).translation();
+        Assertions.assertEquals(original, translation.originalText());
+        Assertions.assertEquals(target, translation.translationText());
+    }
 }

@@ -25,6 +25,7 @@ import com.github.aistomin.trainer.deutsch.TestJsonFile;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Sentence;
 import com.github.aistomin.trainer.deutsch.vocabulary.SimpleWord;
+import com.github.aistomin.trainer.deutsch.vocabulary.Translation;
 import com.github.aistomin.trainer.deutsch.vocabulary.Word;
 import java.util.Collections;
 import java.util.stream.IntStream;
@@ -39,6 +40,11 @@ import org.junit.jupiter.api.Test;
 final class GermanVerbTest {
 
     /**
+     * The German word "gehen" -> "to go".
+     */
+    public static final String GEHEN = "gehen";
+
+    /**
      * Check that we correctly get the primary question for the verb.
      */
     @Test
@@ -48,6 +54,20 @@ final class GermanVerbTest {
             .primaryQuestion();
         question.answer(new SimpleAnswer("go"));
         Assertions.assertTrue(question.isCorrect());
+    }
+
+    /**
+     * Check that we can correctly create translation and retrieve data from it.
+     */
+    @Test
+    void testTranslation() {
+        final Translation translation = GermanVerbTest
+            .createTestVerb()
+            .translation();
+        Assertions.assertEquals(
+            GermanVerbTest.GEHEN, translation.originalText()
+        );
+        Assertions.assertEquals("go", translation.translationText());
     }
 
     /**
@@ -115,7 +135,7 @@ final class GermanVerbTest {
             0L,
             new SimpleWord(
                 1L,
-                "gehen", "go",
+                GermanVerbTest.GEHEN, "go",
                 Collections.singletonList(
                     new Sentence(Constant.TWO, "Ich gehe.", "I go.", "test1", false)
                 ), "test", false

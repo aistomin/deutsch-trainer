@@ -63,6 +63,20 @@ final class SimpleWordTest {
     }
 
     /**
+     * Check that we can correctly create translation and retrieve data from it.
+     */
+    @Test
+    void testTranslation() {
+        final String original = UUID.randomUUID().toString();
+        final String target = UUID.randomUUID().toString();
+        final Translation translation = new SimpleWord(
+            0L, original, target, new ArrayList<>(0), "some info", false
+        ).translation();
+        Assertions.assertEquals(original, translation.originalText());
+        Assertions.assertEquals(target, translation.translationText());
+    }
+
+    /**
      * Check that we properly treat questions with the several correct answers.
      */
     @Test
