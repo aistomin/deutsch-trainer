@@ -70,10 +70,9 @@ public final class EditDictionaryPane extends JPanel {
                 EditDictionaryPane.BORDER
             )
         );
-        final List<String> columns = Arrays.asList("ID", "German", "English");
         final List<LexicalUnit> words = this.dict.words(WordsFilter.ALL);
         final JTable table = new JTable(
-            new DictionaryTableModel(words, columns)
+            new DictionaryTableModel(words)
         );
         final JScrollPane content = new JScrollPane(table);
         table.setFillsViewportHeight(true);
@@ -89,27 +88,25 @@ public final class EditDictionaryPane extends JPanel {
     private static final class DictionaryTableModel extends AbstractTableModel {
 
         /**
+         * Columns' names.
+         */
+        private static final List<String> COLUMNS =
+            Arrays.asList("German", "English");
+
+        /**
          * Words.
          */
         private final List<LexicalUnit> words;
 
         /**
-         * Columns.
-         */
-        private final List<String> columns;
-
-        /**
          * Ctor.
          *
          * @param words Words.
-         * @param columns Columns.
          */
         DictionaryTableModel(
-            final List<LexicalUnit> words,
-            final List<String> columns
+            final List<LexicalUnit> words
         ) {
             this.words = words;
-            this.columns = columns;
         }
 
         @Override
@@ -119,23 +116,22 @@ public final class EditDictionaryPane extends JPanel {
 
         @Override
         public int getColumnCount() {
-            return this.columns.size();
+            return DictionaryTableModel.COLUMNS.size();
         }
 
         @Override
         public Object getValueAt(final int row, final int column) {
             final LexicalUnit word = this.words.get(row);
-            final String id = word.identifier().toString();
             final Translation translation = word.translation();
             final List<String> values = Arrays.asList(
-                id, translation.originalText(), translation.translationText()
+                translation.originalText(), translation.translationText()
             );
             return values.get(column);
         }
 
         @Override
         public String getColumnName(final int column) {
-            return this.columns.get(column);
+            return DictionaryTableModel.COLUMNS.get(column);
         }
     }
 }
