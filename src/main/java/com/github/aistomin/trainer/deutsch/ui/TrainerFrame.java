@@ -27,16 +27,6 @@ import javax.swing.JPanel;
 public final class TrainerFrame extends JFrame {
 
     /**
-     * Window's width.
-     */
-    private static final int WIDTH = 800;
-
-    /**
-     * Windows height.
-     */
-    private static final int HEIGHT = 400;
-
-    /**
      * Ctor.
      *
      * @param key The frame's title's localisation key.
@@ -54,7 +44,7 @@ public final class TrainerFrame extends JFrame {
         this.setDefaultCloseOperation(close);
         this.add(content);
         this.pack();
-        this.setSize(TrainerFrame.WIDTH, TrainerFrame.HEIGHT);
+        this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         this.setLocationRelativeTo(null);
     }
 }
