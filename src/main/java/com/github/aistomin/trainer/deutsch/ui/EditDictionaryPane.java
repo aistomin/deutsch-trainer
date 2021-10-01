@@ -20,6 +20,8 @@ import com.github.aistomin.trainer.deutsch.WordsFilter;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Translation;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -71,6 +73,9 @@ public final class EditDictionaryPane extends JPanel {
             )
         );
         final List<LexicalUnit> words = this.dict.words(WordsFilter.ALL);
+        words.sort(
+            Comparator.comparing(one -> one.translation().originalText())
+        );
         final JTable table = new JTable(
             new DictionaryTableModel(words)
         );
