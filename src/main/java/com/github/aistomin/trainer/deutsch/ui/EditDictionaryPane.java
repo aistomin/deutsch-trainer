@@ -19,8 +19,8 @@ import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.WordsFilter;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Translation;
+import java.awt.BorderLayout;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import javax.swing.JPanel;
@@ -64,6 +64,7 @@ public final class EditDictionaryPane extends JPanel {
      * @return Fully stuffed pane.
      */
     public EditDictionaryPane init() {
+        this.setLayout(new BorderLayout());
         this.setBorder(
             new EmptyBorder(
                 EditDictionaryPane.BORDER,
@@ -80,8 +81,8 @@ public final class EditDictionaryPane extends JPanel {
             new DictionaryTableModel(words)
         );
         final JScrollPane content = new JScrollPane(table);
-        table.setFillsViewportHeight(true);
         this.add(content);
+        table.setFillsViewportHeight(true);
         return this;
     }
 
