@@ -26,6 +26,7 @@ import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -86,7 +87,16 @@ public final class EditDictionaryPane extends JPanel {
         );
         table.addMouseListener(new DictionaryMouseListener(words));
         final JScrollPane content = new JScrollPane(table);
-        this.add(content);
+        this.add(content, BorderLayout.CENTER);
+        final JButton button = new JButton(
+            new TextMessages().message("edit.dictionary.add.buton.caption")
+        );
+        button.addActionListener(
+            e -> JOptionPane.showMessageDialog(
+                null, "TODO: Add new word logic."
+            )
+        );
+        this.add(button, BorderLayout.SOUTH);
         table.setFillsViewportHeight(true);
         return this;
     }
