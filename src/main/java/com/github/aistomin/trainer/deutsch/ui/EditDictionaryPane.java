@@ -20,9 +20,13 @@ import com.github.aistomin.trainer.deutsch.WordsFilter;
 import com.github.aistomin.trainer.deutsch.vocabulary.LexicalUnit;
 import com.github.aistomin.trainer.deutsch.vocabulary.Translation;
 import java.awt.BorderLayout;
+import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -80,6 +84,7 @@ public final class EditDictionaryPane extends JPanel {
         final JTable table = new JTable(
             new DictionaryTableModel(words)
         );
+        table.addMouseListener(new DictionaryMouseListener(words));
         final JScrollPane content = new JScrollPane(table);
         this.add(content);
         table.setFillsViewportHeight(true);
@@ -138,6 +143,46 @@ public final class EditDictionaryPane extends JPanel {
         @Override
         public String getColumnName(final int column) {
             return DictionaryTableModel.COLUMNS.get(column);
+        }
+    }
+
+    /**
+     * Dictionary's mouse listener.
+     *
+     * @since 1.0
+     */
+    private static final class DictionaryMouseListener extends MouseAdapter {
+
+        /**
+         * List of words.
+         */
+        private final List<LexicalUnit> list;
+
+        /**
+         * Ctor.
+         *
+         * @param words List of words.
+         */
+        private DictionaryMouseListener(final List<LexicalUnit> words) {
+            this.list = words;
+        }
+
+        @Override
+        public void mousePressed(final MouseEvent event) {
+            final JTable table = (JTable) event.getSource();
+            final Point point = event.getPoint();
+            final int row = table.rowAtPoint(point);
+            final boolean selected = event.getClickCount() == 2
+                && table.getSelectedRow() != -1;
+            if (selected) {
+                JOptionPane.showMessageDialog(
+                    null,
+                    String.format(
+                        "Edit the word \"%s\"",
+                        this.list.get(row).translation().originalText()
+                    )
+                );
+            }
         }
     }
 }
