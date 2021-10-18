@@ -18,6 +18,10 @@ package com.github.aistomin.trainer.deutsch.ui;
 import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -83,32 +87,65 @@ public final class Trainer {
         }
 
         @Override
-        public void learnNewWords() {
+        public void learnNewWords(final ActionEvent event) {
             new TrainerFrame(
                 "menu.learn.new.words", JFrame.HIDE_ON_CLOSE, new JPanel()
             ).setVisible(true);
         }
 
         @Override
-        public void testNewWords() {
+        public void testNewWords(final ActionEvent event) {
             JOptionPane.showMessageDialog(
                 null, "TODO: Test new words."
             );
         }
 
         @Override
-        public void testOldWords() {
+        public void testOldWords(final ActionEvent event) {
             JOptionPane.showMessageDialog(
                 null, "TODO: Test old words."
             );
         }
 
         @Override
-        public void editDictionary() {
-            new TrainerFrame(
+        public void editDictionary(final ActionEvent event) {
+            final JButton btn = (JButton) event.getSource();
+            btn.setEnabled(false);
+            final TrainerFrame frame = new TrainerFrame(
                 "menu.edit.dictionary", JFrame.HIDE_ON_CLOSE,
                 new EditDictionaryPane(this.dict).init()
-            ).setVisible(true);
+            );
+            frame.addWindowListener(new TrainerWindowAdapter(btn));
+            frame.setVisible(true);
+        }
+
+        /**
+         * The trainer windows adapter. The mission of the class is to enable
+         * the button after window is displayed.
+         *
+         * @since 1.0
+         */
+        private static class TrainerWindowAdapter extends WindowAdapter {
+
+            /**
+             * Button that opened the window.
+             */
+            private final JButton btn;
+
+            /**
+             * Ctor.
+             *
+             * @param button Button that opened the window.
+             */
+            TrainerWindowAdapter(final JButton button) {
+                this.btn = button;
+            }
+
+            @Override
+            public void windowActivated(final WindowEvent wev) {
+                super.windowActivated(wev);
+                this.btn.setEnabled(true);
+            }
         }
     }
 }

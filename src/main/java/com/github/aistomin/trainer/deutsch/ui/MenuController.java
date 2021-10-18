@@ -15,6 +15,8 @@
  */
 package com.github.aistomin.trainer.deutsch.ui;
 
+import java.awt.event.ActionEvent;
+
 /**
  * Controller that contains all the main menu actions.
  *
@@ -24,21 +26,29 @@ public interface MenuController {
 
     /**
      * The "Learn new words" menu action.
+     *
+     * @param event Action event.
      */
-    void learnNewWords();
+    void learnNewWords(ActionEvent event);
 
     /**
      * The "Test new words" menu action.
+     *
+     * @param event Action event.
      */
-    void testNewWords();
+    void testNewWords(ActionEvent event);
 
     /**
      * The "Test old words" menu action.
+     *
+     * @param event Action event.
      */
-    void testOldWords();
+    void testOldWords(ActionEvent event);
 
     /**
      * The "Edit dictionary" menu action.
+     *
+     * @param event Action event.
      */
-    void editDictionary();
+    void editDictionary(ActionEvent event);
 }
