@@ -142,8 +142,8 @@ public final class Trainer {
             }
 
             @Override
-            public void windowActivated(final WindowEvent wev) {
-                super.windowActivated(wev);
+            public void windowClosing(final WindowEvent wev) {
+                super.windowClosing(wev);
                 this.btn.setEnabled(true);
             }
         }
