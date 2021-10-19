@@ -83,7 +83,7 @@ public final class MenuPane extends JPanel {
             MenuPane.createButton(
                 "btnLearnNewWords",
                 "menu.learn.new.words",
-                event -> this.actions.learnNewWords()
+                event -> this.actions.learnNewWords(event)
             ),
             gbc
         );
@@ -91,7 +91,7 @@ public final class MenuPane extends JPanel {
             MenuPane.createButton(
                 "btnTestNewWords",
                 "menu.test.new.words",
-                event -> this.actions.testNewWords()
+                event -> this.actions.testNewWords(event)
             ),
             gbc
         );
@@ -99,7 +99,7 @@ public final class MenuPane extends JPanel {
             MenuPane.createButton(
                 "btnTestOldWords",
                 "menu.test.old.words",
-                event -> this.actions.testOldWords()
+                event -> this.actions.testOldWords(event)
                 ),
             gbc
         );
@@ -107,7 +107,7 @@ public final class MenuPane extends JPanel {
             MenuPane.createButton(
                 "btnEditDictionary",
                 "menu.edit.dictionary",
-                event -> this.actions.editDictionary()
+                event -> this.actions.editDictionary(event)
             ),
             gbc
         );
