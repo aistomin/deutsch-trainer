@@ -60,7 +60,7 @@ public final class Trainer {
         javax.swing.SwingUtilities.invokeLater(
             () -> new TrainerFrame(
                 "app.title", JFrame.EXIT_ON_CLOSE,
-                new MenuPane(new MainMenuActions(dictionary)).init()
+                new MenuPane(new MainMenuActions(dictionary)).init(), false
             ).setVisible(true)
         );
     }
@@ -89,7 +89,7 @@ public final class Trainer {
         @Override
         public void learnNewWords(final ActionEvent event) {
             new TrainerFrame(
-                "menu.learn.new.words", JFrame.HIDE_ON_CLOSE, new JPanel()
+                "menu.learn.new.words", JFrame.HIDE_ON_CLOSE, new JPanel(), true
             ).setVisible(true);
         }
 
@@ -113,7 +113,7 @@ public final class Trainer {
             btn.setEnabled(false);
             final TrainerFrame frame = new TrainerFrame(
                 "menu.edit.dictionary", JFrame.HIDE_ON_CLOSE,
-                new EditDictionaryPane(this.dict).init()
+                new EditDictionaryPane(this.dict).init(), true
             );
             frame.addWindowListener(new TrainerWindowAdapter(btn));
             frame.setVisible(true);
