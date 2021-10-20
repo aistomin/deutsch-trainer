@@ -32,16 +32,20 @@ public final class TrainerFrame extends JFrame {
      * @param key The frame's title's localisation key.
      * @param close Default close operation.
      * @param content The main panel of the window.
+     * @param modal Is the window modal?
      * @throws HeadlessException If the graphical UI is not available.
+     * @checkstyle ParameterNumberCheck (100 lines)
      */
     @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public TrainerFrame(
         final String key,
         final int close,
-        final JPanel content
+        final JPanel content,
+        final Boolean modal
     ) throws HeadlessException {
         super(new TextMessages().message(key));
         this.setDefaultCloseOperation(close);
+        this.setAlwaysOnTop(modal);
         this.add(content);
         this.pack();
         this.setExtendedState(this.getExtendedState() | JFrame.MAXIMIZED_BOTH);
