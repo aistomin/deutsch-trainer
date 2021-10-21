@@ -21,10 +21,17 @@ import com.github.aistomin.trainer.deutsch.utils.Resources;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.jooq.Record;
+import org.jooq.Result;
+import org.jooq.SQLDialect;
+import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -54,6 +61,7 @@ public final class Trainer {
                 String.join("; ", args)
             )
         );
+        Trainer.connectToDb(logger);
         final Dictionary dictionary = new JsonDictionary(
             Resources.find("dict.json")
         );
@@ -63,6 +71,33 @@ public final class Trainer {
                 new MenuPane(new MainMenuActions(dictionary)).init(), false
             ).setVisible(true)
         );
+    }
+
+    /**
+     * Connect to the database.
+     *
+     * @param logger Logger.
+     */
+    private static void connectToDb(final Logger logger) {
+        final String root = "root";
+        try (
+            Connection conn =
+                DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/deutsch_trainer",
+                    root,
+                    root
+                )
+        ) {
+            final Result<Record> result = DSL.using(conn, SQLDialect.POSTGRES)
+                .select()
+                .from("select * from dummy")
+                .fetch();
+            for (final Record record : result) {
+                logger.info("record.formatCSV() = {}", record.formatCSV());
+            }
+        } catch (final SQLException error) {
+            logger.error("Something is wrong.", error);
+        }
     }
 
     /**
