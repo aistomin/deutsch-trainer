@@ -21,10 +21,18 @@ import com.github.aistomin.trainer.deutsch.utils.Resources;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import org.jooq.Record;
+import org.jooq.Result;
+import org.jooq.SQLDialect;
+import org.jooq.codegen.maven.example.tables.DtUser;
+import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -95,9 +103,29 @@ public final class Trainer {
 
         @Override
         public void testNewWords(final ActionEvent event) {
-            JOptionPane.showMessageDialog(
-                null, "TODO: Test new words."
-            );
+            final Logger logger = LoggerFactory.getLogger(Trainer.class);
+            final String root = "root";
+            try (
+                Connection conn = DriverManager.getConnection(
+                    "jdbc:postgresql://localhost:5432/deutsch_trainer", root, root
+                )
+            ) {
+                final Result<Record> result = DSL.using(conn, SQLDialect.POSTGRES)
+                    .select()
+                    .from(DtUser.DT_USER)
+                    .fetch();
+                for (final Record record : result) {
+                    logger.info(
+                        String.format(
+                            "Record: %d, %s",
+                            record.getValue(DtUser.DT_USER.ID),
+                            record.getValue(DtUser.DT_USER.USERNAME)
+                        )
+                    );
+                }
+            } catch (final SQLException error) {
+                LoggerFactory.getLogger(Trainer.class).error("Error.", error);
+            }
         }
 
         @Override
