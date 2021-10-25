@@ -17,7 +17,7 @@ before_script:
   - sleep 3
 before_install:
   - psql -c 'create database deutsch_trainer;' -U postgres
-  - psql deutsch_trainer -d deutsch_trainer -f -a ./database/db.sql
+  - psql deutsch_trainer -U postgres -d deutsch_trainer -f -a ./database/db.sql
   - sudo apt-get install xvfb
 install: mvn install -DskipTests=true -Dgpg.skip=true -Dpg_user=postgres
 script: ./build.sh
