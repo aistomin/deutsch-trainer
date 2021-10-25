@@ -13,6 +13,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junitVersion>5.8.1</junitVersion>
         <slf4j.version>2.0.0-alpha5</slf4j.version>
+        <postgres.username>${pg_user}</postgres.username>
+        <postgres.password>${pg_pass}</postgres.password>
     </properties>
     <dependencies>
         <dependency>
@@ -227,8 +229,8 @@
                     <jdbc>
                         <driver>org.postgresql.Driver</driver>
                         <url>jdbc:postgresql://localhost:5432/deutsch_trainer</url>
-                        <user>root</user>
-                        <password>root</password>
+                        <user>${postgres.username}</user>
+                        <password>${postgres.password}}</password>
                     </jdbc>
                     <generator>
                         <database>

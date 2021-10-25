@@ -2,6 +2,8 @@ dist: trusty
 language: java
 jdk:
   - oraclejdk15
+services:
+  - postgresql
 branches:
   only:
     - master
@@ -13,8 +15,11 @@ env:
 before_script:
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- $DISPLAY -ac -screen 0 1280x1024x24"
   - sleep 3
-before_install: sudo apt-get install xvfb
-install: mvn install -DskipTests=true -Dgpg.skip=true
+before_install:
+  - psql -c 'create database deutsch_trainer;' -U postgres
+  - psql deutsch_trainer -U postgres -d deutsch_trainer -f ./database/db.sql
+  - sudo apt-get install xvfb
+install: mvn install -DskipTests=true -Dgpg.skip=true -Dpg_user=postgres
 script: ./build.sh
 addons:
   apt:
