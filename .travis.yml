@@ -13,10 +13,11 @@ env:
     - CODECOV_TOKEN="7107ca4b-77ea-4f90-b04e-ecaab2598d0e"
     - DISPLAY=:99
 before_script:
-  - psql -c 'create database deutsch_trainer;' -U postgres
   - "/sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- $DISPLAY -ac -screen 0 1280x1024x24"
   - sleep 3
-before_install: sudo apt-get install xvfb
+before_install:
+  - psql -c 'create database deutsch_trainer;' -U postgres
+  - sudo apt-get install xvfb
 install: mvn install -DskipTests=true -Dgpg.skip=true -Dpg_user=postgres
 script: ./build.sh
 addons:
