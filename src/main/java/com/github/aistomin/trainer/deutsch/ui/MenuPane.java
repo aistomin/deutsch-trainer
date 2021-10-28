@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.trainer.deutsch.ui;
 
+import com.github.aistomin.trainer.examinations.User;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionListener;
@@ -42,12 +43,19 @@ public final class MenuPane extends JPanel {
     private final MenuController actions;
 
     /**
+     * Current user.
+     */
+    private final User usr;
+
+    /**
      * Ctor.
      *
      * @param controller Main menu controller.
+     * @param user Current user.
      */
-    public MenuPane(final MenuController controller) {
+    public MenuPane(final MenuController controller, final User user) {
         this.actions = controller;
+        this.usr = user;
     }
 
     /**
@@ -71,7 +79,7 @@ public final class MenuPane extends JPanel {
         final JLabel label = new JLabel(
             String.format(
                 new TextMessages().message("app.greeting"),
-                new CurrentUser().username()
+                this.usr.username()
             )
         );
         label.setName("lblTitle");
@@ -83,7 +91,7 @@ public final class MenuPane extends JPanel {
             MenuPane.createButton(
                 "btnLearnNewWords",
                 "menu.learn.new.words",
-                event -> this.actions.learnNewWords(event)
+                this.actions::learnNewWords
             ),
             gbc
         );
@@ -91,7 +99,7 @@ public final class MenuPane extends JPanel {
             MenuPane.createButton(
                 "btnTestNewWords",
                 "menu.test.new.words",
-                event -> this.actions.testNewWords(event)
+                this.actions::testNewWords
             ),
             gbc
         );
@@ -99,7 +107,7 @@ public final class MenuPane extends JPanel {
             MenuPane.createButton(
                 "btnTestOldWords",
                 "menu.test.old.words",
-                event -> this.actions.testOldWords(event)
+                this.actions::testOldWords
                 ),
             gbc
         );
@@ -107,7 +115,7 @@ public final class MenuPane extends JPanel {
             MenuPane.createButton(
                 "btnEditDictionary",
                 "menu.edit.dictionary",
-                event -> this.actions.editDictionary(event)
+                this.actions::editDictionary
             ),
             gbc
         );
