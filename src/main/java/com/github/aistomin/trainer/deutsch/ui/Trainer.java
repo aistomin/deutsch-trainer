@@ -18,9 +18,12 @@ package com.github.aistomin.trainer.deutsch.ui;
 import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
+import com.github.aistomin.trainer.examinations.JsonUser;
+import com.github.aistomin.trainer.examinations.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.File;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -62,13 +65,24 @@ public final class Trainer {
                 String.join("; ", args)
             )
         );
-        final Dictionary dictionary = new JsonDictionary(
-            Resources.find("dict.json")
-        );
+        final Dictionary dictionary;
+        final User user;
+        if (args.length > 0) {
+            dictionary = new JsonDictionary(
+                new File(String.format("%s/dict.json", new File(args[0])))
+            );
+            user = new JsonUser(
+                new File(String.format("%s/user.json", new File(args[0])))
+            );
+        } else {
+            dictionary = new JsonDictionary(Resources.find("dict.json"));
+            user = new CurrentUser();
+        }
         javax.swing.SwingUtilities.invokeLater(
             () -> new TrainerFrame(
                 "app.title", JFrame.EXIT_ON_CLOSE,
-                new MenuPane(new MainMenuActions(dictionary)).init(), false
+                new MenuPane(new MainMenuActions(dictionary), user).init(),
+                false
             ).setVisible(true)
         );
     }
