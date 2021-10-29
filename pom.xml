@@ -145,30 +145,6 @@
                 </executions>
             </plugin>
             <plugin>
-                <groupId>com.qulice</groupId>
-                <artifactId>qulice-maven-plugin</artifactId>
-                <version>0.18.19</version>
-                <configuration>
-                    <license>file:${basedir}/LICENSE</license>
-                    <excludes>
-                        <exclude>checkstyle:/src/main/java/org/.*</exclude>
-                        <exclude>pmd:/src/main/java/org/.*</exclude>
-                        <exclude>pmd:~org.jooq.*</exclude>
-                        <exclude>duplicatefinder:/src/main/java/org/.*</exclude>
-                        <exclude>duplicatefinder:~org.jooq.*</exclude>
-                        <exclude>findbugs:~org.jooq.*</exclude>
-                        <exclude>findbugs:~com.github.aistomin.*</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>check</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-            <plugin>
                 <groupId>com.github.spotbugs</groupId>
                 <artifactId>spotbugs-maven-plugin</artifactId>
                 <version>4.4.2.2</version>
