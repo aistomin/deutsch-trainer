@@ -61,7 +61,6 @@ public final class SimpleWord extends Word {
      * @param examples Examples of the word usages.
      * @param info Some additional free-text information.
      * @param nword Is the unit a new word?
-     * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SimpleWord(
         final Long id,
@@ -83,7 +82,6 @@ public final class SimpleWord extends Word {
      * @param examples Examples of the word usages.
      * @param info Some additional free-text information.
      * @param nword Is the unit a new word?
-     * @checkstyle ParameterNumberCheck (10 lines)
      */
     public SimpleWord(
         final Long id,
@@ -114,7 +112,8 @@ public final class SimpleWord extends Word {
             StreamSupport.stream(obj.get("ex").asArray().spliterator(), false)
                 .map(item -> new Sentence(item.asObject()))
                 .collect(Collectors.toList()),
-            SimpleWord.parseInfo(obj), obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
+            SimpleWord.parseInfo(obj),
+            obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
         );
     }
 

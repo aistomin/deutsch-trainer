@@ -34,9 +34,7 @@ public final class TrainerFrame extends JFrame {
      * @param content The main panel of the window.
      * @param modal Is the window modal?
      * @throws HeadlessException If the graphical UI is not available.
-     * @checkstyle ParameterNumberCheck (100 lines)
      */
-    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
     public TrainerFrame(
         final String key,
         final int close,

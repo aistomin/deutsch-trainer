@@ -67,25 +67,24 @@ public final class GermanVerb extends Word {
     /**
      * Ctor.
      * @param id Unique unit's identifier.
-     * @param infinitive Infinitive form of the verb.
-     * @param preterite Preterite form of the verb.
-     * @param perfect Perfect form of the verb.
+     * @param inf Infinitive form of the verb.
+     * @param pret Preterite form of the verb.
+     * @param perf Perfect form of the verb.
      * @param info Some additional free-text information.
      * @param nword Is the unit a new word?
-     * @checkstyle ParameterNumberCheck (10 lines)
      */
     public GermanVerb(
         final Long id,
-        final LexicalUnit infinitive,
-        final LexicalUnit preterite,
-        final LexicalUnit perfect,
+        final LexicalUnit inf,
+        final LexicalUnit pret,
+        final LexicalUnit perf,
         final String info,
         final Boolean nword
     ) {
         super(id, info, nword);
-        this.infinitive = infinitive;
-        this.preterite = preterite;
-        this.perfect = perfect;
+        this.infinitive = inf;
+        this.preterite = pret;
+        this.perfect = perf;
     }
 
     /**
@@ -99,7 +98,8 @@ public final class GermanVerb extends Word {
             new SimpleWord(obj.get(GermanVerb.INFINITIVE).asObject()),
             new SimpleWord(obj.get(GermanVerb.PRETERITE).asObject()),
             new SimpleWord(obj.get(GermanVerb.PERFECT).asObject()),
-            GermanVerb.parseInfo(obj), obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
+            GermanVerb.parseInfo(obj),
+            obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
         );
     }
 

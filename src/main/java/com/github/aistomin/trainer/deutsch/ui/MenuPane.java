@@ -28,7 +28,6 @@ import javax.swing.border.EmptyBorder;
  * Main menu UI.
  *
  * @since 1.0
- * @checkstyle ClassDataAbstractionCouplingCheck (1000 lines)
  */
 public final class MenuPane extends JPanel {
 

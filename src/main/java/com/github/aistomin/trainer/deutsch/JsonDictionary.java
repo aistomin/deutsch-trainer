@@ -42,9 +42,7 @@ import java.util.stream.StreamSupport;
  * Dictionary that uses JSON file as a data provider.
  *
  * @since 1.0
- * @checkstyle ClassDataAbstractionCouplingCheck (1000 lines)
  */
-@SuppressWarnings("PMD.TooManyMethods")
 public final class JsonDictionary implements Dictionary {
 
     /**
@@ -80,23 +78,22 @@ public final class JsonDictionary implements Dictionary {
     /**
      * Ctor.
      *
-     * @param source JSON file.
+     * @param src JSON file.
      */
-    public JsonDictionary(final File source) {
-        this(source, "v1.0");
+    public JsonDictionary(final File src) {
+        this(src, "v1.0");
     }
 
     /**
      * Ctor.
      *
-     * @param source JSON file.
+     * @param src JSON file.
      * @param version Dictionary version.
      */
-    @SuppressWarnings("PMD.ConstructorOnlyInitializesOrCallOtherConstructors")
-    public JsonDictionary(final File source, final String version) {
+    public JsonDictionary(final File src, final String version) {
         this.generator = new AtomicLong(-1);
-        this.source = source;
-        if (source.exists()) {
+        this.source = src;
+        if (src.exists()) {
             this.dict = this.originalJson();
         } else {
             final JsonObject obj = new JsonObject();
@@ -151,7 +148,9 @@ public final class JsonDictionary implements Dictionary {
                                 "We do not support nouns for now."
                             );
                         default:
-                            throw new IllegalStateException("Wrong file format.");
+                            throw new IllegalStateException(
+                                "Wrong file format."
+                            );
                     }
                     return res;
                 }
@@ -214,7 +213,8 @@ public final class JsonDictionary implements Dictionary {
     public Dictionary dump(final File file) throws IOException {
         synchronized (JsonDictionary.MUTEX) {
             final String json = this.dict.toString(PrettyPrint.PRETTY_PRINT);
-            final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
+            final BufferedWriter writer =
+                Files.newBufferedWriter(file.toPath());
             writer.write(json);
             writer.close();
             return new JsonDictionary(file);
@@ -257,7 +257,9 @@ public final class JsonDictionary implements Dictionary {
         synchronized (JsonDictionary.MUTEX) {
             final Optional<LexicalUnit> found = this.words(WordsFilter.ALL)
                 .stream()
-                .filter(unit -> unit.identifier().equals(replacement.identifier()))
+                .filter(
+                    unit -> unit.identifier().equals(replacement.identifier())
+                )
                 .findAny();
             if (found.isPresent()) {
                 this.delete(found.get());
@@ -309,8 +311,11 @@ public final class JsonDictionary implements Dictionary {
                     this.source.getParent(),
                     String.format("%s_bk", this.source.getName())
                 );
-                final BufferedWriter writer = Files.newBufferedWriter(backup.toPath());
-                writer.write(this.originalJson().toString(PrettyPrint.PRETTY_PRINT));
+                final BufferedWriter writer =
+                    Files.newBufferedWriter(backup.toPath());
+                writer.write(
+                    this.originalJson().toString(PrettyPrint.PRETTY_PRINT)
+                );
                 writer.close();
             } else {
                 if (!this.source.createNewFile()) {

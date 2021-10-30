@@ -121,10 +121,12 @@ public final class Trainer {
             final String root = "root";
             try (
                 Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/deutsch_trainer", root, root
+                    "jdbc:postgresql://localhost:5432/deutsch_trainer", root,
+                    root
                 )
             ) {
-                final Result<Record> result = DSL.using(conn, SQLDialect.POSTGRES)
+                final Result<Record> result =
+                    DSL.using(conn, SQLDialect.POSTGRES)
                     .select()
                     .from(DtUser.DT_USER)
                     .fetch();
