@@ -56,7 +56,6 @@ public final class Sentence extends LexicalUnit {
      * @param mine The sentence in the student's language.
      * @param info Some additional free-text information.
      * @param nword Is the unit a new word?
-     * @checkstyle ParameterNumberCheck (10 lines)
      */
     public Sentence(
         final Long id, final String their, final String mine, final String info,
@@ -73,7 +72,6 @@ public final class Sentence extends LexicalUnit {
      * @param mine The correct translations in the student's language.
      * @param info Some additional free-text information.
      * @param nword Is the unit a new word?
-     * @checkstyle ParameterNumberCheck (10 lines)
      */
     public Sentence(
         final Long id, final String their, final List<String> mine,
@@ -95,7 +93,8 @@ public final class Sentence extends LexicalUnit {
             obj.get("o").asString(),
             StreamSupport.stream(obj.get("t").asArray().spliterator(), false)
                 .map(JsonValue::asString).collect(Collectors.toList()),
-            Sentence.parseInfo(obj), obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
+            Sentence.parseInfo(obj),
+            obj.getBoolean(LexicalUnit.IS_NEW_FIELD, false)
         );
     }
 

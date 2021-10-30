@@ -38,7 +38,6 @@ import javax.swing.table.AbstractTableModel;
  * Main menu UI.
  *
  * @since 1.0
- * @checkstyle ClassDataAbstractionCouplingCheck (1000 lines)
  */
 public final class EditDictionaryPane extends JPanel {
 
@@ -122,12 +121,12 @@ public final class EditDictionaryPane extends JPanel {
         /**
          * Ctor.
          *
-         * @param words Words.
+         * @param units Words.
          */
         DictionaryTableModel(
-            final List<LexicalUnit> words
+            final List<LexicalUnit> units
         ) {
-            this.words = words;
+            this.words = units;
         }
 
         @Override

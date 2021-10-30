@@ -72,7 +72,9 @@ public final class Questions implements QuestionsProvider {
             final List<LexicalUnit> words = dict.words(this.filter);
             final List<Question> questions =
                 words.get(rand.nextInt(words.size())).questions();
-            final Question question = questions.get(rand.nextInt(questions.size()));
+            final Question question = questions.get(
+                rand.nextInt(questions.size())
+            );
             if (!result.contains(question)) {
                 result.add(question);
                 index.set(index.get() + 1);

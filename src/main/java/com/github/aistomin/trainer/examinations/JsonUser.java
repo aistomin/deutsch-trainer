@@ -122,7 +122,8 @@ public final class JsonUser implements User {
     public User dump(final File file) throws IOException {
         synchronized (JsonUser.MUTEX) {
             final String content = this.json.toString(PrettyPrint.PRETTY_PRINT);
-            final BufferedWriter writer = Files.newBufferedWriter(file.toPath());
+            final BufferedWriter writer =
+                Files.newBufferedWriter(file.toPath());
             writer.write(content);
             writer.close();
             return new JsonUser(file);

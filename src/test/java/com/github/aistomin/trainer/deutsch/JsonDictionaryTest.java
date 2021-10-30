@@ -34,9 +34,7 @@ import org.junit.jupiter.api.Test;
  * Test for {@link JsonDictionary}.
  *
  * @since 1.0
- * @checkstyle ClassDataAbstractionCouplingCheck (1000 lines)
  */
-@SuppressWarnings("PMD.TooManyMethods")
 final class JsonDictionaryTest {
 
     /**
