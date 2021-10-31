@@ -4,3 +4,4 @@ status:
       target: 80%
 ignore:
   - "src/main/java/org/*"
+  - "src/main/java/com.github/aistomin/trainer/deutsch/ui/*"
