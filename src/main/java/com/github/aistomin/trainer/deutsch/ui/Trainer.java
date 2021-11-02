@@ -17,6 +17,7 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
+import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
 import com.github.aistomin.trainer.examinations.JsonUser;
 import com.github.aistomin.trainer.examinations.User;
@@ -118,11 +119,11 @@ public final class Trainer {
         @Override
         public void testNewWords(final ActionEvent event) {
             final Logger logger = LoggerFactory.getLogger(Trainer.class);
+            final Configurations.Db database = new Configurations().database();
             final String root = "root";
             try (
                 Connection conn = DriverManager.getConnection(
-                    "jdbc:postgresql://localhost:5432/deutsch_trainer", root,
-                    root
+                    database.url(), database.username(), database.password()
                 )
             ) {
                 final Result<Record> result =
