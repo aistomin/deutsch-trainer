@@ -17,7 +17,6 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
-import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
 import com.github.aistomin.trainer.examinations.JsonUser;
 import com.github.aistomin.trainer.examinations.User;
@@ -25,18 +24,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.File;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import org.jooq.Record;
-import org.jooq.Result;
-import org.jooq.SQLDialect;
-import org.jooq.codegen.maven.example.tables.DtUser;
-import org.jooq.impl.DSL;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -118,31 +109,9 @@ public final class Trainer {
 
         @Override
         public void testNewWords(final ActionEvent event) {
-            final Logger logger = LoggerFactory.getLogger(Trainer.class);
-            final Configurations.Db database = new Configurations().database();
-            final String root = "root";
-            try (
-                Connection conn = DriverManager.getConnection(
-                    database.url(), database.username(), database.password()
-                )
-            ) {
-                final Result<Record> result =
-                    DSL.using(conn, SQLDialect.POSTGRES)
-                    .select()
-                    .from(DtUser.DT_USER)
-                    .fetch();
-                for (final Record record : result) {
-                    logger.info(
-                        String.format(
-                            "Record: %d, %s",
-                            record.getValue(DtUser.DT_USER.ID),
-                            record.getValue(DtUser.DT_USER.USERNAME)
-                        )
-                    );
-                }
-            } catch (final SQLException error) {
-                LoggerFactory.getLogger(Trainer.class).error("Error.", error);
-            }
+            JOptionPane.showMessageDialog(
+                null, "TODO: Test new words."
+            );
         }
 
         @Override

@@ -15,14 +15,20 @@
  */
 package com.github.aistomin.trainer.examinations;
 
+import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import org.jooq.SQLDialect;
+import org.jooq.codegen.maven.example.tables.DtUser;
+import org.jooq.impl.DSL;
 
 /**
  * User implementation that takes data from the database.
  *
  * @since 1.0
- * @todo: Let's solve issue #255 and remove this TODO.
  * @todo: Let's solve issue #256 and remove this TODO.
  * @todo: Let's solve issue #257 and remove this TODO.
  */
@@ -30,7 +36,19 @@ public final class DTUser implements User {
 
     @Override
     public Long identifier() {
-        return null;
+        final Configurations.Db database = new Configurations().database();
+        try (
+            Connection conn = DriverManager.getConnection(
+                database.url(), database.username(), database.password()
+            )
+        ) {
+            return DSL.using(conn, SQLDialect.POSTGRES)
+                    .select()
+                    .from(DtUser.DT_USER)
+                    .fetch().get(0).getValue(DtUser.DT_USER.ID);
+        } catch (final SQLException error) {
+            throw new RuntimeException(error);
+        }
     }
 
     @Override
