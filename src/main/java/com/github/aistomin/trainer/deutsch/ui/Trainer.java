@@ -18,6 +18,7 @@ package com.github.aistomin.trainer.deutsch.ui;
 import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
+import com.github.aistomin.trainer.examinations.DTUser;
 import com.github.aistomin.trainer.examinations.JsonUser;
 import com.github.aistomin.trainer.examinations.User;
 import java.awt.event.ActionEvent;

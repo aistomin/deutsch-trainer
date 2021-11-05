@@ -30,7 +30,6 @@ import org.jooq.impl.DSL;
  * User implementation that takes data from the database.
  *
  * @since 1.0
- * @todo: Let's solve issue #257 and remove this TODO.
  */
 public final class DTUser implements User {
 
@@ -46,6 +45,8 @@ public final class DTUser implements User {
 
     @Override
     public void changeUsername(final String username) throws IOException {
+        final Record record = this.load();
+        record.setValue(DtUser.DT_USER.USERNAME, username);
     }
 
     @Override
