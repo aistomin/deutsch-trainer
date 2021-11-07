@@ -15,16 +15,10 @@
  */
 package com.github.aistomin.trainer.examinations;
 
-import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import java.io.File;
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import org.jooq.Record;
-import org.jooq.SQLDialect;
 import org.jooq.codegen.maven.example.tables.DtUser;
-import org.jooq.impl.DSL;
 
 /**
  * User implementation that takes data from the database.
@@ -33,20 +27,33 @@ import org.jooq.impl.DSL;
  */
 public final class DTUser implements User {
 
+    /**
+     * Database record.
+     */
+    private final Record rec;
+
+    /**
+     * Ctor.
+     *
+     * @param record Database record.
+     */
+    public DTUser(final Record record) {
+        this.rec = record;
+    }
+
     @Override
     public Long identifier() {
-        return this.load().getValue(DtUser.DT_USER.ID);
+        return this.rec.getValue(DtUser.DT_USER.ID);
     }
 
     @Override
     public String username() {
-        return this.load().getValue(DtUser.DT_USER.USERNAME);
+        return this.rec.getValue(DtUser.DT_USER.USERNAME);
     }
 
     @Override
     public void changeUsername(final String username) throws IOException {
-        final Record record = this.load();
-        record.setValue(DtUser.DT_USER.USERNAME, username);
+        this.rec.setValue(DtUser.DT_USER.USERNAME, username);
     }
 
     @Override
@@ -62,28 +69,5 @@ public final class DTUser implements User {
     @Override
     public User dump(final File file) throws IOException {
         return null;
-    }
-
-    /**
-     * Load user record from the database.
-     *
-     * @return User's record.
-     */
-    private Record load() {
-        final Record record;
-        final Configurations.Db database = new Configurations().database();
-        try (
-            Connection conn = DriverManager.getConnection(
-                database.url(), database.username(), database.password()
-            )
-        ) {
-            record = DSL.using(conn, SQLDialect.POSTGRES)
-                .select()
-                .from(DtUser.DT_USER)
-                .fetch().get(0);
-        } catch (final SQLException error) {
-            throw new RuntimeException(error);
-        }
-        return record;
     }
 }

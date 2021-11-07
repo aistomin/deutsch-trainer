@@ -17,8 +17,9 @@ package com.github.aistomin.trainer.deutsch.ui;
 
 import com.github.aistomin.trainer.deutsch.Dictionary;
 import com.github.aistomin.trainer.deutsch.JsonDictionary;
+import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import com.github.aistomin.trainer.deutsch.utils.Resources;
-import com.github.aistomin.trainer.examinations.DTUser;
+import com.github.aistomin.trainer.examinations.DTUsers;
 import com.github.aistomin.trainer.examinations.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.WindowAdapter;
@@ -58,7 +59,9 @@ public final class Trainer {
             )
         );
         final Dictionary dictionary;
-        final User user = new DTUser();
+        final User user = new DTUsers(
+            new Configurations().database()
+        ).currentUser();
         if (args.length > 0) {
             dictionary = new JsonDictionary(
                 new File(String.format("%s/dict.json", new File(args[0])))
