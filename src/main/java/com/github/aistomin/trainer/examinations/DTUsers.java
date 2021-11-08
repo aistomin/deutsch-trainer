@@ -22,6 +22,7 @@ import java.sql.SQLException;
 import org.jooq.Record;
 import org.jooq.SQLDialect;
 import org.jooq.codegen.maven.example.tables.DtUser;
+import org.jooq.codegen.maven.example.tables.records.DtUserRecord;
 import org.jooq.impl.DSL;
 
 /**
@@ -45,25 +46,37 @@ public final class DTUsers implements Users {
         this.db = database;
     }
 
-    /**
-     * Load current user record from the database.
-     *
-     * @return User's record.
-     */
+    @Override
     public User currentUser() {
-        final Record record;
         try (
             Connection conn = DriverManager.getConnection(
                 this.db.url(), this.db.username(), this.db.password()
             )
         ) {
-            record = DSL.using(conn, SQLDialect.POSTGRES)
+            final Record record = DSL.using(conn, SQLDialect.POSTGRES)
                 .select()
                 .from(DtUser.DT_USER)
                 .fetch().get(0);
+            return new DTUser(record);
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
-        return new DTUser(record);
+    }
+
+    @Override
+    public User createUser(final String username, final String password) {
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.db.url(), this.db.username(), this.db.password()
+            )
+        ) {
+            final DtUserRecord record = DSL.using(conn, SQLDialect.POSTGRES)
+                .newRecord(DtUser.DT_USER);
+            record.setUsername(username);
+            record.setPassword(password);
+            return new DTUser(record);
+        } catch (final SQLException error) {
+            throw new RuntimeException(error);
+        }
     }
 }
