@@ -28,4 +28,13 @@ public interface Users {
      * @return User's record.
      */
     User currentUser();
+
+    /**
+     * Create user with username.
+     *
+     * @param username Username.
+     * @param password Password.
+     * @return Created user.
+     */
+    User createUser(String username, String password);
 }
