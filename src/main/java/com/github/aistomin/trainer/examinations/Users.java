@@ -15,6 +15,8 @@
  */
 package com.github.aistomin.trainer.examinations;
 
+import java.util.List;
+
 /**
  * Users interface.
  *
@@ -37,4 +39,11 @@ public interface Users {
      * @return Created user.
      */
     User createUser(String username, String password);
+
+    /**
+     * Load all the users from the database.
+     *
+     * @return All the users.
+     */
+    List<User> all();
 }

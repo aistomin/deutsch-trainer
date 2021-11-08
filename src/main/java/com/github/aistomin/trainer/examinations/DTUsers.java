@@ -19,7 +19,8 @@ import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import org.jooq.Record;
+import java.util.List;
+import java.util.stream.Collectors;
 import org.jooq.SQLDialect;
 import org.jooq.codegen.maven.example.tables.DtUser;
 import org.jooq.codegen.maven.example.tables.records.DtUserRecord;
@@ -48,19 +49,7 @@ public final class DTUsers implements Users {
 
     @Override
     public User currentUser() {
-        try (
-            Connection conn = DriverManager.getConnection(
-                this.db.url(), this.db.username(), this.db.password()
-            )
-        ) {
-            final Record record = DSL.using(conn, SQLDialect.POSTGRES)
-                .select()
-                .from(DtUser.DT_USER)
-                .fetch().get(0);
-            return new DTUser(record);
-        } catch (final SQLException error) {
-            throw new RuntimeException(error);
-        }
+        return this.all().get(0);
     }
 
     @Override
@@ -75,6 +64,25 @@ public final class DTUsers implements Users {
             record.setUsername(username);
             record.setPassword(password);
             return new DTUser(record);
+        } catch (final SQLException error) {
+            throw new RuntimeException(error);
+        }
+    }
+
+    @Override
+    public List<User> all() {
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.db.url(), this.db.username(), this.db.password()
+            )
+        ) {
+            return DSL.using(conn, SQLDialect.POSTGRES)
+                .select()
+                .from(DtUser.DT_USER)
+                .fetch()
+                .stream()
+                .map(DTUser::new)
+                .collect(Collectors.toList());
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
