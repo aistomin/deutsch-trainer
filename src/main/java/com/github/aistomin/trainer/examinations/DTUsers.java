@@ -53,7 +53,7 @@ public final class DTUsers implements Users {
     }
 
     @Override
-    public User createUser(final String username, final String password) {
+    public User create(final String username, final String password) {
         try (
             Connection conn = DriverManager.getConnection(
                 this.db.url(), this.db.username(), this.db.password()
@@ -64,6 +64,22 @@ public final class DTUsers implements Users {
             record.setUsername(username);
             record.setPassword(password);
             return new DTUser(record);
+        } catch (final SQLException error) {
+            throw new RuntimeException(error);
+        }
+    }
+
+    @SuppressWarnings("ResultOfMethodCallIgnored")
+    @Override
+    public void delete(final User user) {
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.db.url(), this.db.username(), this.db.password()
+            )
+        ) {
+            DSL.using(conn, SQLDialect.POSTGRES)
+                .deleteFrom(DtUser.DT_USER)
+                .where(DtUser.DT_USER.ID.eq(user.identifier()));
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
