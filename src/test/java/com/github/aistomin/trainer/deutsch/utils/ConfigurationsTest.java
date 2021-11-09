@@ -33,11 +33,20 @@ final class ConfigurationsTest {
     void testDatabase() {
         final Configurations conf = new Configurations();
         Assertions.assertEquals(
-            "jdbc:postgresql://localhost:5432/deutsch_trainer",
+            this.property(
+                "db.url",
+                "jdbc:postgresql://localhost:5432/deutsch_trainer"
+            ),
             conf.database().url()
         );
-        Assertions.assertEquals("root", conf.database().username());
-        Assertions.assertEquals("", conf.database().password());
+        Assertions.assertEquals(
+            this.property("db.user", "root"),
+            conf.database().username()
+        );
+        Assertions.assertEquals(
+            this.property("db.password", ""),
+            conf.database().password()
+        );
         final String url = UUID.randomUUID().toString();
         System.setProperty("dt.db.url", url);
         final String username = UUID.randomUUID().toString();
@@ -47,5 +56,17 @@ final class ConfigurationsTest {
         Assertions.assertEquals(url, conf.database().url());
         Assertions.assertEquals(username, conf.database().username());
         Assertions.assertEquals(pass, conf.database().password());
+    }
+
+    /**
+     * Get system property.
+     *
+     * @param key System property key.
+     * @param def Default value.
+     * @return Value.
+     */
+    private String property(final String key, final String def) {
+        final String sys = System.getProperty(String.format("dt.%s", key));
+        return sys != null ? sys : def;
     }
 }

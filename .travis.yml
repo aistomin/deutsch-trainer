@@ -19,7 +19,7 @@ before_install:
   - psql -c 'create database deutsch_trainer;' -U postgres
   - psql deutsch_trainer -U postgres -d deutsch_trainer -f ./database/db.sql
   - sudo apt-get install xvfb
-install: mvn install -DskipTests=true -Dgpg.skip=true -Dpg_user=postgres
+install: mvn install -DskipTests=true -Dgpg.skip=true -Ddt.db.user=postgres
 script: ./build.sh
 addons:
   apt:
