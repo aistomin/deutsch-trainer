@@ -49,7 +49,11 @@ public final class DTUsers implements Users {
 
     @Override
     public User currentUser() {
-        return this.all().get(0);
+        final List<User> users = this.all();
+        if (users.size() == 0) {
+            throw new IllegalStateException("Current user not found.");
+        }
+        return users.get(users.size() - 1);
     }
 
     @Override
@@ -63,13 +67,13 @@ public final class DTUsers implements Users {
                 .newRecord(DtUser.DT_USER);
             record.setUsername(username);
             record.setPassword(password);
+            record.store();
             return new DTUser(record);
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
     }
 
-    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     public void delete(final User user) {
         try (
@@ -79,7 +83,8 @@ public final class DTUsers implements Users {
         ) {
             DSL.using(conn, SQLDialect.POSTGRES)
                 .deleteFrom(DtUser.DT_USER)
-                .where(DtUser.DT_USER.ID.eq(user.identifier()));
+                .where(DtUser.DT_USER.ID.eq(user.identifier()))
+                .execute();
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
@@ -95,6 +100,7 @@ public final class DTUsers implements Users {
             return DSL.using(conn, SQLDialect.POSTGRES)
                 .select()
                 .from(DtUser.DT_USER)
+                .orderBy(DtUser.DT_USER.ID)
                 .fetch()
                 .stream()
                 .map(DTUser::new)
