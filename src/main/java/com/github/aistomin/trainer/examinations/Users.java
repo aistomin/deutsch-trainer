@@ -38,7 +38,14 @@ public interface Users {
      * @param password Password.
      * @return Created user.
      */
-    User createUser(String username, String password);
+    User create(String username, String password);
+
+    /**
+     * Delete user.
+     *
+     * @param user User that needs to be deleted.
+     */
+    void delete(User user);
 
     /**
      * Load all the users from the database.
