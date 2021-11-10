@@ -21,6 +21,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
+import org.jooq.DSLContext;
 import org.jooq.SQLDialect;
 import org.jooq.codegen.maven.example.tables.DtUser;
 import org.jooq.codegen.maven.example.tables.records.DtUserRecord;
@@ -75,16 +76,18 @@ public final class DTUsers implements Users {
     }
 
     @Override
-    public void delete(final User user) {
+    public void delete(final List<User> users) {
         try (
             Connection conn = DriverManager.getConnection(
                 this.db.url(), this.db.username(), this.db.password()
             )
         ) {
-            DSL.using(conn, SQLDialect.POSTGRES)
-                .deleteFrom(DtUser.DT_USER)
-                .where(DtUser.DT_USER.ID.eq(user.identifier()))
-                .execute();
+            final DSLContext dsl = DSL.using(conn, SQLDialect.POSTGRES);
+            for (final User user : users) {
+                dsl.deleteFrom(DtUser.DT_USER)
+                    .where(DtUser.DT_USER.ID.eq(user.identifier()))
+                    .execute();
+            }
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
