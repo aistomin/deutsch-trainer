@@ -16,6 +16,8 @@
 package com.github.aistomin.trainer.examinations;
 
 import com.github.aistomin.trainer.deutsch.utils.Configurations;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -41,7 +43,7 @@ final class DTUsersTest {
         Assertions.assertEquals(
             user.identifier(), users.currentUser().identifier()
         );
-        users.delete(user);
+        users.delete(Collections.singletonList(user));
         Assertions.assertEquals(before, users.all().size());
     }
 
@@ -51,9 +53,7 @@ final class DTUsersTest {
     @Test
     void testCurrentUser() {
         final Users users = this.users();
-        for (final User user : users.all()) {
-            users.delete(user);
-        }
+        users.delete(users.all());
         Assertions.assertThrows(
             IllegalStateException.class, users::currentUser,
             "Current user not found."
@@ -70,8 +70,7 @@ final class DTUsersTest {
         Assertions.assertEquals(
             second.identifier(), users.currentUser().identifier()
         );
-        users.delete(first);
-        users.delete(second);
+        users.delete(Arrays.asList(first, second));
     }
 
     /**

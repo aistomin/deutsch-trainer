@@ -41,11 +41,11 @@ public interface Users {
     User create(String username, String password);
 
     /**
-     * Delete user.
+     * Delete users.
      *
-     * @param user User that needs to be deleted.
+     * @param users User that needs to be deleted.
      */
-    void delete(User user);
+    void delete(List<User> users);
 
     /**
      * Load all the users from the database.
