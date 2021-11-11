@@ -40,6 +40,13 @@ public interface User {
     String username();
 
     /**
+     * Password.
+     *
+     * @return Password.
+     */
+    String password();
+
+    /**
      * Change username.
      *
      * @param username New username.
