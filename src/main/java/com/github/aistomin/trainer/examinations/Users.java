@@ -41,6 +41,14 @@ public interface Users {
     User create(String username, String password);
 
     /**
+     * Save user.
+     *
+     * @param user User that needs to be saved.
+     * @return Updated user.
+     */
+    User save(User user);
+
+    /**
      * Delete users.
      *
      * @param users User that needs to be deleted.

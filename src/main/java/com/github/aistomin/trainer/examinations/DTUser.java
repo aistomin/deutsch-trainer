@@ -52,6 +52,11 @@ public final class DTUser implements User {
     }
 
     @Override
+    public String password() {
+        return this.rec.getValue(DtUser.DT_USER.PASSWORD);
+    }
+
+    @Override
     public void changeUsername(final String username) throws IOException {
         this.rec.setValue(DtUser.DT_USER.USERNAME, username);
     }

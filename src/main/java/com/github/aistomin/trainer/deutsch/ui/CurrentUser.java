@@ -60,6 +60,11 @@ public final class CurrentUser implements User {
     }
 
     @Override
+    public String password() {
+        return this.usr.password();
+    }
+
+    @Override
     public void changeUsername(final String username) throws IOException {
         this.usr.changeUsername(username);
     }
