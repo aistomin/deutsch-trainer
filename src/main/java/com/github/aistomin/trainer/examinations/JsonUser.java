@@ -106,10 +106,11 @@ public final class JsonUser implements User {
     }
 
     @Override
-    public void changeUsername(final String username) throws IOException {
+    public User changeUsername(final String username) throws IOException {
         synchronized (JsonUser.MUTEX) {
             this.json.set(JsonUser.NAME, username);
             this.save();
+            return this;
         }
     }
 

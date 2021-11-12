@@ -70,7 +70,12 @@ public final class DTUsers implements Users {
             record.setUsername(username);
             record.setPassword(password);
             record.store();
-            return new DTUser(record);
+            return new DTUser(
+                this,
+                record.getId(),
+                record.getUsername(),
+                record.getPassword()
+            );
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
@@ -96,7 +101,12 @@ public final class DTUsers implements Users {
             record.setUsername(user.username());
             record.setPassword(user.password());
             record.store();
-            return new DTUser(record);
+            return new DTUser(
+                this,
+                record.getId(),
+                record.getUsername(),
+                record.getPassword()
+            );
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
@@ -133,7 +143,14 @@ public final class DTUsers implements Users {
                 .orderBy(DtUser.DT_USER.ID)
                 .fetch()
                 .stream()
-                .map(DTUser::new)
+                .map(
+                    record -> new DTUser(
+                        this,
+                        record.getValue(DtUser.DT_USER.ID),
+                        record.getValue(DtUser.DT_USER.USERNAME),
+                        record.getValue(DtUser.DT_USER.PASSWORD)
+                    )
+                )
                 .collect(Collectors.toList());
         } catch (final SQLException error) {
             throw new RuntimeException(error);

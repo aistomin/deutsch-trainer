@@ -50,9 +50,10 @@ public interface User {
      * Change username.
      *
      * @param username New username.
+     * @return Updated user entity.
      * @throws IOException If read/write error occurs.
      */
-    void changeUsername(String username) throws IOException;
+    User changeUsername(String username) throws IOException;
 
     /**
      * Clone the user to new file.
