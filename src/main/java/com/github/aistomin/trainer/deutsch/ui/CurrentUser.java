@@ -65,8 +65,8 @@ public final class CurrentUser implements User {
     }
 
     @Override
-    public void changeUsername(final String username) throws IOException {
-        this.usr.changeUsername(username);
+    public User changeUsername(final String username) throws IOException {
+        return this.usr.changeUsername(username);
     }
 
     @Override

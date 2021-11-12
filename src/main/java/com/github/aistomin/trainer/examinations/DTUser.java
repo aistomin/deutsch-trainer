@@ -17,8 +17,6 @@ package com.github.aistomin.trainer.examinations;
 
 import java.io.File;
 import java.io.IOException;
-import org.jooq.Record;
-import org.jooq.codegen.maven.example.tables.DtUser;
 
 /**
  * User implementation that takes data from the database.
@@ -28,37 +26,62 @@ import org.jooq.codegen.maven.example.tables.DtUser;
 public final class DTUser implements User {
 
     /**
-     * Database record.
+     * Users entity.
      */
-    private final Record rec;
+    private final Users storage;
+
+    /**
+     * User ID.
+     */
+    private final Long id;
+
+    /**
+     * Username.
+     */
+    private final String user;
+
+    /**
+     * Password.
+     */
+    private final String pass;
 
     /**
      * Ctor.
      *
-     * @param record Database record.
+     * @param identifier User ID.
+     * @param users Users entity.
+     * @param username Username.
+     * @param password Password.
      */
-    public DTUser(final Record record) {
-        this.rec = record;
+    public DTUser(final Users users, final Long identifier,
+        final String username, final String password
+    ) {
+        this.storage = users;
+        this.id = identifier;
+        this.user = username;
+        this.pass = password;
     }
 
     @Override
     public Long identifier() {
-        return this.rec.getValue(DtUser.DT_USER.ID);
+        return this.id;
     }
 
     @Override
     public String username() {
-        return this.rec.getValue(DtUser.DT_USER.USERNAME);
+        return this.user;
     }
 
     @Override
     public String password() {
-        return this.rec.getValue(DtUser.DT_USER.PASSWORD);
+        return this.pass;
     }
 
     @Override
-    public void changeUsername(final String username) throws IOException {
-        this.rec.setValue(DtUser.DT_USER.USERNAME, username);
+    public User changeUsername(final String username) throws IOException {
+        return this.storage.save(
+            new DTUser(this.storage, this.id, username, this.pass)
+        );
     }
 
     @Override
@@ -67,7 +90,7 @@ public final class DTUser implements User {
     }
 
     @Override
-    public User clone(final File file, final Long id) {
+    public User clone(final File file, final Long identifier) {
         return null;
     }
 
