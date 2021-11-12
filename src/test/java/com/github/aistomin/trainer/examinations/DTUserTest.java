@@ -29,11 +29,9 @@ class DTUserTest {
 
     /**
      * Check that we can correctly change the username.
-     *
-     * @throws Exception If something goes wrong.
      */
     @Test
-    void testChangeUsername() throws Exception {
+    void testChangeUsername() {
         final Users users = this.users();
         final String initial = UUID.randomUUID().toString();
         final User user = users.create(initial, UUID.randomUUID().toString());

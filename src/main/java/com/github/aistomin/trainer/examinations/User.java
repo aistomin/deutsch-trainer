@@ -15,9 +15,6 @@
  */
 package com.github.aistomin.trainer.examinations;
 
-import java.io.File;
-import java.io.IOException;
-
 /**
  * User interface.
  *
@@ -51,33 +48,6 @@ public interface User {
      *
      * @param username New username.
      * @return Updated user entity.
-     * @throws IOException If read/write error occurs.
      */
-    User changeUsername(String username) throws IOException;
-
-    /**
-     * Clone the user to new file.
-     *
-     * @param file File.
-     * @return Cloned user.
-     */
-    User clone(File file);
-
-    /**
-     * Clone the user to new file with new ID.
-     *
-     * @param file File.
-     * @param id New user identifier.
-     * @return Cloned user.
-     */
-    User clone(File file, Long id);
-
-    /**
-     * Dump user to the new file.
-     *
-     * @param file Destination file.
-     * @return New user associated with the file.
-     * @throws IOException If read/write error occurs.
-     */
-    User dump(File file) throws IOException;
+    User changeUsername(String username);
 }
