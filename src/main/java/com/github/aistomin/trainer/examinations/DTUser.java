@@ -15,9 +15,6 @@
  */
 package com.github.aistomin.trainer.examinations;
 
-import java.io.File;
-import java.io.IOException;
-
 /**
  * User implementation that takes data from the database.
  *
@@ -78,24 +75,9 @@ public final class DTUser implements User {
     }
 
     @Override
-    public User changeUsername(final String username) throws IOException {
+    public User changeUsername(final String username) {
         return this.storage.save(
             new DTUser(this.storage, this.id, username, this.pass)
         );
-    }
-
-    @Override
-    public User clone(final File file) {
-        return null;
-    }
-
-    @Override
-    public User clone(final File file, final Long identifier) {
-        return null;
-    }
-
-    @Override
-    public User dump(final File file) throws IOException {
-        return null;
     }
 }
