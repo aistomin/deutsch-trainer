@@ -55,6 +55,23 @@ class DTUserTest {
     }
 
     /**
+     * Check that we can correctly get the identifier.
+     */
+    @Test
+    void testIdentifier() {
+        final Users users = this.users();
+        final User first = users.create(
+            UUID.randomUUID().toString(), UUID.randomUUID().toString()
+        );
+        Assertions.assertNotNull(first.identifier());
+        final User second = users.create(
+            UUID.randomUUID().toString(), UUID.randomUUID().toString()
+        );
+        Assertions.assertNotNull(second.identifier());
+        Assertions.assertTrue(first.identifier() < second.identifier());
+    }
+
+    /**
      * Create test Users instance.
      *
      * @return Users.
