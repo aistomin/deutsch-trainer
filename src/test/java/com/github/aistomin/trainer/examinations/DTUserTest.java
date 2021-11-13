@@ -33,13 +33,25 @@ class DTUserTest {
     @Test
     void testChangeUsername() {
         final Users users = this.users();
-        final String initial = UUID.randomUUID().toString();
-        final User user = users.create(initial, UUID.randomUUID().toString());
-        Assertions.assertEquals(initial, user.username());
+        final User user = users.create(
+            UUID.randomUUID().toString(),
+            UUID.randomUUID().toString()
+        );
         final String changed = UUID.randomUUID().toString();
         Assertions.assertEquals(
             changed, user.changeUsername(changed).username()
         );
+    }
+
+    /**
+     * Check that we can correctly get the username.
+     */
+    @Test
+    void testUsername() {
+        final Users users = this.users();
+        final String username = UUID.randomUUID().toString();
+        final User user = users.create(username, UUID.randomUUID().toString());
+        Assertions.assertEquals(username, user.username());
     }
 
     /**
