@@ -19,7 +19,9 @@ import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 import java.util.stream.Collectors;
 import org.jooq.DSLContext;
 import org.jooq.Result;
@@ -60,85 +62,73 @@ public final class DTUsers implements Users {
 
     @Override
     public User create(final String username, final String password) {
-        try (
-            Connection conn = DriverManager.getConnection(
-                this.db.url(), this.db.username(), this.db.password()
-            )
-        ) {
-            final DtUserRecord record = DSL.using(conn, SQLDialect.POSTGRES)
-                .newRecord(DtUser.DT_USER);
-            record.setUsername(username);
-            record.setPassword(password);
-            record.store();
-            return new DTUser(
-                this,
-                record.getId(),
-                record.getUsername(),
-                record.getPassword()
-            );
-        } catch (final SQLException error) {
-            throw new RuntimeException(error);
-        }
+        final List<User> result = new ArrayList<>(0);
+        this.withDatabase(
+            dsl -> {
+                final DtUserRecord record = dsl.newRecord(DtUser.DT_USER);
+                record.setUsername(username);
+                record.setPassword(password);
+                record.store();
+                result.add(
+                    new DTUser(
+                        this,
+                        record.getId(),
+                        record.getUsername(),
+                        record.getPassword()
+                    )
+                );
+            }
+        );
+        return result.get(0);
     }
 
     @Override
     public User save(final User user) {
-        try (
-            Connection conn = DriverManager.getConnection(
-                this.db.url(), this.db.username(), this.db.password()
-            )
-        ) {
-            final Result<DtUserRecord> records = DSL.using(
-                conn, SQLDialect.POSTGRES
-                )
-                .selectFrom(DtUser.DT_USER)
-                .where(DtUser.DT_USER.ID.eq(user.identifier()))
-                .fetch();
-            if (records.size() != 1) {
-                throw new IllegalStateException("User not found.");
+        final List<User> result = new ArrayList<>(0);
+        this.withDatabase(
+            dsl -> {
+                final Result<DtUserRecord> records = dsl
+                    .selectFrom(DtUser.DT_USER)
+                    .where(DtUser.DT_USER.ID.eq(user.identifier()))
+                    .fetch();
+                if (records.size() != 1) {
+                    throw new IllegalStateException("User not found.");
+                }
+                final DtUserRecord record = records.get(0);
+                record.setUsername(user.username());
+                record.setPassword(user.password());
+                record.store();
+                result.add(
+                    new DTUser(
+                        this,
+                        record.getId(),
+                        record.getUsername(),
+                        record.getPassword()
+                    )
+                );
             }
-            final DtUserRecord record = records.get(0);
-            record.setUsername(user.username());
-            record.setPassword(user.password());
-            record.store();
-            return new DTUser(
-                this,
-                record.getId(),
-                record.getUsername(),
-                record.getPassword()
-            );
-        } catch (final SQLException error) {
-            throw new RuntimeException(error);
-        }
+        );
+        return result.get(0);
     }
 
     @Override
     public void delete(final List<User> users) {
-        try (
-            Connection conn = DriverManager.getConnection(
-                this.db.url(), this.db.username(), this.db.password()
-            )
-        ) {
-            final DSLContext dsl = DSL.using(conn, SQLDialect.POSTGRES);
-            for (final User user : users) {
-                dsl.deleteFrom(DtUser.DT_USER)
-                    .where(DtUser.DT_USER.ID.eq(user.identifier()))
-                    .execute();
+        this.withDatabase(
+            dsl -> {
+                for (final User user : users) {
+                    dsl.deleteFrom(DtUser.DT_USER)
+                        .where(DtUser.DT_USER.ID.eq(user.identifier()))
+                        .execute();
+                }
             }
-        } catch (final SQLException error) {
-            throw new RuntimeException(error);
-        }
+        );
     }
 
     @Override
     public List<User> all() {
-        try (
-            Connection conn = DriverManager.getConnection(
-                this.db.url(), this.db.username(), this.db.password()
-            )
-        ) {
-            return DSL.using(conn, SQLDialect.POSTGRES)
-                .select()
+        final List<User> users = new ArrayList<>(0);
+        this.withDatabase(
+            dsl -> users.addAll(dsl.select()
                 .from(DtUser.DT_USER)
                 .orderBy(DtUser.DT_USER.ID)
                 .fetch()
@@ -151,7 +141,23 @@ public final class DTUsers implements Users {
                         record.getValue(DtUser.DT_USER.PASSWORD)
                     )
                 )
-                .collect(Collectors.toList());
+                .collect(Collectors.toList()))
+        );
+        return users;
+    }
+
+    /**
+     * Execute some logic within database context.
+     *
+     * @param consumer The logic that needs to be executed.
+     */
+    private void withDatabase(final Consumer<DSLContext> consumer) {
+        try (
+            Connection conn = DriverManager.getConnection(
+                this.db.url(), this.db.username(), this.db.password()
+            )
+        ) {
+            consumer.accept(DSL.using(conn, SQLDialect.POSTGRES));
         } catch (final SQLException error) {
             throw new RuntimeException(error);
         }
