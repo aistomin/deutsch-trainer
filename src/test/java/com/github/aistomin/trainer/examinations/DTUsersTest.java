@@ -98,6 +98,21 @@ final class DTUsersTest {
     }
 
     /**
+     * Check that we correctly behave when the database layer is failing.
+     */
+    @Test
+    void testDatabaseFailure() {
+        final String username = new Configurations().database().username();
+        System.setProperty("dt.db.user", UUID.randomUUID().toString());
+        Assertions.assertThrows(
+            IllegalStateException.class,
+            () -> this.users().all(),
+            "Database error."
+        );
+        System.setProperty("dt.db.user", username);
+    }
+
+    /**
      * Create test Users instance.
      *
      * @return Users.
