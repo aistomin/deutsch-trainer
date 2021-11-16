@@ -18,6 +18,7 @@ package com.github.aistomin.trainer.examinations;
 import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -71,6 +72,29 @@ final class DTUsersTest {
             second.identifier(), users.currentUser().identifier()
         );
         users.delete(Arrays.asList(first, second));
+    }
+
+    /**
+     * Check that save method works as expected.
+     */
+    @Test
+    void testSave() {
+        final Users users = this.users();
+        final User user = users.create(
+            UUID.randomUUID().toString(), UUID.randomUUID().toString()
+        );
+        final String username = UUID.randomUUID().toString();
+        final String password = UUID.randomUUID().toString();
+        users.save(new DTUser(users, user.identifier(), username, password));
+        final List<User> all = users.all();
+        final User updated = all.get(all.size() - 1);
+        Assertions.assertEquals(username, updated.username());
+        Assertions.assertEquals(password, updated.password());
+        Assertions.assertThrows(
+            IllegalStateException.class,
+            () -> users.save(new DTUser(users, -1L, username, password)),
+            "User not found."
+        );
     }
 
     /**
