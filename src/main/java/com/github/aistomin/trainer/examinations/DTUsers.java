@@ -159,7 +159,7 @@ public final class DTUsers implements Users {
         ) {
             consumer.accept(DSL.using(conn, SQLDialect.POSTGRES));
         } catch (final SQLException error) {
-            throw new RuntimeException(error);
+            throw new IllegalStateException("Database error.", error);
         }
     }
 }
