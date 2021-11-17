@@ -253,7 +253,7 @@ public final class JsonDictionary implements Dictionary {
     @Override
     public void replace(
         final LexicalUnit replacement
-    ) throws InvalidDictionaryException, IOException, NotFoundException {
+    ) throws InvalidDictionaryException, IOException {
         synchronized (JsonDictionary.MUTEX) {
             final Optional<LexicalUnit> found = this.words(WordsFilter.ALL)
                 .stream()
@@ -265,7 +265,7 @@ public final class JsonDictionary implements Dictionary {
                 this.delete(found.get());
                 this.add(replacement);
             } else {
-                throw new NotFoundException(
+                throw new IllegalStateException(
                     String.format(
                         "Unit with ID = %s not found.",
                         replacement.identifier().toString()

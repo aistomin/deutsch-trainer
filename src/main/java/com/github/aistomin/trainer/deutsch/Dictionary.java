@@ -103,18 +103,17 @@ public interface Dictionary {
     /**
      * Replace the unit with the same ID. Note: the unit with the same ID must
      * already be in the dictionary, otherwise you will get the
-     * {@link NotFoundException}.
+     * {@link IllegalStateException}.
      *
      * @param replacement The unit that needs to be added to the dictionary
      *  instead the old one.
      * @throws InvalidDictionaryException If the dictionary became inconsistent
      *  after the modification.
      * @throws IOException If read/write error occurs.
-     * @throws NotFoundException When original unit is not found.
      */
     void replace(
         LexicalUnit replacement
-    ) throws InvalidDictionaryException, IOException, NotFoundException;
+    ) throws InvalidDictionaryException, IOException;
 
     /**
      * Delete a lexical unit from the dictionary.
