@@ -50,4 +50,12 @@ public interface User {
      * @return Updated user entity.
      */
     User changeUsername(String username);
+
+    /**
+     * Change password.
+     *
+     * @param pass New password.
+     * @return Updated user entity.
+     */
+    User changePassword(String pass);
 }
