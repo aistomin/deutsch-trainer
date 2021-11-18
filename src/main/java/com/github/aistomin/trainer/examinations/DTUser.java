@@ -15,12 +15,21 @@
  */
 package com.github.aistomin.trainer.examinations;
 
+import java.nio.charset.StandardCharsets;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 /**
  * User implementation that takes data from the database.
  *
  * @since 1.0
  */
 public final class DTUser implements User {
+
+    /**
+     * SHA encoding constant.
+     */
+    public static final int HEX = 0xff;
 
     /**
      * Users entity.
@@ -79,5 +88,38 @@ public final class DTUser implements User {
         return this.storage.save(
             new DTUser(this.storage, this.id, username, this.pass)
         );
+    }
+
+    @Override
+    public User changePassword(final String password) {
+        return this.storage.save(
+            new DTUser(this.storage, this.id, this.user, this.sha(password))
+        );
+    }
+
+    /**
+     * Generate SHA sum from the string.
+     *
+     * @param str The string.
+     * @return The generated sum.
+     */
+    private String sha(final String str) {
+        try {
+            final MessageDigest digest = MessageDigest.getInstance("SHA-256");
+            final byte[] hash = digest.digest(
+                str.getBytes(StandardCharsets.UTF_8)
+            );
+            final StringBuilder result = new StringBuilder();
+            for (final byte bite : hash) {
+                final String hex = Integer.toHexString(DTUser.HEX & bite);
+                if (hex.length() == 1) {
+                    result.append('0');
+                }
+                result.append(hex);
+            }
+            return result.toString();
+        } catch (final NoSuchAlgorithmException error) {
+            throw new IllegalStateException(error);
+        }
     }
 }

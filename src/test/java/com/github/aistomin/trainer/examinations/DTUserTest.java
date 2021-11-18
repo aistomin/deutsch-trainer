@@ -44,6 +44,20 @@ class DTUserTest {
     }
 
     /**
+     * Check that we can correctly change the password.
+     */
+    @Test
+    void testChangePassword() {
+        final Users users = this.users();
+        final String initial = UUID.randomUUID().toString();
+        final User user = users.create(UUID.randomUUID().toString(), initial);
+        final String changed = UUID.randomUUID().toString();
+        final User saved = user.changePassword(changed);
+        Assertions.assertNotEquals(initial, saved.username());
+        Assertions.assertNotEquals(changed, saved.username());
+    }
+
+    /**
      * Check that we can correctly get the username.
      */
     @Test
