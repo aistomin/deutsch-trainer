@@ -86,6 +86,19 @@ class DTUserTest {
     }
 
     /**
+     * Check that we correctly validate the user's password.
+     */
+    @Test
+    void testPasswordValidation() {
+        final Users users = this.users();
+        final String password = UUID.randomUUID().toString();
+        final User user = users.create(UUID.randomUUID().toString(), null)
+            .changePassword(password);
+        Assertions.assertTrue(user.isPasswordValid(password));
+        Assertions.assertFalse(user.isPasswordValid("some_other_password"));
+    }
+
+    /**
      * Create test Users instance.
      *
      * @return Users.

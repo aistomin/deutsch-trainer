@@ -97,6 +97,11 @@ public final class DTUser implements User {
         );
     }
 
+    @Override
+    public Boolean isPasswordValid(final String password) {
+        return this.pass.equals(this.sha(password));
+    }
+
     /**
      * Generate SHA sum from the string.
      *

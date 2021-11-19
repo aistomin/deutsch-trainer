@@ -54,8 +54,16 @@ public interface User {
     /**
      * Change password.
      *
-     * @param pass New password.
+     * @param password New password.
      * @return Updated user entity.
      */
-    User changePassword(String pass);
+    User changePassword(String password);
+
+    /**
+     * Validate user's password.
+     *
+     * @param password The password string that needs to be validated.
+     * @return True - the password is valid; False - the password is invalid.
+     */
+    Boolean isPasswordValid(String password);
 }
