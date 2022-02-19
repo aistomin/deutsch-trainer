@@ -8,6 +8,7 @@ services:
   - postgresql
 environment:
   PGUSER: postgres
+  PGPASSWORD:
   matrix:
     - JAVA_HOME: /usr/lib/jvm/java-15-openjdk-amd64
 build_script:
