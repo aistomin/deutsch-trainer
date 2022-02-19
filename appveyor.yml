@@ -5,7 +5,7 @@ branches:
     - master
 image: Ubuntu2004
 services:
-  - postgresql12
+  - postgresql10
 environment:
   matrix:
     - JAVA_HOME: /usr/lib/jvm/java-15-openjdk-amd64
