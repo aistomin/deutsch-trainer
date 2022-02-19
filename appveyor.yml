@@ -1,10 +1,11 @@
 version: 1.0.{build}
-services: postgresql12
 skip_tags: true
 branches:
   only:
     - master
 image: Ubuntu2004
+services:
+  - postgresql12
 environment:
   matrix:
     - JAVA_HOME: /usr/lib/jvm/java-15-openjdk-amd64
