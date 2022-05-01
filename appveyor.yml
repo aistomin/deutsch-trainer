@@ -16,8 +16,8 @@ build_script:
   - echo $JAVA_HOME
   - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- $DISPLAY -ac -screen 0 1280x1024x24
   - sleep 3
-  - psql -c 'create database deutsch_trainer;' -U postgres
-  - psql deutsch_trainer -U postgres -d deutsch_trainer -f ./database/db.sql
+  - psql -c 'create database deutsch_trainer;'
+  - psql deutsch_trainer -d deutsch_trainer -f ./database/db.sql
   - sudo apt-get install xvfb
   - mvn clean install package -Ddt.db.user=postgres
   - bash <(curl -s https://codecov.io/bash)
