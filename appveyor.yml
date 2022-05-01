@@ -8,7 +8,6 @@ services:
   - postgresql
 environment:
   PGUSER: postgres
-  PGPASSWORD: Password12!
   CODECOV_TOKEN: 7107ca4b-77ea-4f90-b04e-ecaab2598d0e"
   DISPLAY: :99
   matrix:
