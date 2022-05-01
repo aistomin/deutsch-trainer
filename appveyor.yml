@@ -15,5 +15,6 @@ environment:
     - JAVA_HOME: /usr/lib/jvm/java-15-openjdk-amd64
 build_script:
   - echo $JAVA_HOME
+  - postgres -V
   - echo $PWD $USER $PGUSER $PGPASSWORD
   - sudo psql -U postgres -c 'create database deutsch_trainer;'
