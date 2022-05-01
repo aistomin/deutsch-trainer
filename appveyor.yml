@@ -9,12 +9,6 @@ services:
 environment:
   PGUSER: postgres
   PGPASSWORD: Password12!
-  CODECOV_TOKEN: 7107ca4b-77ea-4f90-b04e-ecaab2598d0e"
-  DISPLAY: :99
-  matrix:
-    - JAVA_HOME: /usr/lib/jvm/java-15-openjdk-amd64
 build_script:
-  - echo $JAVA_HOME
-  - postgres -V
   - echo $PWD $USER $PGUSER $PGPASSWORD
-  - sudo psql -U postgres -c 'create database deutsch_trainer;'
+  - sudo psql -U postgres -c 'create database my_test_db;'
