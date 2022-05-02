@@ -9,6 +9,8 @@ services:
 environment:
   PGUSER: postgres
   PGPASSWORD: Password12!
+init:
+  - sudo sed -i -E -e 's/(local\s+all\s+postgres\s+)peer/\1trust/' /etc/postgresql/14/main/pg_hba.conf
 build_script:
   - echo $PWD $USER $PGUSER $PGPASSWORD
   - sudo cat /etc/postgresql/14/main/pg_hba.conf
