@@ -3,7 +3,7 @@ skip_tags: true
 branches:
   only:
     - master
-image: Ubuntu1804
+image: Ubuntu2004
 services:
   - postgresql
 environment:
@@ -11,4 +11,4 @@ environment:
   PGPASSWORD: Password12!
 build_script:
   - echo $PWD $USER $PGUSER $PGPASSWORD
-  - sudo psql -U postgres -c 'create database my_test_db;'
+  - psql -U postgres -c 'create database my_test_db;'
