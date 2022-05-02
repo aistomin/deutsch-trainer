@@ -13,5 +13,4 @@ init:
   - sudo sed -i -E -e 's/(local\s+all\s+postgres\s+)peer/\1trust/' /etc/postgresql/14/main/pg_hba.conf
 build_script:
   - echo $PWD $USER $PGUSER $PGPASSWORD
-  - sudo cat /etc/postgresql/14/main/pg_hba.conf
-  - PGPASSWORD="Password12!" psql -U postgres -c 'create database my_test_db;'
+  - psql -U postgres -c 'create database my_test_db;'
