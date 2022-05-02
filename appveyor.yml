@@ -11,4 +11,5 @@ environment:
   PGPASSWORD: Password12!
 build_script:
   - echo $PWD $USER $PGUSER $PGPASSWORD
+  - sudo find / -type f -name "pg_hba.conf"
   - PGPASSWORD="Password12!" psql -U postgres -c 'create database my_test_db;'
