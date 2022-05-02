@@ -1,0 +1,16 @@
+version: 1.0.{build}
+skip_tags: true
+branches:
+  only:
+    - master
+image: Ubuntu2004
+services:
+  - postgresql
+environment:
+  PGUSER: postgres
+  PGPASSWORD: Password12!
+init:
+  - sudo sed -i -E -e 's/(local\s+all\s+postgres\s+)peer/\1trust/' /etc/postgresql/14/main/pg_hba.conf
+build_script:
+  - echo $PWD $USER $PGUSER $PGPASSWORD
+  - psql -U postgres -c 'create database my_test_db;'
