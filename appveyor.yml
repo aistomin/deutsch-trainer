@@ -11,4 +11,4 @@ environment:
   PGPASSWORD: Password12!
 build_script:
   - echo $PWD $USER $PGUSER $PGPASSWORD
-  - psql -U postgres -c 'create database my_test_db;'
+  - PGPASSWORD="" psql -U postgres -c 'create database my_test_db;'
