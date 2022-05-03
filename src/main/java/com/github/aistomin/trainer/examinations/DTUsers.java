@@ -15,6 +15,7 @@
  */
 package com.github.aistomin.trainer.examinations;
 
+import com.github.aistomin.trainer.deutsch.ui.Trainer;
 import com.github.aistomin.trainer.deutsch.utils.Configurations;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -29,6 +30,8 @@ import org.jooq.SQLDialect;
 import org.jooq.codegen.maven.example.tables.DtUser;
 import org.jooq.codegen.maven.example.tables.records.DtUserRecord;
 import org.jooq.impl.DSL;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Class that encapsulates logic of using "dt_user" table.
@@ -152,9 +155,16 @@ public final class DTUsers implements Users {
      * @param consumer The logic that needs to be executed.
      */
     private void withDatabase(final Consumer<DSLContext> consumer) {
+        final Logger logger = LoggerFactory.getLogger(Trainer.class);
+        final String url = this.db.url();
+        final String username = this.db.username();
+        final String password = this.db.password();
+        logger.info(
+            String.format("Connect to: %s using %s/%s", url, username, password)
+        );
         try (
             Connection conn = DriverManager.getConnection(
-                this.db.url(), this.db.username(), this.db.password()
+                url, username, password
             )
         ) {
             consumer.accept(DSL.using(conn, SQLDialect.POSTGRES));
