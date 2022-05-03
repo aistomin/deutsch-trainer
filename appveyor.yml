@@ -21,5 +21,5 @@ build_script:
   - psql -c 'create database deutsch_trainer;' -U postgres
   - psql deutsch_trainer -U postgres -d deutsch_trainer -f ./database/db.sql
   - sudo apt-get install xvfb
-  - mvn clean install package -Ddt.db.user=postgres -Ddt.db.url=jdbc:postgresql://localhost:5432/deutsch_trainer
+  - mvn clean install package -Ddt.db.user=postgres -Ddt.db.url=jdbc:postgresql://localhost:5432/deutsch_trainer -e
   - bash <(curl -s https://codecov.io/bash)
