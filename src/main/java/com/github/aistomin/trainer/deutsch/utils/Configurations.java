@@ -61,7 +61,6 @@ public final class Configurations {
      * @return Value.
      */
     private String property(final String name) {
-        final Logger logger = LoggerFactory.getLogger(Trainer.class);
         final String key = String.format("dt_%s", name);
         final String env = System.getenv(key);
         if (env == null) {
@@ -70,20 +69,14 @@ public final class Configurations {
                 try {
                     final Properties props = new Properties();
                     props.load(new FileReader(Resources.find(this.file)));
-                    final String property = props.getProperty(name);
-                    logger.info(
-                        "[{}] Taken from properties file: {}", name, property
-                    );
-                    return property;
+                    return props.getProperty(name);
                 } catch (final IOException error) {
                     throw new RuntimeException(error);
                 }
             } else {
-                logger.info("[{}] Taken from system properties: {}", name, sys);
                 return sys;
             }
         } else {
-            logger.info("[{}] Taken from env variables: {}", name, env);
             return env;
         }
     }

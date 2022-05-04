@@ -18,6 +18,7 @@ package com.github.aistomin.trainer.deutsch.utils;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.ClearEnvironmentVariable;
 
 /**
  * Test for {@link Configurations}.
@@ -30,6 +31,9 @@ final class ConfigurationsTest {
      * Check that we can correctly get the database configuration.
      */
     @Test
+    @ClearEnvironmentVariable(key = "dt_db_url")
+    @ClearEnvironmentVariable(key = "dt_db_user")
+    @ClearEnvironmentVariable(key = "dt_db_password")
     void testDatabase() {
         final Configurations conf = new Configurations();
         Assertions.assertEquals(
@@ -66,7 +70,7 @@ final class ConfigurationsTest {
      * @return Value.
      */
     private String property(final String key, final String def) {
-        final String sys = System.getProperty(String.format("dt.%s", key));
+        final String sys = System.getProperty(String.format("dt_%s", key));
         return sys != null ? sys : def;
     }
 }
