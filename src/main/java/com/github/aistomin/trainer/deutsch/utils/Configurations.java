@@ -15,12 +15,9 @@
  */
 package com.github.aistomin.trainer.deutsch.utils;
 
-import com.github.aistomin.trainer.deutsch.ui.Trainer;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Application configurations.
