@@ -8,6 +8,8 @@ services:
   - postgresql
 environment:
   PGUSER: postgres
+  dt.db.user: postgres
+  dt.db.url: jdbc:postgresql://localhost:5432/deutsch_trainer
   CODECOV_TOKEN: 7107ca4b-77ea-4f90-b04e-ecaab2598d0e"
   DISPLAY: :99
   matrix:
@@ -21,5 +23,5 @@ build_script:
   - psql -c 'create database deutsch_trainer;' -U postgres
   - psql deutsch_trainer -U postgres -d deutsch_trainer -f ./database/db.sql
   - sudo apt-get install xvfb
-  - mvn clean install package -Ddt.db.user=postgres -Ddt.db.url=jdbc:postgresql://localhost:5432/deutsch_trainer
+  - mvn clean install package
   - bash <(curl -s https://codecov.io/bash)

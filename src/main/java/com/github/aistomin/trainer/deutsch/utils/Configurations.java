@@ -62,22 +62,29 @@ public final class Configurations {
      */
     private String property(final String name) {
         final Logger logger = LoggerFactory.getLogger(Trainer.class);
-        final String sys = System.getProperty(String.format("dt.%s", name));
-        if (sys == null) {
-            try {
-                final Properties props = new Properties();
-                props.load(new FileReader(Resources.find(this.file)));
-                final String property = props.getProperty(name);
-                logger.info(
-                    "[{}] Taken from properties file: {}", name, property
-                );
-                return property;
-            } catch (final IOException error) {
-                throw new RuntimeException(error);
+        final String key = String.format("dt.%s", name);
+        final String env = System.getenv(key);
+        if (env == null) {
+            final String sys = System.getProperty(key);
+            if (sys == null) {
+                try {
+                    final Properties props = new Properties();
+                    props.load(new FileReader(Resources.find(this.file)));
+                    final String property = props.getProperty(name);
+                    logger.info(
+                        "[{}] Taken from properties file: {}", name, property
+                    );
+                    return property;
+                } catch (final IOException error) {
+                    throw new RuntimeException(error);
+                }
+            } else {
+                logger.info("[{}] Taken from system properties: {}", name, sys);
+                return sys;
             }
         } else {
-            logger.info("[{}] Taken from system properties: {}", name, sys);
-            return sys;
+            logger.info("[{}] Taken from env variables: {}", name, env);
+            return env;
         }
     }
 
