@@ -15,9 +15,12 @@
  */
 package com.github.aistomin.trainer.deutsch.utils;
 
+import com.github.aistomin.trainer.deutsch.ui.Trainer;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Application configurations.
@@ -58,16 +61,22 @@ public final class Configurations {
      * @return Value.
      */
     private String property(final String name) {
+        final Logger logger = LoggerFactory.getLogger(Trainer.class);
         final String sys = System.getProperty(String.format("dt.%s", name));
         if (sys == null) {
             try {
                 final Properties props = new Properties();
                 props.load(new FileReader(Resources.find(this.file)));
-                return props.getProperty(name);
+                final String property = props.getProperty(name);
+                logger.info(
+                    "[{}] Taken from properties file: {}", name, property
+                );
+                return property;
             } catch (final IOException error) {
                 throw new RuntimeException(error);
             }
         } else {
+            logger.info("[{}] Taken from system properties: {}", name, sys);
             return sys;
         }
     }
