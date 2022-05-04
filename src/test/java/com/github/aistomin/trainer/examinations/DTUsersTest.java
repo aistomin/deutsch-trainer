@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junitpioneer.jupiter.SetEnvironmentVariable;
 
 /**
  * Test for {@link DTUsers}.
@@ -101,15 +102,13 @@ final class DTUsersTest {
      * Check that we correctly behave when the database layer is failing.
      */
     @Test
+    @SetEnvironmentVariable(key = "dt_db_user",value = "non_existing_user")
     void testDatabaseFailure() {
-        final String username = new Configurations().database().username();
-        System.setProperty("dt.db.user", UUID.randomUUID().toString());
         Assertions.assertThrows(
             IllegalStateException.class,
             () -> this.users().all(),
             "Database error."
         );
-        System.setProperty("dt.db.user", username);
     }
 
     /**

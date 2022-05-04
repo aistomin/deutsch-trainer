@@ -45,9 +45,9 @@ public final class Configurations {
      */
     public Db database() {
         return new Db(
-            this.property("db.url"),
-            this.property("db.user"),
-            this.property("db.password")
+            this.property("db_url"),
+            this.property("db_user"),
+            this.property("db_password")
         );
     }
 
@@ -58,17 +58,23 @@ public final class Configurations {
      * @return Value.
      */
     private String property(final String name) {
-        final String sys = System.getProperty(String.format("dt.%s", name));
-        if (sys == null) {
-            try {
-                final Properties props = new Properties();
-                props.load(new FileReader(Resources.find(this.file)));
-                return props.getProperty(name);
-            } catch (final IOException error) {
-                throw new RuntimeException(error);
+        final String key = String.format("dt_%s", name);
+        final String env = System.getenv(key);
+        if (env == null) {
+            final String sys = System.getProperty(key);
+            if (sys == null) {
+                try {
+                    final Properties props = new Properties();
+                    props.load(new FileReader(Resources.find(this.file)));
+                    return props.getProperty(name);
+                } catch (final IOException error) {
+                    throw new RuntimeException(error);
+                }
+            } else {
+                return sys;
             }
         } else {
-            return sys;
+            return env;
         }
     }
 
