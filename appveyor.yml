@@ -8,8 +8,8 @@ services:
   - postgresql
 environment:
   PGUSER: postgres
-  dt.db.user: postgres
-  dt.db.url: jdbc:postgresql://localhost:5432/deutsch_trainer
+  dt_db_user: postgres
+  dt_db_url: jdbc:postgresql://localhost:5432/deutsch_trainer
   CODECOV_TOKEN: 7107ca4b-77ea-4f90-b04e-ecaab2598d0e"
   DISPLAY: :99
   matrix:

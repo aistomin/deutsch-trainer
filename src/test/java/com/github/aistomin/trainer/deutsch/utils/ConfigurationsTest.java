@@ -34,25 +34,25 @@ final class ConfigurationsTest {
         final Configurations conf = new Configurations();
         Assertions.assertEquals(
             this.property(
-                "db.url",
+                "db_url",
                 "jdbc:postgresql://localhost:5432/deutsch_trainer"
             ),
             conf.database().url()
         );
         Assertions.assertEquals(
-            this.property("db.user", "root"),
+            this.property("db_user", "root"),
             conf.database().username()
         );
         Assertions.assertEquals(
-            this.property("db.password", ""),
+            this.property("db_password", ""),
             conf.database().password()
         );
         final String url = UUID.randomUUID().toString();
-        System.setProperty("dt.db.url", url);
+        System.setProperty("dt_db_url", url);
         final String username = UUID.randomUUID().toString();
-        System.setProperty("dt.db.user", username);
+        System.setProperty("dt_db_user", username);
         final String pass = UUID.randomUUID().toString();
-        System.setProperty("dt.db.password", pass);
+        System.setProperty("dt_db_password", pass);
         Assertions.assertEquals(url, conf.database().url());
         Assertions.assertEquals(username, conf.database().username());
         Assertions.assertEquals(pass, conf.database().password());

@@ -103,13 +103,13 @@ final class DTUsersTest {
     @Test
     void testDatabaseFailure() {
         final String username = new Configurations().database().username();
-        System.setProperty("dt.db.user", UUID.randomUUID().toString());
+        System.setProperty("dt_db_user", UUID.randomUUID().toString());
         Assertions.assertThrows(
             IllegalStateException.class,
             () -> this.users().all(),
             "Database error."
         );
-        System.setProperty("dt.db.user", username);
+        System.setProperty("dt_db_user", username);
     }
 
     /**

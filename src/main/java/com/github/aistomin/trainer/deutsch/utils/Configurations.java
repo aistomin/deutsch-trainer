@@ -48,9 +48,9 @@ public final class Configurations {
      */
     public Db database() {
         return new Db(
-            this.property("db.url"),
-            this.property("db.user"),
-            this.property("db.password")
+            this.property("db_url"),
+            this.property("db_user"),
+            this.property("db_password")
         );
     }
 
@@ -62,7 +62,7 @@ public final class Configurations {
      */
     private String property(final String name) {
         final Logger logger = LoggerFactory.getLogger(Trainer.class);
-        final String key = String.format("dt.%s", name);
+        final String key = String.format("dt_%s", name);
         final String env = System.getenv(key);
         if (env == null) {
             final String sys = System.getProperty(key);
