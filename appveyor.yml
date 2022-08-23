@@ -20,6 +20,7 @@ init:
   - sudo sed -i -E -e 's/(local\s+all\s+postgres\s+)peer/\1trust/' /etc/postgresql/14/main/pg_hba.conf
 build_script:
   - echo $JAVA_HOME
+  - java -version
   - sudo -u postgres psql -c "ALTER USER postgres with password '${PGPASSWORD}';" postgres
   - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- $DISPLAY -ac -screen 0 1280x1024x24
   - sleep 3
