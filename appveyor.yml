@@ -15,7 +15,7 @@ environment:
   CODECOV_TOKEN: 7107ca4b-77ea-4f90-b04e-ecaab2598d0e"
   DISPLAY: :99
   matrix:
-    - JAVA_HOME: /usr/lib/jvm/java-17-openjdk-amd64
+    - JAVA_HOME: /usr/lib/jvm/java-18-openjdk-amd64
 init:
   - sudo sed -i -E -e 's/(local\s+all\s+postgres\s+)peer/\1trust/' /etc/postgresql/14/main/pg_hba.conf
 build_script:
