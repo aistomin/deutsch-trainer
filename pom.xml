@@ -8,8 +8,8 @@
     <version>1.0-SNAPSHOT</version>
     <name>Deutsch Trainer</name>
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>18</maven.compiler.source>
+        <maven.compiler.target>18</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junitVersion>5.9.0-RC1</junitVersion>
         <slf4j.version>2.0.0-beta1</slf4j.version>
@@ -98,8 +98,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.10.1</version>
                 <configuration>
-                    <source>17</source>
-                    <target>17</target>
+                    <source>18</source>
+                    <target>18</target>
                 </configuration>
             </plugin>
             <plugin>
