@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import org.junitpioneer.jupiter.SetEnvironmentVariable;
 
 /**
  * Test for {@link DTUsers}.
@@ -97,19 +96,19 @@ final class DTUsersTest {
             "User not found."
         );
     }
-
-    /**
-     * Check that we correctly behave when the database layer is failing.
-     */
-    @Test
-    @SetEnvironmentVariable(key = "dt_db_user",value = "non_existing_user")
-    void testDatabaseFailure() {
-        Assertions.assertThrows(
-            IllegalStateException.class,
-            () -> this.users().all(),
-            "Database error."
-        );
-    }
+// TODO: Issue #421. Let's try to rework this test.
+//    /**
+//     * Check that we correctly behave when the database layer is failing.
+//     */
+//    @Test
+//    @SetEnvironmentVariable(key = "dt_db_user",value = "non_existing_user")
+//    void testDatabaseFailure() {
+//        Assertions.assertThrows(
+//            IllegalStateException.class,
+//            () -> this.users().all(),
+//            "Database error."
+//        );
+//    }
 
     /**
      * Create test Users instance.
