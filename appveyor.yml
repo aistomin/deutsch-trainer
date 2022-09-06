@@ -15,11 +15,12 @@ environment:
   CODECOV_TOKEN: 7107ca4b-77ea-4f90-b04e-ecaab2598d0e"
   DISPLAY: :99
   matrix:
-    - JAVA_HOME: /usr/lib/jvm/java-15-openjdk-amd64
+    - JAVA_HOME: /usr/lib/jvm/java-18-openjdk-amd64
 init:
   - sudo sed -i -E -e 's/(local\s+all\s+postgres\s+)peer/\1trust/' /etc/postgresql/14/main/pg_hba.conf
 build_script:
   - echo $JAVA_HOME
+  - export PATH=$JAVA_HOME/bin:$PATH
   - java -version
   - sudo -u postgres psql -c "ALTER USER postgres with password '${PGPASSWORD}';" postgres
   - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- $DISPLAY -ac -screen 0 1280x1024x24
