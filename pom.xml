@@ -12,7 +12,7 @@
         <maven.compiler.target>18</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junitVersion>5.9.0-RC1</junitVersion>
-        <slf4j.version>2.0.1</slf4j.version>
+        <slf4j.version>2.0.2</slf4j.version>
         <jooq.version>3.17.4</jooq.version>
         <linkXRef>false</linkXRef>
     </properties>
