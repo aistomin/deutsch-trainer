@@ -125,7 +125,6 @@
                 <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.4.2</version>
                 <configuration>
-                    <finalName>deutsch-trainer</finalName>
                     <archive>
                         <manifest>
                             <mainClass>com.github.aistomin.trainer.deutsch.ui.Trainer</mainClass>
