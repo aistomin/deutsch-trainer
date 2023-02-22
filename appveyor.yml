@@ -1,33 +1,14 @@
-version: 1.0.{build}
-skip_tags: true
-branches:
-  only:
-    - master
-image: Ubuntu2004
-services:
-  - postgresql
-environment:
-  PGUSER: postgres
-  PGPASSWORD: Password12!
-  dt_db_url: jdbc:postgresql://localhost:5432/deutsch_trainer
-  dt_db_user: postgres
-  dt_db_password: Password12!
-  CODECOV_TOKEN: 7107ca4b-77ea-4f90-b04e-ecaab2598d0e"
-  DISPLAY: :99
-  matrix:
-    - JAVA_HOME: /usr/lib/jvm/java-18-openjdk-amd64
-init:
-  - sudo sed -i -E -e 's/(local\s+all\s+postgres\s+)peer/\1trust/' /etc/postgresql/15/main/pg_hba.conf
-build_script:
-  - echo $JAVA_HOME
-  - export PATH=$JAVA_HOME/bin:$PATH
-  - java -version
-  - sudo -u postgres psql -c "ALTER USER postgres with password '${PGPASSWORD}';" postgres
-  - /sbin/start-stop-daemon --start --quiet --pidfile /tmp/custom_xvfb_99.pid --make-pidfile --background --exec /usr/bin/Xvfb -- $DISPLAY -ac -screen 0 1280x1024x24
-  - sleep 3
-  - psql -c 'create database deutsch_trainer;' -U postgres
-  - psql -U postgres -d deutsch_trainer -f ./database/db.sql
-  - sudo apt-get install xvfb
-  - mvn -version
-  - mvn clean install package
-  - bash <(curl -s https://codecov.io/bash)
+version: "{build}"
+
+image: Ubuntu
+
+skip_branch_with_pr: true
+
+install:
+  - npm install jest --global
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - jest --passWithNoTests
