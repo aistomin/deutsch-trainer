@@ -1,4 +1,11 @@
-# deutsch-trainer
+# Deutschtrainer
 [![Build status](https://ci.appveyor.com/api/projects/status/51vmasgg4fdr0nfl/branch/master?svg=true)](https://ci.appveyor.com/project/aistomin/deutsch-trainer/branch/master)
 [![Hits-of-Code](https://hitsofcode.com/github/aistomin/deutsch-trainer)](https://hitsofcode.com/github/aistomin/deutsch-trainer/view)
-[![codecov](https://codecov.io/gh/aistomin/deutsch-trainer/branch/master/graph/badge.svg)](https://codecov.io/gh/aistomin/deutsch-trainer)
+
+The application is built to help me to learn German. Currently, the application
+is in the active development state. In order to use it you need to clone the 
+source code and run it using the following command:
+
+```agsl
+npm run dev
+```
