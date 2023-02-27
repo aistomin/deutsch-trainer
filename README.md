@@ -4,8 +4,6 @@
 
 The application is built to help me to learn German. Currently, the application
 is in the active development state. In order to use it you need to clone the 
-source code and run it using the following command:
-
-```agsl
-npm run dev
-```
+source code and run it using the following commands:
+1. Run json-server: `json-server --watch data/db.json --port 3004`
+2. Run the app: `npm run dev`
