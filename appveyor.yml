@@ -9,9 +9,10 @@ branches:
 
 install:
   - npm install jest --global
+  - npm install json-server --global
   - npm install
 
 test_script:
   - node --version
   - npm --version
-  - jest --passWithNoTests
+  - json-server --watch data/db.json --port 3004 & jest --passWithNoTests

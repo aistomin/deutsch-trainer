@@ -1,0 +1,22 @@
+{
+  "vocabulary": [
+    {
+      "id": 1,
+      "german": "notieren, notierte, notiert",
+      "english": "to note down",
+      "userId": 1
+    },
+    {
+      "id": 2,
+      "german": "die Verfassung, -en",
+      "english": "the constitution",
+      "userId": 1
+    },
+    {
+      "id": 3,
+      "german": "blutrot",
+      "english": "crimson",
+      "userId": 1
+    }
+  ]
+}
