@@ -2,7 +2,7 @@ import {Route, Routes} from "react-router-dom";
 import Layout from "./components/Layout.jsx";
 import Home from "./features/home/Home.jsx";
 import Test from "./features/test/Test.jsx";
-import Vocabulary from "./features/dictionary/Vocabulary.jsx";
+import VocabularyTable from "./features/vocabulary/VocabularyTable.jsx";
 
 function App() {
 
@@ -14,7 +14,7 @@ function App() {
             <Route index element={<Test/>}/>
           </Route>
             <Route path="vocabulary">
-            <Route index element={<Vocabulary/>}/>
+            <Route index element={<VocabularyTable/>}/>
           </Route>
         </Route>
       </Routes>

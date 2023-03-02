@@ -18,5 +18,11 @@
       "english": "crimson",
       "userId": 1
     }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "aistomin"
+    }
   ]
 }
