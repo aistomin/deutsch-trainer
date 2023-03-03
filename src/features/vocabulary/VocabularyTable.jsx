@@ -2,14 +2,20 @@ import React from 'react';
 import {Paper, Table, TableBody, TableCell, tableCellClasses, TableContainer, TableHead, TableRow} from "@mui/material";
 import {styled} from "@mui/material/styles";
 import {useSelector} from "react-redux";
-import {getVocabularyError, getVocabularyStatus, selectTheWholeVocabulary} from "./vocabularySlice.jsx";
+import {
+    selectAllVocabularyItems,
+    useGetVocabularyItemsQuery
+} from "./vocabularySlice.jsx";
 
 const VocabularyTable = () => {
-    const rows = useSelector(selectTheWholeVocabulary);
+    const {
+        isLoading,
+        isSuccess,
+        isError,
+        error
+    } = useGetVocabularyItemsQuery()
 
-    const status = useSelector(getVocabularyStatus);
-
-    const error = useSelector(getVocabularyError);
+    const rows = useSelector(selectAllVocabularyItems)
 
     const StyledTableCell = styled(TableCell)(({theme}) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -21,12 +27,10 @@ const VocabularyTable = () => {
         },
     }));
 
-    console.log(status);
-
     let content;
-    if (status === 'loading') {
+    if (isLoading) {
         content = <p>"Loading..."</p>;
-    } else if (status === 'succeeded') {
+    } else if (isSuccess) {
         content = <TableContainer component={Paper}>
             <Table sx={{minWidth: 650}} aria-label="simple table">
                 <TableHead>
@@ -50,7 +54,7 @@ const VocabularyTable = () => {
                 </TableBody>
             </Table>
         </TableContainer>;
-    } else if (status === 'failed') {
+    } else if (isError) {
         content = <p>{error}</p>;
     }
     return content;

@@ -1,47 +1,39 @@
-import {createAsyncThunk, createEntityAdapter, createSlice} from "@reduxjs/toolkit";
-import axios from "axios";
-
-const API_URL = 'http://localhost:3004/vocabulary';
+import {createEntityAdapter, createSelector} from "@reduxjs/toolkit";
+import {apiSlice} from "../api/apiSlice.jsx";
 
 const adapter = createEntityAdapter({
     // todo: sort by meaningful part of the name
     sortComparer: (a, b) => b.id > a.id
 });
 
-const initialState = adapter.getInitialState({
-    status: 'idle', //'idle' | 'loading' | 'succeeded' | 'failed'
-    error: null
+const initialState = adapter.getInitialState();
+
+export const vocabularySlice = apiSlice.injectEndpoints({
+    endpoints: builder => ({
+        getVocabularyItems: builder.query({
+            query: () => '/vocabulary',
+            transformResponse: data => {
+                return adapter.setAll(initialState, data)
+            },
+            providesTags: (result, error, arg) => [
+                {type: 'VocabularyItem', id: "LIST"},
+                ...result.ids.map(id => ({type: 'VocabularyItem', id}))
+            ]
+        })
+    })
 });
 
-const vocabularySlice = createSlice({
-    name: 'vocabulary',
-    initialState,
-    extraReducers(builder) {
-        builder
-            .addCase(fetchVocabulary.pending, (state, action) => {
-                state.status = 'loading'
-            })
-            .addCase(fetchVocabulary.fulfilled, (state, action) => {
-                state.status = 'succeeded'
-                adapter.upsertMany(state, action.payload);
-            })
-            .addCase(fetchVocabulary.rejected, (state, action) => {
-                state.status = 'failed'
-                state.error = action.error.message
-            })
-    }
-})
+const selectVocabularyResult = vocabularySlice.endpoints.getVocabularyItems.select();
 
-export const fetchVocabulary = createAsyncThunk('vocabulary/fetch', async () => {
-    return (await axios.get(API_URL)).data
-})
+const selectData = createSelector(
+    selectVocabularyResult,
+    result => result.data
+);
 
 export const {
-    selectAll: selectTheWholeVocabulary,
-} = adapter.getSelectors(state => state.vocabulary);
+    useGetVocabularyItemsQuery
+} = vocabularySlice;
 
-export const getVocabularyStatus = (state) => state.vocabulary.status;
-
-export const getVocabularyError = (state) => state.vocabulary.error;
-
-export default vocabularySlice.reducer;
+export const {
+    selectAll: selectAllVocabularyItems,
+} = adapter.getSelectors(state => selectData(state) ?? initialState);

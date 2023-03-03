@@ -15,4 +15,4 @@ install:
 test_script:
   - node --version
   - npm --version
-  - json-server --watch data/db.json --port 3004 & jest --passWithNoTests
+  - json-server --watch data/db.json --port 8080 & jest --passWithNoTests
