@@ -19,7 +19,15 @@ export const vocabularySlice = apiSlice.injectEndpoints({
                 {type: 'VocabularyItem', id: "LIST"},
                 ...result.ids.map(id => ({type: 'VocabularyItem', id}))
             ]
-        })
+        }),
+        addVocabularyItem: builder.mutation({
+            query: (item) => ({
+                url: '/vocabulary',
+                method: 'POST',
+                body: item
+            }),
+            invalidatesTags: ['VocabularyItem']
+        }),
     })
 });
 
@@ -31,7 +39,8 @@ const selectData = createSelector(
 );
 
 export const {
-    useGetVocabularyItemsQuery
+    useGetVocabularyItemsQuery,
+    useAddVocabularyItemMutation
 } = vocabularySlice;
 
 export const {

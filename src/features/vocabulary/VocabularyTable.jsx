@@ -6,6 +6,9 @@ import {
     selectAllVocabularyItems,
     useGetVocabularyItemsQuery
 } from "./vocabularySlice.jsx";
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import {Link} from "react-router-dom";
 
 const VocabularyTable = () => {
     const {
@@ -37,7 +40,7 @@ const VocabularyTable = () => {
                     <TableRow sx={{border: 1}}>
                         <StyledTableCell align="center">German</StyledTableCell>
                         <StyledTableCell align="center">English</StyledTableCell>
-                        <StyledTableCell align="center">+</StyledTableCell>
+                        <StyledTableCell align="center"><Link to="/vocabulary/new"><FontAwesomeIcon icon={faPlus}/></Link></StyledTableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
