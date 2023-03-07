@@ -28,6 +28,14 @@ export const vocabularySlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['VocabularyItem']
         }),
+        deleteVocabularyItem: builder.mutation({
+            query: ({ id }) => ({
+                url: `/vocabulary/${id}`,
+                method: 'DELETE',
+                body: id
+            }),
+            invalidatesTags: ['VocabularyItem']
+        })
     })
 });
 
@@ -40,7 +48,8 @@ const selectData = createSelector(
 
 export const {
     useGetVocabularyItemsQuery,
-    useAddVocabularyItemMutation
+    useAddVocabularyItemMutation,
+    useDeleteVocabularyItemMutation
 } = vocabularySlice;
 
 export const {
