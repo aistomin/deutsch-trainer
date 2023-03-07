@@ -3,11 +3,11 @@ import {Paper, Table, TableBody, TableCell, tableCellClasses, TableContainer, Ta
 import {styled} from "@mui/material/styles";
 import {useSelector} from "react-redux";
 import {
-    selectAllVocabularyItems,
+    selectAllVocabularyItems, useDeleteVocabularyItemMutation,
     useGetVocabularyItemsQuery
 } from "./vocabularySlice.jsx";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
+import {faPlus, faTrash} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 
 const VocabularyTable = () => {
@@ -16,9 +16,11 @@ const VocabularyTable = () => {
         isSuccess,
         isError,
         error
-    } = useGetVocabularyItemsQuery()
+    } = useGetVocabularyItemsQuery();
 
-    const rows = useSelector(selectAllVocabularyItems)
+    const rows = useSelector(selectAllVocabularyItems);
+
+    const [deleteRow] = useDeleteVocabularyItemMutation();
 
     const StyledTableCell = styled(TableCell)(({theme}) => ({
         [`&.${tableCellClasses.head}`]: {
@@ -40,7 +42,9 @@ const VocabularyTable = () => {
                     <TableRow sx={{border: 1}}>
                         <StyledTableCell align="center">German</StyledTableCell>
                         <StyledTableCell align="center">English</StyledTableCell>
-                        <StyledTableCell align="center"><Link to="/vocabulary/new"><FontAwesomeIcon icon={faPlus}/></Link></StyledTableCell>
+                        <StyledTableCell align="center"><Link to="/vocabulary/new"><FontAwesomeIcon
+                            icon={faPlus}/></Link></StyledTableCell>
+                        <StyledTableCell align="center"/>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -52,6 +56,9 @@ const VocabularyTable = () => {
                             <StyledTableCell align="center">{row.german}</StyledTableCell>
                             <StyledTableCell align="center">{row.english}</StyledTableCell>
                             <StyledTableCell align="center">...</StyledTableCell>
+                            <StyledTableCell align="center"><Link
+                                onClick={() => deleteRow({id: row.id})}><FontAwesomeIcon
+                                icon={faTrash}/></Link></StyledTableCell>
                         </TableRow>
                     ))}
                 </TableBody>
