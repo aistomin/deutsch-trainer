@@ -7,7 +7,7 @@ import {
     useGetVocabularyItemsQuery
 } from "./vocabularySlice.jsx";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faPlus, faTrash} from '@fortawesome/free-solid-svg-icons'
+import {faPenToSquare, faPlus, faTrash} from '@fortawesome/free-solid-svg-icons'
 import {Link} from "react-router-dom";
 
 const VocabularyTable = () => {
@@ -55,10 +55,16 @@ const VocabularyTable = () => {
                         >
                             <StyledTableCell align="center">{row.german}</StyledTableCell>
                             <StyledTableCell align="center">{row.english}</StyledTableCell>
-                            <StyledTableCell align="center">...</StyledTableCell>
-                            <StyledTableCell align="center"><Link
-                                onClick={() => deleteRow({id: row.id})}><FontAwesomeIcon
-                                icon={faTrash}/></Link></StyledTableCell>
+                            <StyledTableCell align="center">
+                                <Link to={`/vocabulary/edit/${row.id}`}>
+                                    <FontAwesomeIcon icon={faPenToSquare}/>
+                                </Link>
+                            </StyledTableCell>
+                            <StyledTableCell align="center">
+                                <Link onClick={() => deleteRow({id: row.id})}>
+                                    <FontAwesomeIcon icon={faTrash}/>
+                                </Link>
+                            </StyledTableCell>
                         </TableRow>
                     ))}
                 </TableBody>
