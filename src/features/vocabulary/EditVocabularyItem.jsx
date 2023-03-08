@@ -1,32 +1,34 @@
 import React, {useState} from 'react';
-import {useAddVocabularyItemMutation} from "./vocabularySlice.jsx";
-import {useNavigate} from "react-router-dom";
+import {
+    selectVocabularyItemById,
+    useUpdateVocabularyItemMutation
+} from "./vocabularySlice.jsx";
+import {useParams} from "react-router-dom";
+import {useSelector} from "react-redux";
 
 const NewVocabularyItem = () => {
 
-    const [german, setGerman] = useState('');
-    const [english, setEnglish] = useState('');
-    const [pictureUrl, setPictureUrl] = useState('');
-    const [example, setExample] = useState('');
+    const {id} = useParams()
 
-    const [addVocabularyItem] = useAddVocabularyItemMutation();
+    const item = useSelector((state) => selectVocabularyItemById(state, Number(id)))
 
-    const navigate = useNavigate();
+    const [german, setGerman] = useState(item?.german);
+    const [english, setEnglish] = useState(item?.english);
+    const [pictureUrl, setPictureUrl] = useState(item?.pictureUrl);
+    const [example, setExample] = useState(item.example);
+
+    const [updateVocabularyItem] = useUpdateVocabularyItemMutation();
 
     const addItem = (e) => {
         e.preventDefault();
-        addVocabularyItem({
+        updateVocabularyItem({
+            "id": item.id,
             "german": german,
             "english": english,
             "pictureUrl": pictureUrl,
             "example": example,
             "userId": 1
         });
-        setGerman('');
-        setEnglish('');
-        setPictureUrl('');
-        setExample('');
-        navigate('/vocabulary');
     }
 
     return (
@@ -67,7 +69,7 @@ const NewVocabularyItem = () => {
                 <button
                     type="button"
                     onClick={addItem}
-                >Add
+                >Save
                 </button>
             </form>
         </section>

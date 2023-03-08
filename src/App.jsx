@@ -4,6 +4,7 @@ import Home from "./features/home/Home.jsx";
 import Test from "./features/test/Test.jsx";
 import VocabularyTable from "./features/vocabulary/VocabularyTable.jsx";
 import NewVocabularyItem from "./features/vocabulary/NewVocabularyItem.jsx";
+import EditVocabularyItem from "./features/vocabulary/EditVocabularyItem.jsx";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
                 <Route path="vocabulary">
                     <Route index element={<VocabularyTable/>}/>
                     <Route path="new" element={<NewVocabularyItem/>}/>
+                    <Route path="edit/:id" element={<EditVocabularyItem/>}/>
                 </Route>
             </Route>
         </Routes>

@@ -28,6 +28,14 @@ export const vocabularySlice = apiSlice.injectEndpoints({
             }),
             invalidatesTags: ['VocabularyItem']
         }),
+        updateVocabularyItem: builder.mutation({
+            query: (item) => ({
+                url: `/vocabulary/${item.id}`,
+                method: 'PATCH',
+                body: item
+            }),
+            invalidatesTags: ['VocabularyItem']
+        }),
         deleteVocabularyItem: builder.mutation({
             query: ({ id }) => ({
                 url: `/vocabulary/${id}`,
@@ -49,9 +57,11 @@ const selectData = createSelector(
 export const {
     useGetVocabularyItemsQuery,
     useAddVocabularyItemMutation,
+    useUpdateVocabularyItemMutation,
     useDeleteVocabularyItemMutation
 } = vocabularySlice;
 
 export const {
     selectAll: selectAllVocabularyItems,
+    selectById: selectVocabularyItemById
 } = adapter.getSelectors(state => selectData(state) ?? initialState);
