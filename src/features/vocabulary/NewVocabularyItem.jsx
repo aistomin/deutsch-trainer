@@ -1,17 +1,15 @@
 import React, {useState} from 'react';
-import {selectAllVocabularyItems, useAddVocabularyItemMutation} from "./vocabularySlice.jsx";
+import {useAddVocabularyItemMutation} from "./vocabularySlice.jsx";
 import {useNavigate} from "react-router-dom";
-import {useSelector} from "react-redux";
 
 const NewVocabularyItem = () => {
 
     const [german, setGerman] = useState('');
     const [english, setEnglish] = useState('');
     const [pictureUrl, setPictureUrl] = useState('');
+    const [example, setExample] = useState('');
 
     const [addVocabularyItem] = useAddVocabularyItemMutation();
-
-    const rows = useSelector(selectAllVocabularyItems)
 
     const navigate = useNavigate();
 
@@ -21,11 +19,13 @@ const NewVocabularyItem = () => {
             "german": german,
             "english": english,
             "pictureUrl": pictureUrl,
+            "example": example,
             "userId": 1
         });
         setGerman('');
         setEnglish('');
         setPictureUrl('');
+        setExample('');
         navigate('/vocabulary');
     }
 
@@ -55,6 +55,14 @@ const NewVocabularyItem = () => {
                     name="pictureUrl"
                     value={pictureUrl}
                     onChange={e => setPictureUrl(e.target.value)}
+                />
+                <label htmlFor="example">Example:</label>
+                <input
+                    type="text"
+                    id="example"
+                    name="example"
+                    value={example}
+                    onChange={e => setExample(e.target.value)}
                 />
                 <button
                     type="button"
