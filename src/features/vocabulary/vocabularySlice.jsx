@@ -30,8 +30,8 @@ export const vocabularySlice = apiSlice.injectEndpoints({
         }),
         updateVocabularyItem: builder.mutation({
             query: (item) => ({
-                url: `/vocabulary/${item.id}`,
-                method: 'PATCH',
+                url: '/vocabulary',
+                method: 'PUT',
                 body: item
             }),
             invalidatesTags: ['VocabularyItem']
