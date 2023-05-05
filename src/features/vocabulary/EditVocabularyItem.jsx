@@ -6,7 +6,7 @@ import {
 import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 
-const NewVocabularyItem = () => {
+const EditVocabularyItem = () => {
 
     const {id} = useParams()
 
@@ -15,7 +15,8 @@ const NewVocabularyItem = () => {
     const [german, setGerman] = useState(item?.german);
     const [english, setEnglish] = useState(item?.english);
     const [pictureUrl, setPictureUrl] = useState(item?.pictureUrl);
-    const [example, setExample] = useState(item.example);
+    const [example, setExample] = useState(item?.example);
+    const [dateCreated] = useState(item?.dateCreated);
 
     const [updateVocabularyItem] = useUpdateVocabularyItemMutation();
 
@@ -27,6 +28,7 @@ const NewVocabularyItem = () => {
             "english": english,
             "pictureUrl": pictureUrl,
             "example": example,
+            "dateCreated": dateCreated,
             "userId": 1
         });
     }
@@ -76,4 +78,4 @@ const NewVocabularyItem = () => {
     );
 };
 
-export default NewVocabularyItem;
+export default EditVocabularyItem;
