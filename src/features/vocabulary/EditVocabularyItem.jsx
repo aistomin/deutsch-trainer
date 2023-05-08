@@ -17,6 +17,7 @@ const EditVocabularyItem = () => {
     const [pictureUrl, setPictureUrl] = useState(item?.pictureUrl);
     const [example, setExample] = useState(item?.example);
     const [dateCreated] = useState(item?.dateCreated);
+    const [owner] = useState(item?.owner);
 
     const [updateVocabularyItem] = useUpdateVocabularyItemMutation();
 
@@ -29,7 +30,7 @@ const EditVocabularyItem = () => {
             "pictureUrl": pictureUrl,
             "example": example,
             "dateCreated": dateCreated,
-            "userId": 1
+            "owner": owner
         });
     }
 
